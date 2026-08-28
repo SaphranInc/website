@@ -105,7 +105,7 @@ function PrimaryBtn({
     <button
       type={type}
       onClick={onClick}
-      className={`inline-flex items-center justify-center gap-2 text-sm font-semibold px-6 py-[11px] rounded-[5px] transition-all duration-150 active:scale-[0.98] ${
+      className={`inline-flex items-center justify-center gap-2 text-sm font-semibold px-6 py-[11px] rounded-[5px] transition-all duration-150 active:scale-[0.98] cursor-pointer ${
         full ? "w-full" : ""
       }`}
       style={{
@@ -139,7 +139,7 @@ function OutlineBtn({
   return (
     <button
       onClick={onClick}
-      className="inline-flex items-center gap-2 text-sm font-medium px-6 py-[11px] rounded-[5px] transition-all duration-150"
+      className="inline-flex items-center gap-2 text-sm font-medium px-6 py-[11px] rounded-[5px] transition-all duration-150 cursor-pointer"
       style={{
         color: col,
         border: `1px solid ${bdr}`,
@@ -2357,6 +2357,209 @@ function CapabilitiesPage({ setPage }: { setPage: (p: Page) => void }) {
   );
 }
 
+// ─── Reusable Discovery Call Form Component ───────────────────────────────────
+
+function DiscoveryCallForm({ dark = false }: { dark?: boolean }) {
+  const [form, setForm] = useState({
+    name: "", email: "", company: "", role: "", challenge: "",
+  });
+  const [status, setStatus] = useState<"idle" | "submitting" | "done">("idle");
+
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setStatus("submitting");
+    setTimeout(() => setStatus("done"), 1500);
+  }
+
+  const fieldBase = {
+    fontFamily: "'Inter', sans-serif",
+    fontSize: "13px",
+    background: dark ? "rgba(255,255,255,0.06)" : BONE,
+    border: dark ? "1px solid rgba(255,255,255,0.15)" : "1px solid rgba(33,51,67,0.13)",
+    borderRadius: "4px",
+    padding: "10px 12px",
+    color: dark ? "#fff" : INK,
+    outline: "none",
+    width: "100%",
+    transition: "border-color 0.15s, background 0.15s",
+  };
+
+  return (
+    <div
+      className={`rounded-[8px] p-6 lg:p-8 ${dark ? "bg-[#0b1623] text-white" : "bg-white text-slate-900"}`}
+      style={{
+        border: dark ? "1px solid rgba(255,255,255,0.12)" : "1px solid rgba(33,51,67,0.10)",
+        boxShadow: dark ? "0 4px 24px rgba(0,0,0,0.35)" : "0 2px 16px rgba(33,51,67,0.06)",
+      }}
+    >
+      {status === "submitting" ? (
+        <div className="flex flex-col items-center justify-center py-14 gap-4">
+          <SwirlMark
+            size={40}
+            color={GREEN}
+            className="animate-spin"
+            style={{ animationDuration: "1.2s" }}
+          />
+          <p
+            className="text-sm"
+            style={{ color: dark ? "rgba(255,255,255,0.8)" : SLATE, fontFamily: "'Inter', sans-serif" }}
+          >
+            Sending your request…
+          </p>
+        </div>
+      ) : status === "done" ? (
+        <div className="text-center py-12">
+          <div
+            className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-5"
+            style={{
+              background: `${GREEN}14`,
+              border: `1px solid ${GREEN}40`,
+            }}
+          >
+            <Check size={18} style={{ color: GREEN }} />
+          </div>
+          <h3
+            className="text-xl font-bold mb-2"
+            style={{
+              fontFamily: "'Poppins', sans-serif",
+              color: dark ? "#fff" : INK,
+            }}
+          >
+            Request received.
+          </h3>
+          <p
+            className="text-sm leading-relaxed"
+            style={{
+              color: dark ? "rgba(255,255,255,0.7)" : SLATE,
+              fontFamily: "'Inter', sans-serif",
+            }}
+          >
+            We&apos;ll be in touch within one business day to schedule your discovery call.
+          </p>
+        </div>
+      ) : (
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <h2
+            className="text-lg font-bold mb-4"
+            style={{
+              fontFamily: "'Poppins', sans-serif",
+              color: dark ? "#fff" : INK,
+            }}
+          >
+            Book a Discovery Call
+          </h2>
+          <div className="grid grid-cols-2 gap-3">
+            {[
+              { label: "Name",       key: "name",  placeholder: "Alex Chen",        type: "text"  },
+              { label: "Work Email", key: "email", placeholder: "alex@company.com", type: "email" },
+            ].map((f) => (
+              <div key={f.key}>
+                <label
+                  className="block text-[11px] font-medium mb-1.5"
+                  style={{
+                    color: dark ? "rgba(255,255,255,0.8)" : GRAPHITE,
+                    fontFamily: "'Inter', sans-serif",
+                  }}
+                >
+                  {f.label}
+                </label>
+                <input
+                  type={f.type}
+                  placeholder={f.placeholder}
+                  required
+                  value={form[f.key as keyof typeof form]}
+                  onChange={(e) =>
+                    setForm({ ...form, [f.key]: e.target.value })
+                  }
+                  style={fieldBase}
+                  onFocus={(e) => {
+                    (e.currentTarget as HTMLElement).style.borderColor = GREEN;
+                    (e.currentTarget as HTMLElement).style.background = dark ? "rgba(255,255,255,0.1)" : "#fff";
+                  }}
+                  onBlur={(e) => {
+                    (e.currentTarget as HTMLElement).style.borderColor = dark ? "rgba(255,255,255,0.15)" : "rgba(33,51,67,0.13)";
+                    (e.currentTarget as HTMLElement).style.background = dark ? "rgba(255,255,255,0.06)" : BONE;
+                  }}
+                />
+              </div>
+            ))}
+          </div>
+          {[
+            { label: "Company", key: "company", placeholder: "Acme Manufacturing" },
+            { label: "Role",    key: "role",    placeholder: "VP Finance, Director of Planning…" },
+          ].map((f) => (
+            <div key={f.key}>
+              <label
+                className="block text-[11px] font-medium mb-1.5"
+                style={{
+                  color: dark ? "rgba(255,255,255,0.8)" : GRAPHITE,
+                  fontFamily: "'Inter', sans-serif",
+                }}
+              >
+                {f.label}
+              </label>
+              <input
+                type="text"
+                placeholder={f.placeholder}
+                value={form[f.key as keyof typeof form]}
+                onChange={(e) =>
+                  setForm({ ...form, [f.key]: e.target.value })
+                }
+                style={fieldBase}
+                onFocus={(e) => {
+                  (e.currentTarget as HTMLElement).style.borderColor = GREEN;
+                  (e.currentTarget as HTMLElement).style.background = dark ? "rgba(255,255,255,0.1)" : "#fff";
+                }}
+                onBlur={(e) => {
+                  (e.currentTarget as HTMLElement).style.borderColor = dark ? "rgba(255,255,255,0.15)" : "rgba(33,51,67,0.13)";
+                  (e.currentTarget as HTMLElement).style.background = dark ? "rgba(255,255,255,0.06)" : BONE;
+                }}
+              />
+            </div>
+          ))}
+          <div>
+            <label
+              className="block text-[11px] font-medium mb-1.5"
+              style={{
+                color: dark ? "rgba(255,255,255,0.8)" : GRAPHITE,
+                fontFamily: "'Inter', sans-serif",
+              }}
+            >
+              What&apos;s your biggest cost or margin challenge right now?
+            </label>
+            <textarea
+              rows={3}
+              placeholder="e.g. Our freight costs are unpredictable and we're pricing bids on 6-month-old data…"
+              value={form.challenge}
+              onChange={(e) =>
+                setForm({ ...form, challenge: e.target.value })
+              }
+              style={{ ...fieldBase, resize: "none" }}
+              onFocus={(e) => {
+                (e.currentTarget as HTMLElement).style.borderColor = GREEN;
+                (e.currentTarget as HTMLElement).style.background = dark ? "rgba(255,255,255,0.1)" : "#fff";
+              }}
+              onBlur={(e) => {
+                (e.currentTarget as HTMLElement).style.borderColor = dark ? "rgba(255,255,255,0.15)" : "rgba(33,51,67,0.13)";
+                (e.currentTarget as HTMLElement).style.background = dark ? "rgba(255,255,255,0.06)" : BONE;
+              }}
+            />
+          </div>
+          <PrimaryBtn full type="submit">
+            Book a Discovery Call <ArrowRight size={14} />
+          </PrimaryBtn>
+          <p
+            className="text-[10px] text-center"
+            style={{ color: dark ? "rgba(255,255,255,0.6)" : SLATE, fontFamily: "'Inter', sans-serif" }}
+          >
+            We&apos;ll respond within one business day. No commitment required.
+          </p>
+        </form>
+      )}
+    </div>
+  );
+}
+
 // ─── Contact Page ─────────────────────────────────────────────────────────────
 
 type FormStatus = "idle" | "submitting" | "done";
@@ -3532,53 +3735,56 @@ function QuoteBasePage({ setPage }: { setPage: (p: Page) => void }) {
         </div>
         
         <div className="max-w-[1280px] mx-auto px-6 lg:px-8 relative">
-          <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 mb-6 px-3 py-1.5 rounded-full"
-              style={{ background: `${GREEN}14`, border: `1px solid ${GREEN}35` }}>
-              <Shield size={11} className="text-emerald-600" />
-              <span className="text-[10px] font-semibold uppercase tracking-[0.12em]"
-                style={{ color: GREEN, fontFamily: "'Inter', sans-serif" }}>
-                U.S. Patent # 8,082,185
-              </span>
-            </div>
-            
-            <h1 className="font-extrabold leading-[1.03] mb-6"
-              style={{
-                fontFamily: "'Poppins', sans-serif",
-                fontSize: "clamp(42px, 5.5vw, 72px)",
-                letterSpacing: "-0.024em",
-                color: INK,
-              }}>
-              QuoteBase™
-            </h1>
-            
-            <p className="text-lg font-semibold leading-snug mb-5"
-              style={{ color: INK, fontFamily: "'Poppins', sans-serif" }}>
-              Accurate &amp; Efficient Costing &amp; Quoting, Integrated Directly in Your Rolling Business Plan.
-            </p>
-            
-            <p className="text-[15px] leading-relaxed mb-8"
-              style={{ color: SLATE, fontFamily: "'Inter', sans-serif" }}>
-              Say goodbye to disconnected spreadsheets. QuoteBase is Saphran's enterprise-class costing and quoting solution, specifically designed for Tier 1 suppliers and ETO manufacturers. Speed up RFQ response, eliminate pricing errors, and connect every quote directly to your long-range business plans.
-            </p>
-
-            <div className="border-l-4 border-emerald-500 bg-[#f9f9fb] p-5 rounded-r-[5px] mb-8 max-w-2xl"
-              style={{ borderLeftColor: GREEN }}>
-              <p className="text-xs italic leading-relaxed text-slate-750 mb-2">
-                &quot;QuoteBase further leaned out our already lean cost and customer quote cycle by over 30% and integrated with PartBase to expose operational BOM forecasting that was always up to date.&quot;
+          <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-16 items-center">
+            <div>
+              <div className="inline-flex items-center gap-2 mb-6 px-3 py-1.5 rounded-full"
+                style={{ background: `${GREEN}14`, border: `1px solid ${GREEN}35` }}>
+                <Shield size={11} className="text-emerald-600" />
+                <span className="text-[10px] font-semibold uppercase tracking-[0.12em]"
+                  style={{ color: GREEN, fontFamily: "'Inter', sans-serif" }}>
+                  U.S. Patent # 8,082,185
+                </span>
+              </div>
+              
+              <h1 className="font-extrabold leading-[1.03] mb-6"
+                style={{
+                  fontFamily: "'Poppins', sans-serif",
+                  fontSize: "clamp(42px, 5.5vw, 72px)",
+                  letterSpacing: "-0.024em",
+                  color: INK,
+                }}>
+                QuoteBase™
+              </h1>
+              
+              <p className="text-lg font-semibold leading-snug mb-5"
+                style={{ color: INK, fontFamily: "'Poppins', sans-serif" }}>
+                Accurate &amp; Efficient Costing &amp; Quoting, Integrated Directly in Your Rolling Business Plan.
               </p>
-              <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wide">
-                — Custom Fastener Supplier
-              </span>
+              
+              <p className="text-[15px] leading-relaxed mb-8"
+                style={{ color: SLATE, fontFamily: "'Inter', sans-serif" }}>
+                Say goodbye to disconnected spreadsheets. QuoteBase is Saphran's enterprise-class costing and quoting solution, specifically designed for Tier 1 suppliers and ETO manufacturers. Speed up RFQ response, eliminate pricing errors, and connect every quote directly to your long-range business plans.
+              </p>
+
+              <div className="border-l-4 border-emerald-500 bg-[#f9f9fb] p-5 rounded-r-[5px] mb-8 max-w-2xl"
+                style={{ borderLeftColor: GREEN }}>
+                <p className="text-xs italic leading-relaxed text-slate-750 mb-2">
+                  &quot;QuoteBase further leaned out our already lean cost and customer quote cycle by over 30% and integrated with PartBase to expose operational BOM forecasting that was always up to date.&quot;
+                </p>
+                <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wide">
+                  — Custom Fastener Supplier
+                </span>
+              </div>
+              
+              <div className="flex gap-3 flex-wrap">
+                <OutlineBtn onClick={scrollToWorkflow}>
+                  Explore Quoting Workflow
+                </OutlineBtn>
+              </div>
             </div>
-            
-            <div className="flex gap-3 flex-wrap">
-              <PrimaryBtn onClick={() => setPage("contact")}>
-                Book a Discovery Call <ArrowRight size={14} />
-              </PrimaryBtn>
-              <OutlineBtn onClick={scrollToWorkflow}>
-                Explore Quoting Workflow
-              </OutlineBtn>
+
+            <div>
+              <DiscoveryCallForm />
             </div>
           </div>
         </div>
@@ -4089,53 +4295,56 @@ function PartBasePage({ setPage }: { setPage: (p: Page) => void }) {
         </div>
         
         <div className="max-w-[1280px] mx-auto px-6 lg:px-8 relative">
-          <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 mb-6 px-3 py-1.5 rounded-full"
-              style={{ background: `${GREEN}14`, border: `1px solid ${GREEN}35` }}>
-              <Shield size={11} className="text-emerald-600" />
-              <span className="text-[10px] font-semibold uppercase tracking-[0.12em]"
-                style={{ color: GREEN, fontFamily: "'Inter', sans-serif" }}>
-                U.S. Patent # 8,082,185
-              </span>
-            </div>
-            
-            <h1 className="font-extrabold leading-[1.03] mb-6"
-              style={{
-                fontFamily: "'Poppins', sans-serif",
-                fontSize: "clamp(42px, 5.5vw, 72px)",
-                letterSpacing: "-0.024em",
-                color: INK,
-              }}>
-              PartBase™
-            </h1>
-            
-            <p className="text-lg font-semibold leading-snug mb-5"
-              style={{ color: INK, fontFamily: "'Poppins', sans-serif" }}>
-              Active Commercial Management System &amp; Rolling Business Plan.
-            </p>
-            
-            <p className="text-[15px] leading-relaxed mb-8 text-slate-650"
-              style={{ color: SLATE, fontFamily: "'Inter', sans-serif" }}>
-              Saphran PartBase is the industry's leading active commercial management system powered by CSM Worldwide. Seamlessly merge external market intelligence (IHS/CSM subscription data) and internal cost structure records into one live, dynamic rolling forecast. Optimize profitability, run instant risk simulations, and make strategic decisions based on accurate data.
-            </p>
-
-            <div className="border-l-4 border-emerald-500 bg-[#f9f9fb] p-5 rounded-r-[5px] mb-8 max-w-2xl"
-              style={{ borderLeftColor: GREEN }}>
-              <p className="text-xs italic leading-relaxed text-slate-750 mb-2">
-                &quot;Saphran PartBase turned our four-month business planning process into a 2-week process with more accurate results. We now make decisions in real time.&quot;
+          <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-16 items-center">
+            <div>
+              <div className="inline-flex items-center gap-2 mb-6 px-3 py-1.5 rounded-full"
+                style={{ background: `${GREEN}14`, border: `1px solid ${GREEN}35` }}>
+                <Shield size={11} className="text-emerald-600" />
+                <span className="text-[10px] font-semibold uppercase tracking-[0.12em]"
+                  style={{ color: GREEN, fontFamily: "'Inter', sans-serif" }}>
+                  U.S. Patent # 8,082,185
+                </span>
+              </div>
+              
+              <h1 className="font-extrabold leading-[1.03] mb-6"
+                style={{
+                  fontFamily: "'Poppins', sans-serif",
+                  fontSize: "clamp(42px, 5.5vw, 72px)",
+                  letterSpacing: "-0.024em",
+                  color: INK,
+                }}>
+                PartBase™
+              </h1>
+              
+              <p className="text-lg font-semibold leading-snug mb-5"
+                style={{ color: INK, fontFamily: "'Poppins', sans-serif" }}>
+                Active Commercial Management System &amp; Rolling Business Plan.
               </p>
-              <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wide">
-                — Mid-Size Supplier
-              </span>
+              
+              <p className="text-[15px] leading-relaxed mb-8 text-slate-650"
+                style={{ color: SLATE, fontFamily: "'Inter', sans-serif" }}>
+                Saphran PartBase is the industry's leading active commercial management system powered by CSM Worldwide. Seamlessly merge external market intelligence (IHS/CSM subscription data) and internal cost structure records into one live, dynamic rolling forecast. Optimize profitability, run instant risk simulations, and make strategic decisions based on accurate data.
+              </p>
+
+              <div className="border-l-4 border-emerald-500 bg-[#f9f9fb] p-5 rounded-r-[5px] mb-8 max-w-2xl"
+                style={{ borderLeftColor: GREEN }}>
+                <p className="text-xs italic leading-relaxed text-slate-750 mb-2">
+                  &quot;Saphran PartBase turned our four-month business planning process into a 2-week process with more accurate results. We now make decisions in real time.&quot;
+                </p>
+                <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wide">
+                  — Mid-Size Supplier
+                </span>
+              </div>
+              
+              <div className="flex gap-3 flex-wrap">
+                <OutlineBtn onClick={scrollToProductivity}>
+                  Compare Productivity Gains
+                </OutlineBtn>
+              </div>
             </div>
-            
-            <div className="flex gap-3 flex-wrap">
-              <PrimaryBtn onClick={() => setPage("contact")}>
-                Book a Discovery Call <ArrowRight size={14} />
-              </PrimaryBtn>
-              <OutlineBtn onClick={scrollToProductivity}>
-                Compare Productivity Gains
-              </OutlineBtn>
+
+            <div>
+              <DiscoveryCallForm />
             </div>
           </div>
         </div>
@@ -4711,53 +4920,56 @@ function ConnectBasePage({ setPage }: { setPage: (p: Page) => void }) {
         </div>
         
         <div className="max-w-[1280px] mx-auto px-6 lg:px-8 relative">
-          <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 mb-6 px-3 py-1.5 rounded-full"
-              style={{ background: `${GREEN}14`, border: `1px solid ${GREEN}35` }}>
-              <RefreshCw size={11} className="text-emerald-650" />
-              <span className="text-[10px] font-semibold uppercase tracking-[0.12em]"
-                style={{ color: GREEN, fontFamily: "'Inter', sans-serif" }}>
-                Data Ingestion &amp; Alignment
-              </span>
-            </div>
-            
-            <h1 className="font-extrabold leading-[1.03] mb-6"
-              style={{
-                fontFamily: "'Poppins', sans-serif",
-                fontSize: "clamp(42px, 5.5vw, 72px)",
-                letterSpacing: "-0.024em",
-                color: INK,
-              }}>
-              ConnectBase™
-            </h1>
-            
-            <p className="text-lg font-semibold leading-snug mb-5"
-              style={{ color: INK, fontFamily: "'Poppins', sans-serif" }}>
-              Automated ERP &amp; EDI Integration for Closed-Loop Forecasts.
-            </p>
-            
-            <p className="text-[15px] leading-relaxed mb-8 text-slate-650"
-              style={{ color: SLATE, fontFamily: "'Inter', sans-serif" }}>
-              Saphran ConnectBase closes the loop between forecast planning and actual shipments. Automatically import actual ship history and customer EDI releases from your SAP, Oracle, QAD, or custom database systems. Align shipped parts, update prices based on actual transactions, and generate actual-vs-forecast comparison reports in real time.
-            </p>
-
-            <div className="border-l-4 border-emerald-500 bg-[#f9f9fb] p-5 rounded-r-[5px] mb-8 max-w-2xl"
-              style={{ borderLeftColor: GREEN }}>
-              <p className="text-xs italic leading-relaxed text-slate-750 mb-2">
-                &quot;ConnectBase closed the loop for our business. Aligning actual shipment data with long-range vehicle program forecasts is now completely automated, saving us weeks of manual data lookup.&quot;
+          <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-16 items-center">
+            <div>
+              <div className="inline-flex items-center gap-2 mb-6 px-3 py-1.5 rounded-full"
+                style={{ background: `${GREEN}14`, border: `1px solid ${GREEN}35` }}>
+                <RefreshCw size={11} className="text-emerald-650" />
+                <span className="text-[10px] font-semibold uppercase tracking-[0.12em]"
+                  style={{ color: GREEN, fontFamily: "'Inter', sans-serif" }}>
+                  Data Ingestion &amp; Alignment
+                </span>
+              </div>
+              
+              <h1 className="font-extrabold leading-[1.03] mb-6"
+                style={{
+                  fontFamily: "'Poppins', sans-serif",
+                  fontSize: "clamp(42px, 5.5vw, 72px)",
+                  letterSpacing: "-0.024em",
+                  color: INK,
+                }}>
+                ConnectBase™
+              </h1>
+              
+              <p className="text-lg font-semibold leading-snug mb-5"
+                style={{ color: INK, fontFamily: "'Poppins', sans-serif" }}>
+                Automated ERP &amp; EDI Integration for Closed-Loop Forecasts.
               </p>
-              <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wide">
-                — Automotive Tier 1 VP of Planning
-              </span>
+              
+              <p className="text-[15px] leading-relaxed mb-8 text-slate-650"
+                style={{ color: SLATE, fontFamily: "'Inter', sans-serif" }}>
+                Saphran ConnectBase closes the loop between forecast planning and actual shipments. Automatically import actual ship history and customer EDI releases from your SAP, Oracle, QAD, or custom database systems. Align shipped parts, update prices based on actual transactions, and generate actual-vs-forecast comparison reports in real time.
+              </p>
+
+              <div className="border-l-4 border-emerald-500 bg-[#f9f9fb] p-5 rounded-r-[5px] mb-8 max-w-2xl"
+                style={{ borderLeftColor: GREEN }}>
+                <p className="text-xs italic leading-relaxed text-slate-750 mb-2">
+                  &quot;ConnectBase closed the loop for our business. Aligning actual shipment data with long-range vehicle program forecasts is now completely automated, saving us weeks of manual data lookup.&quot;
+                </p>
+                <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wide">
+                  — Automotive Tier 1 VP of Planning
+                </span>
+              </div>
+              
+              <div className="flex gap-3 flex-wrap">
+                <OutlineBtn onClick={scrollToSimulator}>
+                  Explore Data Alignment Flow
+                </OutlineBtn>
+              </div>
             </div>
-            
-            <div className="flex gap-3 flex-wrap">
-              <PrimaryBtn onClick={() => setPage("contact")}>
-                Book a Discovery Call <ArrowRight size={14} />
-              </PrimaryBtn>
-              <OutlineBtn onClick={scrollToSimulator}>
-                Explore Data Alignment Flow
-              </OutlineBtn>
+
+            <div>
+              <DiscoveryCallForm />
             </div>
           </div>
         </div>
@@ -5217,53 +5429,56 @@ function IntelligenceBasePage({ setPage }: { setPage: (p: Page) => void }) {
         </div>
         
         <div className="max-w-[1280px] mx-auto px-6 lg:px-8 relative">
-          <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 mb-6 px-3 py-1.5 rounded-full"
-              style={{ background: `${GREEN}14`, border: `1px solid ${GREEN}35` }}>
-              <BarChart2 size={11} className="text-emerald-650" />
-              <span className="text-[10px] font-semibold uppercase tracking-[0.12em]"
-                style={{ color: GREEN, fontFamily: "'Inter', sans-serif" }}>
-                Data Warehouse &amp; Analytics
-              </span>
-            </div>
-            
-            <h1 className="font-extrabold leading-[1.03] mb-6"
-              style={{
-                fontFamily: "'Poppins', sans-serif",
-                fontSize: "clamp(42px, 5.5vw, 72px)",
-                letterSpacing: "-0.024em",
-                color: INK,
-              }}>
-              IntelligenceBase™
-            </h1>
-            
-            <p className="text-lg font-semibold leading-snug mb-5"
-              style={{ color: INK, fontFamily: "'Poppins', sans-serif" }}>
-              Active Analytics Framework &amp; Pre-Calculated Data Cube.
-            </p>
-            
-            <p className="text-[15px] leading-relaxed mb-8 text-slate-650"
-              style={{ color: SLATE, fontFamily: "'Inter', sans-serif" }}>
-              Transition from passive Excel sheets to active business intelligence. Saphran IntelligenceBase is an analytics framework that includes a calculated data warehouse, analytics cube, and a Microsoft Excel pivot user interface. Refreshed daily from the central Saphran database, it provides instant access to calculated volume, revenue, and sales-per-vehicle metrics across your entire operations.
-            </p>
-
-            <div className="border-l-4 border-emerald-500 bg-[#f9f9fb] p-5 rounded-r-[5px] mb-8 max-w-2xl"
-              style={{ borderLeftColor: GREEN }}>
-              <p className="text-xs italic leading-relaxed text-slate-750 mb-2">
-                &quot;IntelligenceBase completely transformed our approach to program reporting. We can now compile month-over-month volume comparisons and sales-per-vehicle metrics across 20+ countries instantly, with workbooks that are under 250KB.&quot;
+          <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-16 items-center">
+            <div>
+              <div className="inline-flex items-center gap-2 mb-6 px-3 py-1.5 rounded-full"
+                style={{ background: `${GREEN}14`, border: `1px solid ${GREEN}35` }}>
+                <BarChart2 size={11} className="text-emerald-650" />
+                <span className="text-[10px] font-semibold uppercase tracking-[0.12em]"
+                  style={{ color: GREEN, fontFamily: "'Inter', sans-serif" }}>
+                  Data Warehouse &amp; Analytics
+                </span>
+              </div>
+              
+              <h1 className="font-extrabold leading-[1.03] mb-6"
+                style={{
+                  fontFamily: "'Poppins', sans-serif",
+                  fontSize: "clamp(42px, 5.5vw, 72px)",
+                  letterSpacing: "-0.024em",
+                  color: INK,
+                }}>
+                IntelligenceBase™
+              </h1>
+              
+              <p className="text-lg font-semibold leading-snug mb-5"
+                style={{ color: INK, fontFamily: "'Poppins', sans-serif" }}>
+                Active Analytics Framework &amp; Pre-Calculated Data Cube.
               </p>
-              <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wide">
-                — Global Sales Analyst, Tier 1 Supplier
-              </span>
+              
+              <p className="text-[15px] leading-relaxed mb-8 text-slate-650"
+                style={{ color: SLATE, fontFamily: "'Inter', sans-serif" }}>
+                Transition from passive Excel sheets to active business intelligence. Saphran IntelligenceBase is an analytics framework that includes a calculated data warehouse, analytics cube, and a Microsoft Excel pivot user interface. Refreshed daily from the central Saphran database, it provides instant access to calculated volume, revenue, and sales-per-vehicle metrics across your entire operations.
+              </p>
+
+              <div className="border-l-4 border-emerald-500 bg-[#f9f9fb] p-5 rounded-r-[5px] mb-8 max-w-2xl"
+                style={{ borderLeftColor: GREEN }}>
+                <p className="text-xs italic leading-relaxed text-slate-750 mb-2">
+                  &quot;IntelligenceBase completely transformed our approach to program reporting. We can now compile month-over-month volume comparisons and sales-per-vehicle metrics across 20+ countries instantly, with workbooks that are under 250KB.&quot;
+                </p>
+                <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wide">
+                  — Global Sales Analyst, Tier 1 Supplier
+                </span>
+              </div>
+              
+              <div className="flex gap-3 flex-wrap">
+                <OutlineBtn onClick={scrollToCube}>
+                  Explore the Data Cube
+                </OutlineBtn>
+              </div>
             </div>
-            
-            <div className="flex gap-3 flex-wrap">
-              <PrimaryBtn onClick={() => setPage("contact")}>
-                Book a Discovery Call <ArrowRight size={14} />
-              </PrimaryBtn>
-              <OutlineBtn onClick={scrollToCube}>
-                Explore the Data Cube
-              </OutlineBtn>
+
+            <div>
+              <DiscoveryCallForm />
             </div>
           </div>
         </div>
@@ -5644,52 +5859,55 @@ function SaphranAIPage({ setPage }: { setPage: (p: Page) => void }) {
         </div>
 
         <div className="max-w-[1280px] mx-auto px-6 lg:px-8 relative">
-          <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 mb-6 px-3 py-1.5 rounded-full"
-              style={{ background: `${GREEN}1b`, border: `1px solid ${GREEN}40` }}>
-              <Cpu size={12} className="text-emerald-400" />
-              <span className="text-[10px] font-semibold uppercase tracking-[0.15em] text-emerald-450"
-                style={{ fontFamily: "'Inter', sans-serif" }}>
-                Predictive AI Core
-              </span>
-            </div>
+          <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-16 items-center">
+            <div>
+              <div className="inline-flex items-center gap-2 mb-6 px-3 py-1.5 rounded-full"
+                style={{ background: `${GREEN}1b`, border: `1px solid ${GREEN}40` }}>
+                <Cpu size={12} className="text-emerald-400" />
+                <span className="text-[10px] font-semibold uppercase tracking-[0.15em] text-emerald-450"
+                  style={{ fontFamily: "'Inter', sans-serif" }}>
+                  Predictive AI Core
+                </span>
+              </div>
 
-            <h1 className="font-extrabold leading-[1.03] mb-6"
-              style={{
-                fontFamily: "'Poppins', sans-serif",
-                fontSize: "clamp(42px, 5.5vw, 72px)",
-                letterSpacing: "-0.024em",
-                color: "#fff",
-              }}>
-              SaphranAI™
-            </h1>
+              <h1 className="font-extrabold leading-[1.03] mb-6"
+                style={{
+                  fontFamily: "'Poppins', sans-serif",
+                  fontSize: "clamp(42px, 5.5vw, 72px)",
+                  letterSpacing: "-0.024em",
+                  color: "#fff",
+                }}>
+                SaphranAI™
+              </h1>
 
-            <p className="text-lg font-semibold leading-snug mb-5 text-emerald-400"
-              style={{ fontFamily: "'Poppins', sans-serif" }}>
-              Significantly improve your gross and net margins.
-            </p>
-
-            <p className="text-[15px] leading-relaxed mb-8"
-              style={{ color: "rgba(255,255,255,0.72)", fontFamily: "'Inter', sans-serif" }}>
-              SaphranAI enhances your existing forecast sources by learning from historical shipment performance and part-level data. Rather than replacing your forecast inputs, SaphranAI adds an intelligent layer that creates volume predictions that are <strong>~10%+ more accurate</strong> than standard customer forecasts.
-            </p>
-
-            <div className="border-l-4 border-emerald-500 bg-white/5 p-5 rounded-r-[5px] mb-8 max-w-2xl">
-              <p className="text-xs italic leading-relaxed mb-2 text-slate-200">
-                &quot;SaphranAI solved the OEM schedule volatility problem for us. Our forecast accuracy improved by 11.5% in the first quarter, giving us the visibility needed to avoid premium freight charges and prevent margin leakage.&quot;
+              <p className="text-lg font-semibold leading-snug mb-5 text-emerald-400"
+                style={{ fontFamily: "'Poppins', sans-serif" }}>
+                Significantly improve your gross and net margins.
               </p>
-              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wide">
-                — Tier 1 Automotive Supplier VP of Operations
-              </span>
+
+              <p className="text-[15px] leading-relaxed mb-8"
+                style={{ color: "rgba(255,255,255,0.72)", fontFamily: "'Inter', sans-serif" }}>
+                SaphranAI enhances your existing forecast sources by learning from historical shipment performance and part-level data. Rather than replacing your forecast inputs, SaphranAI adds an intelligent layer that creates volume predictions that are <strong>~10%+ more accurate</strong> than standard customer forecasts.
+              </p>
+
+              <div className="border-l-4 border-emerald-500 bg-white/5 p-5 rounded-r-[5px] mb-8 max-w-2xl">
+                <p className="text-xs italic leading-relaxed mb-2 text-slate-200">
+                  &quot;SaphranAI solved the OEM schedule volatility problem for us. Our forecast accuracy improved by 11.5% in the first quarter, giving us the visibility needed to avoid premium freight charges and prevent margin leakage.&quot;
+                </p>
+                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wide">
+                  — Tier 1 Automotive Supplier VP of Operations
+                </span>
+              </div>
+
+              <div className="flex gap-3 flex-wrap">
+                <OutlineBtn dark onClick={scrollToAgentic}>
+                  Explore Agentic Architecture
+                </OutlineBtn>
+              </div>
             </div>
 
-            <div className="flex gap-3 flex-wrap">
-              <PrimaryBtn onClick={() => setPage("contact")}>
-                Book a Discovery Call <ArrowRight size={14} />
-              </PrimaryBtn>
-              <OutlineBtn dark onClick={scrollToAgentic}>
-                Explore Agentic Architecture
-              </OutlineBtn>
+            <div>
+              <DiscoveryCallForm dark />
             </div>
           </div>
         </div>
@@ -6181,53 +6399,56 @@ function ScenarioProPage({ setPage }: { setPage: (p: Page) => void }) {
         </div>
         
         <div className="max-w-[1280px] mx-auto px-6 lg:px-8 relative">
-          <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 mb-6 px-3 py-1.5 rounded-full"
-              style={{ background: `${GREEN}14`, border: `1px solid ${GREEN}35` }}>
-              <TrendingUp size={11} className="text-emerald-650" />
-              <span className="text-[10px] font-semibold uppercase tracking-[0.12em]"
-                style={{ color: GREEN, fontFamily: "'Inter', sans-serif" }}>
-                What-If Modeling Core
-              </span>
-            </div>
-            
-            <h1 className="font-extrabold leading-[1.03] mb-6"
-              style={{
-                fontFamily: "'Poppins', sans-serif",
-                fontSize: "clamp(42px, 5.5vw, 72px)",
-                letterSpacing: "-0.024em",
-                color: INK,
-              }}>
-              ScenarioPro™
-            </h1>
-            
-            <p className="text-lg font-semibold leading-snug mb-5"
-              style={{ color: INK, fontFamily: "'Poppins', sans-serif" }}>
-              Quickly model various scenarios between linked factors in real time.
-            </p>
-            
-            <p className="text-[15px] leading-relaxed mb-8 text-slate-650"
-              style={{ color: SLATE, fontFamily: "'Inter', sans-serif" }}>
-              ScenarioPro enables manufacturers to intuitively understand and react to the impact of dynamic market and pricing changes on their business. Run exogenous (market volumes, exchange rates) and endogenous (win rates, long-term agreements) scenario analyses instantly, replacing time-consuming workbook builds with clean visual simulations.
-            </p>
-
-            <div className="border-l-4 border-emerald-500 bg-[#f9f9fb] p-5 rounded-r-[5px] mb-8 max-w-2xl"
-              style={{ borderLeftColor: GREEN }}>
-              <p className="text-xs italic leading-relaxed text-slate-750 mb-2">
-                &quot;ScenarioPro changed our forecasting paradigm. Rather than spending weeks trying to compile one single forecast that would be wrong anyway, we now model 20+ contingency scenarios in minutes, giving us a major competitive edge.&quot;
+          <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-16 items-center">
+            <div>
+              <div className="inline-flex items-center gap-2 mb-6 px-3 py-1.5 rounded-full"
+                style={{ background: `${GREEN}14`, border: `1px solid ${GREEN}35` }}>
+                <TrendingUp size={11} className="text-emerald-650" />
+                <span className="text-[10px] font-semibold uppercase tracking-[0.12em]"
+                  style={{ color: GREEN, fontFamily: "'Inter', sans-serif" }}>
+                  What-If Modeling Core
+                </span>
+              </div>
+              
+              <h1 className="font-extrabold leading-[1.03] mb-6"
+                style={{
+                  fontFamily: "'Poppins', sans-serif",
+                  fontSize: "clamp(42px, 5.5vw, 72px)",
+                  letterSpacing: "-0.024em",
+                  color: INK,
+                }}>
+                ScenarioPro™
+              </h1>
+              
+              <p className="text-lg font-semibold leading-snug mb-5"
+                style={{ color: INK, fontFamily: "'Poppins', sans-serif" }}>
+                Quickly model various scenarios between linked factors in real time.
               </p>
-              <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wide">
-                — Executive Director of Strategy, Tier 1 Automotive Supplier
-              </span>
+              
+              <p className="text-[15px] leading-relaxed mb-8 text-slate-650"
+                style={{ color: SLATE, fontFamily: "'Inter', sans-serif" }}>
+                ScenarioPro enables manufacturers to intuitively understand and react to the impact of dynamic market and pricing changes on their business. Run exogenous (market volumes, exchange rates) and endogenous (win rates, long-term agreements) scenario analyses instantly, replacing time-consuming workbook builds with clean visual simulations.
+              </p>
+
+              <div className="border-l-4 border-emerald-500 bg-[#f9f9fb] p-5 rounded-r-[5px] mb-8 max-w-2xl"
+                style={{ borderLeftColor: GREEN }}>
+                <p className="text-xs italic leading-relaxed text-slate-750 mb-2">
+                  &quot;ScenarioPro changed our forecasting paradigm. Rather than spending weeks trying to compile one single forecast that would be wrong anyway, we now model 20+ contingency scenarios in minutes, giving us a major competitive edge.&quot;
+                </p>
+                <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wide">
+                  — Executive Director of Strategy, Tier 1 Automotive Supplier
+                </span>
+              </div>
+              
+              <div className="flex gap-3 flex-wrap">
+                <OutlineBtn onClick={scrollToSimulator}>
+                  Explore Scenario Sandbox
+                </OutlineBtn>
+              </div>
             </div>
-            
-            <div className="flex gap-3 flex-wrap">
-              <PrimaryBtn onClick={() => setPage("contact")}>
-                Book a Discovery Call <ArrowRight size={14} />
-              </PrimaryBtn>
-              <OutlineBtn onClick={scrollToSimulator}>
-                Explore Scenario Sandbox
-              </OutlineBtn>
+
+            <div>
+              <DiscoveryCallForm />
             </div>
           </div>
         </div>
@@ -6245,7 +6466,7 @@ function ScenarioProPage({ setPage }: { setPage: (p: Page) => void }) {
                 letterSpacing: "-0.02em",
                 color: INK
               }}>
-              Saphran Analytics University (SAU)
+              ScenarioPro Contingency Planning & Simulation
             </h2>
             <p className="text-sm text-slate-650" style={{ fontFamily: "'Inter', sans-serif" }}>
               Changing the industry paradigm: Be wrong many times to prepare contingency plans.

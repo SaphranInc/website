@@ -1,0 +1,9 @@
+button, 
+a, 
+[role="button"], 
+input[type="submit"], 
+input[type="button"], 
+select, 
+.cursor-pointer {
+  cursor: pointer !important;
+}
