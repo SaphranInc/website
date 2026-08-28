@@ -3,6 +3,11 @@ import { ArrowRight, ArrowLeft, ChevronDown, ChevronUp, Check, BarChart2, Layers
 import logoSrc from "../imports/image.png";
 import watermarkLightSrc from "../imports/watermark_light.png";
 import watermarkDarkSrc from "../imports/watermark_dark.png";
+import teamSeanSrc from "../imports/team_sean.png";
+import teamKennethSrc from "../imports/team_kenneth.png";
+import teamAmiSrc from "../imports/team_ami.png";
+import teamMeganSrc from "../imports/team_megan.png";
+
 
 type Page = "home" | "capabilities" | "contact" | "startup" | "quotebase" | "partbase" | "connectbase" | "intelligencebase" | "saphranai" | "scenariopro" | "privacypolicy" | "termsofuse" | "about";
 
@@ -864,6 +869,8 @@ function Header({
   setPage: (p: Page) => void;
 }) {
   const [scrolled, setScrolled] = useState(false);
+  const [capDropdownOpen, setCapDropdownOpen] = useState(false);
+  const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 20);
@@ -874,7 +881,29 @@ function Header({
   useEffect(() => {
     window.scrollTo({ top: 0 });
     setScrolled(false);
+    setCapDropdownOpen(false);
   }, [page]);
+
+  const handleMouseEnter = () => {
+    if (dropdownTimeoutRef.current) clearTimeout(dropdownTimeoutRef.current);
+    setCapDropdownOpen(true);
+  };
+
+  const handleMouseLeave = () => {
+    dropdownTimeoutRef.current = setTimeout(() => {
+      setCapDropdownOpen(false);
+    }, 180);
+  };
+
+  const capItems: { name: string; tag: string; page: Page }[] = [
+    { name: "Capabilities Overview", tag: "Platform Summary", page: "capabilities" },
+    { name: "PartBase™", tag: "Active Commercial Mgmt", page: "partbase" },
+    { name: "QuoteBase™", tag: "Costing & Quoting", page: "quotebase" },
+    { name: "ConnectBase™", tag: "ERP & EDI Integration", page: "connectbase" },
+    { name: "IntelligenceBase™", tag: "Calculated Data Cube", page: "intelligencebase" },
+    { name: "SaphranAI™", tag: "Predictive AI Core", page: "saphranai" },
+    { name: "ScenarioPro™", tag: "What-If Simulations", page: "scenariopro" },
+  ];
 
   return (
     <header
@@ -882,42 +911,82 @@ function Header({
       style={
         scrolled
           ? {
-              background: "rgba(246,244,239,0.94)",
+              background: "rgba(246,244,239,0.95)",
               backdropFilter: "blur(12px)",
               borderBottom: "1px solid rgba(33,51,67,0.09)",
             }
-          : { background: "transparent" }
+          : { background: "rgba(246,244,239,0.90)", backdropFilter: "blur(8px)" }
       }
     >
       <div className="max-w-[1280px] mx-auto px-6 lg:px-8 flex items-center h-[62px] gap-8">
         <button
           onClick={() => setPage("home")}
-          className="flex items-center gap-2.5 mr-auto"
+          className="flex items-center gap-2.5 mr-auto cursor-pointer"
         >
           <img src={logoSrc} alt="Saphran" style={{ height: 30, width: "auto" }} />
         </button>
         <nav className="hidden md:flex items-center gap-7">
-          {(["capabilities", "contact"] as Page[]).map((p) => (
+          {/* Capabilities Dropdown Trigger */}
+          <div
+            className="relative py-2"
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+          >
             <button
-              key={p}
-              onClick={() => setPage(p)}
-              className="text-sm capitalize transition-colors"
+              onClick={() => {
+                setPage("capabilities");
+                setCapDropdownOpen(false);
+              }}
+              className="inline-flex items-center gap-1 text-sm transition-colors cursor-pointer py-1"
               style={{
-                color: page === p ? INK : SLATE,
-                fontWeight: page === p ? 600 : 400,
+                color: page === "capabilities" || capItems.some(i => i.page === page) ? INK : SLATE,
+                fontWeight: page === "capabilities" || capItems.some(i => i.page === page) ? 600 : 400,
                 fontFamily: "'Inter', sans-serif",
               }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLElement).style.color = INK;
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLElement).style.color =
-                  page === p ? INK : SLATE;
-              }}
             >
-              {p === "capabilities" ? "Capabilities" : "Contact"}
+              Capabilities <ChevronDown size={14} className={`transition-transform duration-200 ${capDropdownOpen ? "rotate-180" : ""}`} />
             </button>
-          ))}
+
+            {/* Dropdown Menu */}
+            {capDropdownOpen && (
+              <div
+                className="absolute top-full left-0 w-72 bg-white rounded-lg shadow-xl border border-slate-200/80 py-2 mt-1 z-50 animate-in fade-in duration-150"
+                style={{ boxShadow: "0 12px 36px rgba(33,51,67,0.14)" }}
+              >
+                {capItems.map((item) => (
+                  <button
+                    key={item.page}
+                    onClick={() => {
+                      setPage(item.page);
+                      setCapDropdownOpen(false);
+                    }}
+                    className={`w-full text-left px-4 py-2.5 transition-colors flex flex-col hover:bg-[#F6F4EF] cursor-pointer ${
+                      page === item.page ? "bg-[#58A972]/10 border-l-2 border-[#58A972]" : ""
+                    }`}
+                  >
+                    <span className="text-xs font-bold text-slate-900 font-sans">
+                      {item.name}
+                    </span>
+                    <span className="text-[10px] text-slate-500 font-mono mt-0.5">
+                      {item.tag}
+                    </span>
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+
+          <button
+            onClick={() => setPage("contact")}
+            className="text-sm transition-colors cursor-pointer"
+            style={{
+              color: page === "contact" ? INK : SLATE,
+              fontWeight: page === "contact" ? 600 : 400,
+              fontFamily: "'Inter', sans-serif",
+            }}
+          >
+            Contact
+          </button>
         </nav>
         <PrimaryBtn onClick={() => setPage("contact")}>
           Book a Discovery Call
@@ -2966,29 +3035,24 @@ function StartupPage({ setPage }: { setPage: (p: Page) => void }) {
           <SwirlMark size={480} color={GREEN} className="animate-spin" style={{ animationDuration: "32s" }} />
         </div>
         <div className="max-w-[1280px] mx-auto px-6 lg:px-8 relative">
-          <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 mb-6 px-3 py-1.5 rounded-full"
-              style={{ background: `${GREEN}14`, border: `1px solid ${GREEN}35` }}>
-              <SwirlMark size={12} color={GREEN} />
-              <span className="text-[10px] font-semibold uppercase tracking-[0.12em]"
-                style={{ color: GREEN, fontFamily: "'Inter', sans-serif" }}>
-                Startup Partner Program
-              </span>
+          <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-16 items-center">
+            <div>
+              <h1 className="font-extrabold leading-[1.03] mb-6"
+                style={{ fontFamily: "'Poppins', sans-serif", fontSize: "clamp(38px, 5vw, 64px)", letterSpacing: "-0.024em", color: INK }}>
+                Built for high-growth ETO manufacturers ready to manage margin from day one.
+              </h1>
+              <p className="text-[15px] leading-relaxed mb-8 max-w-xl" style={{ color: SLATE, fontFamily: "'Inter', sans-serif" }}>
+                Purpose-built for Series A+ manufacturers between $5M and $40M in revenue — the moment when spreadsheet-era quoting stops scaling and the first bad contract can slip through undetected.
+              </p>
+              <div className="flex items-center gap-3 flex-wrap">
+                <OutlineBtn onClick={() => setPage("capabilities")}>
+                  See the Platform
+                </OutlineBtn>
+              </div>
             </div>
-            <h1 className="font-extrabold leading-[1.03] mb-6"
-              style={{ fontFamily: "'Poppins', sans-serif", fontSize: "clamp(38px, 5vw, 64px)", letterSpacing: "-0.024em", color: INK }}>
-              Built for high-growth ETO manufacturers ready to manage margin from day one.
-            </h1>
-            <p className="text-[15px] leading-relaxed mb-8 max-w-xl" style={{ color: SLATE, fontFamily: "'Inter', sans-serif" }}>
-              Purpose-built for Series A+ manufacturers between $5M and $40M in revenue — the moment when spreadsheet-era quoting stops scaling and the first bad contract can slip through undetected.
-            </p>
-            <div className="flex items-center gap-3 flex-wrap">
-              <PrimaryBtn onClick={() => setPage("contact")}>
-                Apply for the Program <ArrowRight size={14} />
-              </PrimaryBtn>
-              <OutlineBtn onClick={() => setPage("capabilities")}>
-                See the Platform
-              </OutlineBtn>
+
+            <div>
+              <DiscoveryCallForm />
             </div>
           </div>
         </div>
@@ -3737,15 +3801,7 @@ function QuoteBasePage({ setPage }: { setPage: (p: Page) => void }) {
         <div className="max-w-[1280px] mx-auto px-6 lg:px-8 relative">
           <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-16 items-center">
             <div>
-              <div className="inline-flex items-center gap-2 mb-6 px-3 py-1.5 rounded-full"
-                style={{ background: `${GREEN}14`, border: `1px solid ${GREEN}35` }}>
-                <Shield size={11} className="text-emerald-600" />
-                <span className="text-[10px] font-semibold uppercase tracking-[0.12em]"
-                  style={{ color: GREEN, fontFamily: "'Inter', sans-serif" }}>
-                  U.S. Patent # 8,082,185
-                </span>
-              </div>
-              
+
               <h1 className="font-extrabold leading-[1.03] mb-6"
                 style={{
                   fontFamily: "'Poppins', sans-serif",
@@ -4297,15 +4353,7 @@ function PartBasePage({ setPage }: { setPage: (p: Page) => void }) {
         <div className="max-w-[1280px] mx-auto px-6 lg:px-8 relative">
           <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-16 items-center">
             <div>
-              <div className="inline-flex items-center gap-2 mb-6 px-3 py-1.5 rounded-full"
-                style={{ background: `${GREEN}14`, border: `1px solid ${GREEN}35` }}>
-                <Shield size={11} className="text-emerald-600" />
-                <span className="text-[10px] font-semibold uppercase tracking-[0.12em]"
-                  style={{ color: GREEN, fontFamily: "'Inter', sans-serif" }}>
-                  U.S. Patent # 8,082,185
-                </span>
-              </div>
-              
+
               <h1 className="font-extrabold leading-[1.03] mb-6"
                 style={{
                   fontFamily: "'Poppins', sans-serif",
@@ -4922,15 +4970,7 @@ function ConnectBasePage({ setPage }: { setPage: (p: Page) => void }) {
         <div className="max-w-[1280px] mx-auto px-6 lg:px-8 relative">
           <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-16 items-center">
             <div>
-              <div className="inline-flex items-center gap-2 mb-6 px-3 py-1.5 rounded-full"
-                style={{ background: `${GREEN}14`, border: `1px solid ${GREEN}35` }}>
-                <RefreshCw size={11} className="text-emerald-650" />
-                <span className="text-[10px] font-semibold uppercase tracking-[0.12em]"
-                  style={{ color: GREEN, fontFamily: "'Inter', sans-serif" }}>
-                  Data Ingestion &amp; Alignment
-                </span>
-              </div>
-              
+
               <h1 className="font-extrabold leading-[1.03] mb-6"
                 style={{
                   fontFamily: "'Poppins', sans-serif",
@@ -5431,15 +5471,7 @@ function IntelligenceBasePage({ setPage }: { setPage: (p: Page) => void }) {
         <div className="max-w-[1280px] mx-auto px-6 lg:px-8 relative">
           <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-16 items-center">
             <div>
-              <div className="inline-flex items-center gap-2 mb-6 px-3 py-1.5 rounded-full"
-                style={{ background: `${GREEN}14`, border: `1px solid ${GREEN}35` }}>
-                <BarChart2 size={11} className="text-emerald-650" />
-                <span className="text-[10px] font-semibold uppercase tracking-[0.12em]"
-                  style={{ color: GREEN, fontFamily: "'Inter', sans-serif" }}>
-                  Data Warehouse &amp; Analytics
-                </span>
-              </div>
-              
+
               <h1 className="font-extrabold leading-[1.03] mb-6"
                 style={{
                   fontFamily: "'Poppins', sans-serif",
@@ -5861,14 +5893,7 @@ function SaphranAIPage({ setPage }: { setPage: (p: Page) => void }) {
         <div className="max-w-[1280px] mx-auto px-6 lg:px-8 relative">
           <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-16 items-center">
             <div>
-              <div className="inline-flex items-center gap-2 mb-6 px-3 py-1.5 rounded-full"
-                style={{ background: `${GREEN}1b`, border: `1px solid ${GREEN}40` }}>
-                <Cpu size={12} className="text-emerald-400" />
-                <span className="text-[10px] font-semibold uppercase tracking-[0.15em] text-emerald-450"
-                  style={{ fontFamily: "'Inter', sans-serif" }}>
-                  Predictive AI Core
-                </span>
-              </div>
+
 
               <h1 className="font-extrabold leading-[1.03] mb-6"
                 style={{
@@ -6401,14 +6426,7 @@ function ScenarioProPage({ setPage }: { setPage: (p: Page) => void }) {
         <div className="max-w-[1280px] mx-auto px-6 lg:px-8 relative">
           <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-16 items-center">
             <div>
-              <div className="inline-flex items-center gap-2 mb-6 px-3 py-1.5 rounded-full"
-                style={{ background: `${GREEN}14`, border: `1px solid ${GREEN}35` }}>
-                <TrendingUp size={11} className="text-emerald-650" />
-                <span className="text-[10px] font-semibold uppercase tracking-[0.12em]"
-                  style={{ color: GREEN, fontFamily: "'Inter', sans-serif" }}>
-                  What-If Modeling Core
-                </span>
-              </div>
+
               
               <h1 className="font-extrabold leading-[1.03] mb-6"
                 style={{
@@ -6957,16 +6975,31 @@ function AboutPage({ setPage }: { setPage: (p: Page) => void }) {
     window.scrollTo(0, 0);
   }, []);
 
-  const team = [
-    { name: "Scott Beaty", role: "Director of Information Technology" },
-    { name: "Shiv Joshi", role: "Account Executive" },
-    { name: "Peter Oberhaus", role: "Strategic Industry Advisor" },
-    { name: "Brian Herrod", role: "Account Executive" },
-    { name: "Matt Rohr", role: "Solution Architect" },
-    { name: "Raj Premnath", role: "Account Executive" },
-    { name: "Patrick Zieske", role: "Developer" },
-    { name: "Nicki Sorter", role: "Customer Success Manager" },
-    { name: "Muhammad Naveed", role: "Senior Developer" },
+  const leadership = [
+    {
+      name: "Sean Lefever",
+      role: "Chief Executive Officer",
+      linkedin: "https://www.linkedin.com/in/seanlefever/",
+      img: teamSeanSrc,
+    },
+    {
+      name: "Kenneth Bassey",
+      role: "Founder & President of Customer Success",
+      linkedin: "https://www.linkedin.com/in/kenneth-bassey-130393/",
+      img: teamKennethSrc,
+    },
+    {
+      name: "Ami Trivedi",
+      role: "Director of Sales",
+      linkedin: "https://www.linkedin.com/in/amitrivedi1997/",
+      img: teamAmiSrc,
+    },
+    {
+      name: "Megan Mills",
+      role: "Senior Director Customer Success",
+      linkedin: "https://www.linkedin.com/in/megan-m-108270b0/",
+      img: teamMeganSrc,
+    },
   ];
 
   return (
@@ -6979,10 +7012,10 @@ function AboutPage({ setPage }: { setPage: (p: Page) => void }) {
         <img src={watermarkLightSrc} alt="" className="w-full h-full object-contain" />
       </div>
 
-      <div className="max-w-[1000px] mx-auto px-6 relative z-10">
+      <div className="max-w-[1100px] mx-auto px-6 relative z-10">
         <button
           onClick={() => setPage("home")}
-          className="inline-flex items-center gap-1.5 text-xs text-slate-400 hover:text-slate-700 transition-colors mb-8 font-semibold uppercase tracking-wider"
+          className="inline-flex items-center gap-1.5 text-xs text-slate-400 hover:text-slate-700 transition-colors mb-8 font-semibold uppercase tracking-wider cursor-pointer"
         >
           <ArrowLeft size={12} /> Back to Home
         </button>
@@ -7000,31 +7033,53 @@ function AboutPage({ setPage }: { setPage: (p: Page) => void }) {
           </p>
         </div>
 
-        {/* Team Grid */}
-        <div className="border-t border-slate-100 pt-16 mt-16">
-          <div className="mb-12">
-            <Eyebrow>MEET THE EXPERTS</Eyebrow>
-            <h2 className="font-bold text-slate-900" style={{ fontFamily: "'Poppins', sans-serif", fontSize: "clamp(24px, 3vw, 36px)", letterSpacing: "-0.02em" }}>
-              Our Team
+        {/* Our Leadership */}
+        <div className="border-t border-slate-200/80 pt-16 mt-16">
+          <div className="mb-12 max-w-3xl">
+            <h2 className="font-bold text-slate-900 mb-4" style={{ fontFamily: "'Poppins', sans-serif", fontSize: "clamp(32px, 4vw, 48px)", letterSpacing: "-0.025em" }}>
+              Our Leadership
             </h2>
+            <p className="text-[15px] leading-relaxed text-slate-600 font-sans" style={{ fontFamily: "'Inter', sans-serif" }}>
+              Saphran’s leadership team brings together experience across engineering, manufacturing, and commercial strategy. With a deep understanding of the pressures manufacturers face, the team focuses on building practical solutions that reduce uncertainty, improve costing accuracy, and support more confident decision-making at every stage of the business.
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-            {team.map((member, i) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {leadership.map((member, i) => (
               <div 
                 key={i} 
-                className="bg-[#f9f9fb] p-6 rounded-lg border border-slate-100/80 shadow-xs hover:shadow-md transition-all duration-350"
-                style={{ borderLeft: `3px solid ${GREEN}` }}
+                className="bg-white rounded-xl overflow-hidden border border-slate-200/80 shadow-xs hover:shadow-lg transition-all duration-300 flex flex-col justify-between"
               >
-                <div className="w-8 h-8 rounded-full bg-emerald-50 text-emerald-650 flex items-center justify-center font-bold mb-4 text-xs font-mono">
-                  {member.name.split(" ").map(n => n[0]).join("")}
+                <div>
+                  <div className="w-full aspect-square bg-slate-100 overflow-hidden relative">
+                    <img 
+                      src={member.img} 
+                      alt={member.name}
+                      className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500" 
+                    />
+                  </div>
+                  <div className="p-5">
+                    <h3 className="font-bold text-lg text-slate-900 mb-1" style={{ fontFamily: "'Poppins', sans-serif" }}>
+                      {member.name}
+                    </h3>
+                    <p className="text-xs text-slate-600 leading-snug font-sans mb-4" style={{ fontFamily: "'Inter', sans-serif" }}>
+                      {member.role}
+                    </p>
+                  </div>
                 </div>
-                <h3 className="font-bold text-sm text-slate-800 mb-1" style={{ fontFamily: "'Poppins', sans-serif" }}>
-                  {member.name}
-                </h3>
-                <p className="text-xs text-slate-450 font-mono">
-                  {member.role}
-                </p>
+
+                <div className="px-5 pb-5 pt-0">
+                  <a
+                    href={member.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-xs text-[#0a66c2] hover:text-[#004182] font-semibold transition-colors cursor-pointer"
+                  >
+                    <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                      <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.25V10.9H6.46M7.86 6.78a1.6 1.6 0 1 0 0 3.2 1.6 1.6 0 0 0 0-3.2Z" />
+                    </svg>
+                  </a>
+                </div>
               </div>
             ))}
           </div>
