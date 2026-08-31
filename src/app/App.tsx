@@ -9,7 +9,7 @@ import teamAmiSrc from "../imports/team_ami.png";
 import teamMeganSrc from "../imports/team_megan.png";
 
 
-type Page = "home" | "capabilities" | "contact" | "startup" | "quotebase" | "partbase" | "connectbase" | "intelligencebase" | "saphranai" | "scenariopro" | "privacypolicy" | "termsofuse" | "about";
+type Page = "home" | "capabilities" | "contact" | "startup" | "quotebase" | "partbase" | "connectbase" | "intelligencebase" | "saphranai" | "scenariopro" | "privacypolicy" | "termsofuse" | "about" | "casestudies";
 
 const INK = "#213343";
 const GREEN = "#58A972";
@@ -977,6 +977,17 @@ function Header({
           </div>
 
           <button
+            onClick={() => setPage("casestudies")}
+            className="text-sm transition-colors cursor-pointer"
+            style={{
+              color: page === "casestudies" ? INK : SLATE,
+              fontWeight: page === "casestudies" ? 600 : 400,
+              fontFamily: "'Inter', sans-serif",
+            }}
+          >
+            Case Studies
+          </button>
+          <button
             onClick={() => setPage("contact")}
             className="text-sm transition-colors cursor-pointer"
             style={{
@@ -1001,7 +1012,7 @@ function Header({
 function Footer({ setPage }: { setPage: (p: Page) => void }) {
   const cols = [
     { h: "Platform",  links: ["PartBase", "QuoteBase", "ConnectBase", "IntelligenceBase", "SaphranAI", "ScenarioPro"] },
-    { h: "Company",   links: ["About"] },
+    { h: "Company",   links: ["About", "Case Studies"] },
     { h: "Programs",  links: ["Startup Partner Program"] },
     { h: "Legal",     links: ["Privacy Policy", "Terms of Use"] },
   ];
@@ -1139,6 +1150,16 @@ function Footer({ setPage }: { setPage: (p: Page) => void }) {
                     ) : l === "About" ? (
                       <button
                         onClick={() => setPage("about")}
+                        className="text-xs transition-colors text-left"
+                        style={{ color: "rgba(255,255,255,0.40)", fontFamily: "'Inter', sans-serif" }}
+                        onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.72)"; }}
+                        onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.40)"; }}
+                      >
+                        {l}
+                      </button>
+                    ) : l === "Case Studies" ? (
+                      <button
+                        onClick={() => setPage("casestudies")}
                         className="text-xs transition-colors text-left"
                         style={{ color: "rgba(255,255,255,0.40)", fontFamily: "'Inter', sans-serif" }}
                         onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.72)"; }}
@@ -1767,6 +1788,14 @@ function HomePage({ setPage }: { setPage: (p: Page) => void }) {
                     </p>
                   </div>
                 ))}
+              </div>
+              <div className="mt-8 pt-6 border-t border-slate-200/60">
+                <button
+                  onClick={() => setPage("casestudies")}
+                  className="inline-flex items-center gap-2 text-sm font-semibold text-emerald-700 hover:text-emerald-800 underline underline-offset-4 decoration-emerald-500/40 hover:decoration-emerald-600 transition-all cursor-pointer font-sans"
+                >
+                  Read full case study <ArrowRight size={14} />
+                </button>
               </div>
             </div>
           </div>
@@ -7132,6 +7161,349 @@ function AboutPage({ setPage }: { setPage: (p: Page) => void }) {
   );
 }
 
+// ─── Case Studies Page ──────────────────────────────────────────────────────────
+
+function CaseStudiesPage({ setPage }: { setPage: (p: Page) => void }) {
+  return (
+    <>
+      {/* 1. Hero Section */}
+      <section className="pt-32 pb-20 relative overflow-hidden" style={{ background: "#fff" }}>
+        <div
+          className="absolute pointer-events-none select-none"
+          style={{ right: "-8%", top: "50%", transform: "translateY(-50%)", opacity: 0.055 }}
+        >
+          <SwirlMark size={480} color={GREEN} className="animate-spin" style={{ animationDuration: "32s" }} />
+        </div>
+
+        <div className="max-w-[1280px] mx-auto px-6 lg:px-8 relative">
+          <div className="max-w-3xl">
+            <Eyebrow>Customer Success &amp; Proven ROI</Eyebrow>
+            <h1
+              className="font-extrabold leading-[1.03] mb-6"
+              style={{
+                fontFamily: "'Poppins', sans-serif",
+                fontSize: "clamp(40px, 5.2vw, 68px)",
+                letterSpacing: "-0.024em",
+                color: INK,
+              }}
+            >
+              Proven Results Across Global Manufacturing Operations.
+            </h1>
+
+            <p
+              className="text-lg leading-relaxed mb-8 text-slate-650 max-w-2xl"
+              style={{ color: SLATE, fontFamily: "'Inter', sans-serif" }}
+            >
+              Saphran has earned the trust of manufacturers across 20+ countries, supporting cost structures and rolling forecasts tied to over $400B in annual revenue. Discover how leading Tier 1, Tier 2, and Tier 3 suppliers drive margin certainty with Saphran.
+            </p>
+
+            <div className="flex gap-4 items-center flex-wrap">
+              <PrimaryBtn onClick={() => setPage("contact")}>
+                Book a Discovery Call <ArrowRight size={14} />
+              </PrimaryBtn>
+              <OutlineBtn onClick={() => {
+                const el = document.getElementById("impact-metrics-section");
+                if (el) el.scrollIntoView({ behavior: "smooth" });
+              }}>
+                View Impact Metrics
+              </OutlineBtn>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 2. Key Metrics Overview (4 Pillars of Financial Impact) */}
+      <section id="impact-metrics-section" className="py-24" style={{ background: BONE, borderTop: "1px solid rgba(33,51,67,0.07)", borderBottom: "1px solid rgba(33,51,67,0.07)" }}>
+        <div className="max-w-[1280px] mx-auto px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <Eyebrow>Quantifiable Impact</Eyebrow>
+            <h2
+              className="font-bold leading-[1.12] mb-4 text-slate-900"
+              style={{
+                fontFamily: "'Poppins', sans-serif",
+                fontSize: "clamp(28px, 3.2vw, 42px)",
+                letterSpacing: "-0.02em",
+                color: INK,
+              }}
+            >
+              Operational &amp; Margin Improvements Across Deployments
+            </h2>
+            <p className="text-sm text-slate-650" style={{ fontFamily: "'Inter', sans-serif" }}>
+              Documented financial return enabled through Saphran active commercial forecasting and scenario management.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            {/* Metric Card 1 */}
+            <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between" style={{ borderTop: `4px solid ${GREEN}` }}>
+              <div>
+                <div className="w-10 h-10 rounded-lg bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-600 mb-4">
+                  <TrendingUp size={20} />
+                </div>
+                <div className="text-3xl font-extrabold text-slate-900 mb-1 font-sans" style={{ fontFamily: "'Poppins', sans-serif" }}>$2.5M</div>
+                <div className="text-xs font-bold uppercase tracking-wider text-emerald-700 font-mono mb-2">Margin Visibility</div>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Potential annual savings through earlier detection of margin erosion before bids are locked.
+                </p>
+              </div>
+            </div>
+
+            {/* Metric Card 2 */}
+            <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between" style={{ borderTop: `4px solid ${GREEN}` }}>
+              <div>
+                <div className="w-10 h-10 rounded-lg bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-600 mb-4">
+                  <Target size={20} />
+                </div>
+                <div className="text-3xl font-extrabold text-slate-900 mb-1 font-sans" style={{ fontFamily: "'Poppins', sans-serif" }}>$1.2M</div>
+                <div className="text-xs font-bold uppercase tracking-wider text-emerald-700 font-mono mb-2">Forecast Accuracy</div>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Direct savings realized from reduced emergency premium freight and excess inventory carrying costs.
+                </p>
+              </div>
+            </div>
+
+            {/* Metric Card 3 */}
+            <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between" style={{ borderTop: `4px solid ${GREEN}` }}>
+              <div>
+                <div className="w-10 h-10 rounded-lg bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-600 mb-4">
+                  <DollarSign size={20} />
+                </div>
+                <div className="text-3xl font-extrabold text-slate-900 mb-1 font-sans" style={{ fontFamily: "'Poppins', sans-serif" }}>$800K</div>
+                <div className="text-xs font-bold uppercase tracking-wider text-emerald-700 font-mono mb-2">Engineering Recovery</div>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Increased revenue recovery on customer-driven engineering design changes and material revisions.
+                </p>
+              </div>
+            </div>
+
+            {/* Metric Card 4 */}
+            <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between" style={{ borderTop: `4px solid ${GREEN}` }}>
+              <div>
+                <div className="w-10 h-10 rounded-lg bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-600 mb-4">
+                  <Zap size={20} />
+                </div>
+                <div className="text-3xl font-extrabold text-slate-900 mb-1 font-sans" style={{ fontFamily: "'Poppins', sans-serif" }}>$800K</div>
+                <div className="text-xs font-bold uppercase tracking-wider text-emerald-700 font-mono mb-2">Scenario Speed</div>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Annual impact achieved through rapid response to raw material inflation and OEM schedule shifts.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Cumulative Financial Impact Banner */}
+          <div className="bg-slate-900 text-white rounded-xl p-8 border border-slate-800 shadow-lg text-center max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="text-left">
+              <div className="text-xs font-mono uppercase tracking-widest text-emerald-400 font-bold mb-1">Total Potential Annual Impact</div>
+              <div className="text-3xl md:text-4xl font-extrabold text-white" style={{ fontFamily: "'Poppins', sans-serif" }}>~$5.3M – $6.1M / year</div>
+              <p className="text-xs text-slate-400 mt-1 max-w-xl">
+                Cumulative estimated operational and margin improvements enabled through Saphran active forecasting across representative enterprise deployments.
+              </p>
+            </div>
+            <PrimaryBtn onClick={() => setPage("contact")}>
+              Evaluate Your ROI <ArrowRight size={14} />
+            </PrimaryBtn>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. Featured Deep Dive Case Study */}
+      <section className="py-24 bg-white">
+        <div className="max-w-[1280px] mx-auto px-6 lg:px-8">
+          <div className="mb-12">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-semibold mb-4">
+              <Sparkles size={14} className="text-emerald-600" />
+              <span>Featured Enterprise Case Study</span>
+            </div>
+            <h2
+              className="font-bold leading-[1.12] text-slate-900 max-w-3xl"
+              style={{
+                fontFamily: "'Poppins', sans-serif",
+                fontSize: "clamp(30px, 3.8vw, 48px)",
+                letterSpacing: "-0.022em",
+                color: INK,
+              }}
+            >
+              Tier 1 Automotive Supplier ($400M Annual Revenue)
+            </h2>
+            <p className="text-sm text-slate-600 mt-2 font-mono">
+              Global ETO Automotive Supplier • 20+ Countries • Multi-Plant Operations
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {/* The Challenge */}
+            <div className="bg-[#fcfaf8] p-8 rounded-xl border border-slate-200 flex flex-col justify-between">
+              <div>
+                <div className="flex items-center gap-2 text-rose-700 font-mono text-xs font-bold uppercase tracking-wider mb-4">
+                  <AlertCircle size={16} />
+                  <span>1. The Challenge</span>
+                </div>
+                <h3 className="text-lg font-bold text-slate-900 mb-3" style={{ fontFamily: "'Poppins', sans-serif" }}>
+                  Spreadsheet Fragility &amp; Untracked Cost Shifts
+                </h3>
+                <p className="text-xs text-slate-600 leading-relaxed mb-6">
+                  Managing long-range program costs across multi-plant, multi-currency operations relied on disconnected spreadsheets. RFQ turnaround took weeks, while volatile raw material rates and OEM schedule swings caused hidden margin erosion.
+                </p>
+                <ul className="space-y-2.5 text-xs text-slate-700 font-sans">
+                  <li className="flex items-start gap-2">
+                    <span className="text-rose-500 font-bold">•</span>
+                    <span>Static spreadsheets that couldn't scale across 20+ countries</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-rose-500 font-bold">•</span>
+                    <span>RFQ response turnaround lagging at 3 to 4 weeks</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-rose-500 font-bold">•</span>
+                    <span>Regular emergency premium freight &amp; inventory swings</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* The Solution */}
+            <div className="bg-[#f7faf8] p-8 rounded-xl border border-emerald-200 flex flex-col justify-between" style={{ borderTop: `4px solid ${GREEN}` }}>
+              <div>
+                <div className="flex items-center gap-2 text-emerald-700 font-mono text-xs font-bold uppercase tracking-wider mb-4">
+                  <Check size={16} />
+                  <span>2. The Saphran Solution</span>
+                </div>
+                <h3 className="text-lg font-bold text-slate-900 mb-3" style={{ fontFamily: "'Poppins', sans-serif" }}>
+                  Unified Active Decision Layer
+                </h3>
+                <p className="text-xs text-slate-600 leading-relaxed mb-6">
+                  Deployed Saphran's full platform — PartBase, QuoteBase, ConnectBase, and IntelligenceBase — unifying SAP ERP, Oracle, and live market forecast databases into one single source of truth without data migration.
+                </p>
+                <ul className="space-y-2.5 text-xs text-slate-700 font-sans">
+                  <li className="flex items-start gap-2">
+                    <span className="text-emerald-600 font-bold">•</span>
+                    <span>Automated ERP shipment ingestion &amp; 1-to-1 part routing</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-emerald-600 font-bold">•</span>
+                    <span>Centralized QuoteBase database with live margin alert limits</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-emerald-600 font-bold">•</span>
+                    <span>SaphranAI predictive bias detection on multi-year program bids</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* The Measured Impact */}
+            <div className="bg-slate-900 text-white p-8 rounded-xl border border-slate-800 flex flex-col justify-between">
+              <div>
+                <div className="flex items-center gap-2 text-emerald-400 font-mono text-xs font-bold uppercase tracking-wider mb-4">
+                  <Award size={16} />
+                  <span>3. Measured Impact</span>
+                </div>
+                <h3 className="text-lg font-bold text-white mb-4" style={{ fontFamily: "'Poppins', sans-serif" }}>
+                  $46M+ Total Annual Value Delivered
+                </h3>
+                <div className="space-y-4 font-mono">
+                  <div className="border-b border-slate-800 pb-3">
+                    <div className="text-2xl font-extrabold text-emerald-400">90%+</div>
+                    <div className="text-[11px] text-slate-300 font-sans mt-0.5">Faster RFQ response turnaround (from weeks to days)</div>
+                  </div>
+                  <div className="border-b border-slate-800 pb-3">
+                    <div className="text-2xl font-extrabold text-white">$8.2M</div>
+                    <div className="text-[11px] text-slate-300 font-sans mt-0.5">Emergency freight cost reduction</div>
+                  </div>
+                  <div>
+                    <div className="text-2xl font-extrabold text-emerald-400">+10%</div>
+                    <div className="text-[11px] text-slate-300 font-sans mt-0.5">Forecast accuracy improvement year-over-year</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. Client Quotes & Executive Testimonials */}
+      <section className="py-24" style={{ background: BONE, borderTop: "1px solid rgba(33,51,67,0.07)", borderBottom: "1px solid rgba(33,51,67,0.07)" }}>
+        <div className="max-w-[1280px] mx-auto px-6 lg:px-8">
+          <div className="text-center max-w-2xl mx-auto mb-16">
+            <Eyebrow>Voice of Customer</Eyebrow>
+            <h2
+              className="font-bold leading-[1.12] mb-4 text-slate-900"
+              style={{
+                fontFamily: "'Poppins', sans-serif",
+                fontSize: "clamp(28px, 3.2vw, 42px)",
+                letterSpacing: "-0.02em",
+                color: INK,
+              }}
+            >
+              Trusted by Executive Leaders
+            </h2>
+            <p className="text-sm text-slate-650" style={{ fontFamily: "'Inter', sans-serif" }}>
+              Here is what program directors and sales analysts say about partnering with Saphran.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="bg-white p-8 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between">
+              <p className="text-xs italic leading-relaxed text-slate-700 mb-6 font-sans">
+                &quot;Onboarding with Saphran was surprisingly easy. Our data set was complicated, and they were able to quickly and accurately get us set up to operate. The whole thing was amazingly trouble free.&quot;
+              </p>
+              <div>
+                <span className="block text-xs font-bold text-slate-900 font-sans">Director of Program Finance</span>
+                <span className="block text-[10px] text-slate-500 font-mono mt-0.5">Global Automotive Tier 1 Supplier</span>
+              </div>
+            </div>
+
+            <div className="bg-white p-8 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between">
+              <p className="text-xs italic leading-relaxed text-slate-700 mb-6 font-sans">
+                &quot;QuoteBase further leaned out our already lean cost and customer quote cycle by over 30% and integrated with PartBase to expose operational BOM forecasting that was always up to date.&quot;
+              </p>
+              <div>
+                <span className="block text-xs font-bold text-slate-900 font-sans">VP of Commercial Operations</span>
+                <span className="block text-[10px] text-slate-500 font-mono mt-0.5">Custom Fastener Supplier</span>
+              </div>
+            </div>
+
+            <div className="bg-white p-8 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between">
+              <p className="text-xs italic leading-relaxed text-slate-700 mb-6 font-sans">
+                &quot;IntelligenceBase completely transformed our approach to program reporting. We can now compile month-over-month volume comparisons and sales-per-vehicle metrics across 20+ countries instantly.&quot;
+              </p>
+              <div>
+                <span className="block text-xs font-bold text-slate-900 font-sans">Global Sales Analyst</span>
+                <span className="block text-[10px] text-slate-500 font-mono mt-0.5">Tier 1 Powertrain Manufacturer</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 5. CTA Section */}
+      <section className="py-24 text-white" style={{ background: INK }}>
+        <div className="max-w-[1280px] mx-auto px-6 lg:px-8 text-center max-w-3xl">
+          <Eyebrow dark>Get Started</Eyebrow>
+          <h2
+            className="font-extrabold mb-5 leading-[1.06]"
+            style={{ fontFamily: "'Poppins', sans-serif", fontSize: "clamp(32px, 4.5vw, 56px)", letterSpacing: "-0.022em" }}
+          >
+            Ready to Transform Your Commercial Forecasting?
+          </h2>
+          <p className="text-[15px] leading-relaxed mb-8" style={{ color: "rgba(255,255,255,0.46)", fontFamily: "'Inter', sans-serif" }}>
+            Book a 30-minute discovery call to evaluate your specific use case. We'll show how Saphran connects to your existing ERP or PLM systems and calculate the projected ROI for your operation.
+          </p>
+          <div className="flex gap-4 justify-center flex-wrap">
+            <PrimaryBtn onClick={() => setPage("contact")}>
+              Book a Discovery Call <ArrowRight size={14} />
+            </PrimaryBtn>
+            <OutlineBtn dark onClick={() => setPage("capabilities")}>
+              Explore Platform Modules
+            </OutlineBtn>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
+
 // ─── App root ─────────────────────────────────────────────────────────────────
 
 export default function App() {
@@ -7141,7 +7513,7 @@ export default function App() {
       "home", "capabilities", "contact", "startup", 
       "quotebase", "partbase", "connectbase", 
       "intelligencebase", "saphranai", "scenariopro",
-      "privacypolicy", "termsofuse", "about"
+      "privacypolicy", "termsofuse", "about", "casestudies"
     ];
     return validPages.includes(hash) ? hash : "home";
   });
@@ -7158,7 +7530,7 @@ export default function App() {
         "home", "capabilities", "contact", "startup", 
         "quotebase", "partbase", "connectbase", 
         "intelligencebase", "saphranai", "scenariopro",
-        "privacypolicy", "termsofuse", "about"
+        "privacypolicy", "termsofuse", "about", "casestudies"
       ];
       if (validPages.includes(hash)) {
         setPageInternal(hash);
@@ -7194,6 +7566,7 @@ export default function App() {
       {page === "privacypolicy" && <PrivacyPolicyPage setPage={setPage} />}
       {page === "termsofuse"    && <TermsOfUsePage setPage={setPage} />}
       {page === "about"         && <AboutPage setPage={setPage} />}
+      {page === "casestudies"   && <CaseStudiesPage setPage={setPage} />}
       {page !== "contact" && page !== "startup" && <Footer setPage={setPage} />}
     </div>
   );
