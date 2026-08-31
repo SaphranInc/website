@@ -5038,78 +5038,117 @@ function ConnectBasePage({ setPage }: { setPage: (p: Page) => void }) {
             </p>
           </div>
 
-          {/* Redesigned Systems Integration Map */}
-          <div className="space-y-12 mt-12">
-            {/* The Disconnected Void (Before) */}
-            <div className="bg-[#fcfaf7] border border-[#f5eae1] rounded-lg p-8 relative overflow-hidden">
-              <div className="flex items-center gap-2.5 mb-6 text-[#C4473A] font-mono">
-                <AlertCircle size={20} />
-                <span className="font-bold text-xs uppercase tracking-wider">THE DISCONNECTED VOID (CONVENTIONAL SETUP)</span>
+          {/* Systems Integration & Alignment Architecture */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-12">
+            {/* The Manual Reconciliation Problem Card */}
+            <div className="bg-white rounded-xl p-8 border border-slate-200 shadow-sm flex flex-col justify-between relative overflow-hidden">
+              <div>
+                <div className="flex items-center justify-between mb-6">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-50 border border-rose-100 text-rose-700 text-xs font-semibold">
+                    <AlertCircle size={14} />
+                    <span>Conventional Setup</span>
+                  </div>
+                  <span className="text-xs font-mono text-slate-400">Spreadsheet Bottleneck</span>
+                </div>
+
+                <h3 className="text-xl font-bold text-slate-900 mb-3" style={{ fontFamily: "'Poppins', sans-serif" }}>
+                  Manual Reconciliation &amp; Data Gaps
+                </h3>
+                <p className="text-xs text-slate-600 leading-relaxed mb-8" style={{ fontFamily: "'Inter', sans-serif" }}>
+                  ERP shipment history records raw customer part numbers and invoice codes, while long-range commercial forecasts live in sales spreadsheets. Manually mapping the two takes weeks of VLOOKUP work and hides unpredicted shipment variances.
+                </p>
+
+                {/* Broken Connection Flow Graphic */}
+                <div className="bg-[#fcfaf8] p-5 rounded-lg border border-slate-200/80 space-y-4">
+                  <div className="flex items-center justify-between p-3.5 bg-white rounded-lg border border-slate-200 shadow-2xs">
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-slate-600 font-mono text-xs font-bold shrink-0">ERP</div>
+                      <div>
+                        <div className="text-xs font-bold text-slate-800 font-sans">Raw Shipment History</div>
+                        <div className="text-[10px] text-slate-500">Customer part #s &amp; plant ship codes</div>
+                      </div>
+                    </div>
+                    <span className="text-[10px] font-mono bg-slate-100 text-slate-600 px-2 py-0.5 rounded">Isolated</span>
+                  </div>
+
+                  <div className="flex items-center justify-center gap-2 py-1 text-rose-500">
+                    <div className="h-px bg-rose-200 flex-1" />
+                    <div className="flex items-center gap-1.5 px-3 py-1 rounded bg-rose-50 border border-rose-200 text-[10px] font-medium">
+                      <span>Manual Lookup Gap (Weeks Spent on Spreadsheets)</span>
+                    </div>
+                    <div className="h-px bg-rose-200 flex-1" />
+                  </div>
+
+                  <div className="flex items-center justify-between p-3.5 bg-white rounded-lg border border-slate-200 shadow-2xs">
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-slate-600 font-mono text-xs font-bold shrink-0">PLAN</div>
+                      <div>
+                        <div className="text-xs font-bold text-slate-800 font-sans">Commercial Program Forecasts</div>
+                        <div className="text-[10px] text-slate-500">Sales opportunities &amp; long-range LTAs</div>
+                      </div>
+                    </div>
+                    <span className="text-[10px] font-mono bg-slate-100 text-slate-600 px-2 py-0.5 rounded">Unlinked</span>
+                  </div>
+                </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center text-center relative z-10">
-                <div className="bg-white p-5 rounded border border-slate-200 shadow-sm">
-                  <h4 className="font-bold text-xs text-slate-800 font-mono mb-2">ERP SHIP HISTORY</h4>
-                  <p className="text-[10px] text-slate-500">Contains customer part numbers and raw shipment quantities by code.</p>
-                </div>
-                
-                {/* Break Indicator */}
-                <div className="flex flex-col items-center justify-center p-3 font-mono">
-                  <div className="w-8 h-8 rounded-full bg-rose-50 border border-rose-200 flex items-center justify-center text-rose-600 font-bold mb-1">✕</div>
-                  <span className="text-[9px] text-rose-500 uppercase font-bold tracking-wider">Manual Reconciliation Gap</span>
-                  <span className="text-[8px] text-slate-400 mt-0.5">Weeks spent mapping parts on spreadsheets</span>
-                </div>
-
-                <div className="bg-white p-5 rounded border border-slate-200 shadow-sm">
-                  <h4 className="font-bold text-xs text-slate-800 font-mono mb-2">LONG-RANGE PLANS</h4>
-                  <p className="text-[10px] text-slate-500">Commercial opportunities and program volumes managed by sales.</p>
-                </div>
+              <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
+                <span>Result: Delayed margin visibility</span>
+                <span className="font-semibold text-rose-600">Unmapped Volume Risk</span>
               </div>
             </div>
 
-            {/* The ConnectBase Loop (After) */}
-            <div className="bg-[#f7faf8] border border-emerald-100 rounded-lg p-8 relative overflow-hidden" style={{ borderTopWidth: "4px", borderTopColor: GREEN }}>
-              <div className="flex items-center gap-2.5 mb-6 text-emerald-650 font-mono">
-                <Sparkles size={20} />
-                <span className="font-bold text-xs uppercase tracking-wider">THE CONNECTBASE CLOSED-LOOP SYSTEM</span>
+            {/* The ConnectBase Solution Card */}
+            <div className="bg-white rounded-xl p-8 border border-emerald-200/80 shadow-md flex flex-col justify-between relative overflow-hidden" style={{ borderTop: `4px solid ${GREEN}` }}>
+              <div>
+                <div className="flex items-center justify-between mb-6">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-semibold">
+                    <Sparkles size={14} className="text-emerald-600" />
+                    <span>Saphran ConnectBase Engine</span>
+                  </div>
+                  <div className="flex items-center gap-1.5 text-xs font-mono text-emerald-600 font-semibold">
+                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                    <span>Real-Time Sync</span>
+                  </div>
+                </div>
+
+                <h3 className="text-xl font-bold text-slate-900 mb-3" style={{ fontFamily: "'Poppins', sans-serif" }}>
+                  Automated Closed-Loop Data Router
+                </h3>
+                <p className="text-xs text-slate-600 leading-relaxed mb-8" style={{ fontFamily: "'Inter', sans-serif" }}>
+                  ConnectBase ingests actual shipment history and customer EDI releases, automatically aligning customer part numbers to rolling program forecasts with 1-to-1 matching, mismatch assistance, and instant volume flag alerts.
+                </p>
+
+                {/* Automated Flow Architecture Graphic */}
+                <div className="bg-[#f7faf8] p-5 rounded-lg border border-emerald-100 space-y-3">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-3 items-center">
+                    {/* Stage 1 */}
+                    <div className="bg-white p-3 rounded-lg border border-emerald-100 shadow-2xs text-center">
+                      <div className="text-[10px] font-bold text-emerald-700 uppercase tracking-wider mb-1 font-mono">1. Automated Ingestion</div>
+                      <div className="text-[11px] font-semibold text-slate-800">ERP &amp; EDI Feeds</div>
+                      <div className="text-[9px] text-slate-500 mt-0.5">Ship records &amp; release schedules</div>
+                    </div>
+
+                    {/* Stage 2 */}
+                    <div className="bg-slate-900 text-white p-3 rounded-lg border border-slate-800 shadow-sm text-center">
+                      <div className="text-[10px] font-bold text-emerald-400 uppercase tracking-wider mb-1 font-mono">2. ConnectBase Router</div>
+                      <div className="text-[11px] font-semibold">1-to-1 Matching Engine</div>
+                      <div className="text-[9px] text-slate-350 mt-0.5">Mismatch wizard &amp; volume splitter</div>
+                    </div>
+
+                    {/* Stage 3 */}
+                    <div className="bg-white p-3 rounded-lg border border-emerald-200 shadow-2xs text-center" style={{ borderLeft: `3px solid ${GREEN}` }}>
+                      <div className="text-[10px] font-bold text-emerald-700 uppercase tracking-wider mb-1 font-mono">3. Live Closed-Loop</div>
+                      <div className="text-[11px] font-semibold text-slate-800">Rolling Forecast</div>
+                      <div className="text-[9px] text-slate-500 mt-0.5">Unpredicted shipment flags</div>
+                    </div>
+                  </div>
+                </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-5 gap-4 items-center text-center relative z-10 font-mono">
-                {/* Inputs */}
-                <div className="space-y-3 col-span-1 md:col-span-1">
-                  <div className="bg-white p-3 rounded border border-slate-200 shadow-xs">
-                    <span className="block font-bold text-[9px] text-slate-700">ERP Shipment History</span>
-                  </div>
-                  <div className="bg-white p-3 rounded border border-slate-200 shadow-xs">
-                    <span className="block font-bold text-[9px] text-slate-700">Customer EDI Releases</span>
-                  </div>
-                </div>
-
-                {/* Connector Arrow */}
-                <div className="text-slate-400 text-lg hidden md:block">→</div>
-
-                {/* ConnectBase Engine */}
-                <div className="bg-slate-900 text-white p-5 rounded-lg border border-emerald-500/20 shadow-md col-span-1 md:col-span-1">
-                  <span className="block font-bold text-[9px] text-emerald-400 uppercase tracking-widest mb-1.5">CONNECTBASE</span>
-                  <div className="space-y-1 text-[8px] text-slate-350 text-left">
-                    <div>• Automated SFTP/View ingestion</div>
-                    <div>• 1-to-1 unique mapping router</div>
-                    <div>• Suggested mismatch wizard</div>
-                  </div>
-                </div>
-
-                {/* Connector Arrow */}
-                <div className="text-slate-400 text-lg hidden md:block">→</div>
-
-                {/* Results */}
-                <div className="space-y-3 col-span-1 md:col-span-1">
-                  <div className="bg-white p-3 rounded border border-emerald-300 shadow-xs" style={{ borderLeft: `3px solid ${GREEN}` }}>
-                    <span className="block font-bold text-[9px] text-slate-800">Closed-Loop Forecast</span>
-                  </div>
-                  <div className="bg-white p-3 rounded border border-emerald-300 shadow-xs" style={{ borderLeft: `3px solid ${GREEN}` }}>
-                    <span className="block font-bold text-[9px] text-slate-800">Unpredicted Shipped Flags</span>
-                  </div>
-                </div>
+              <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-[11px]">
+                <span className="text-slate-600">Turnaround: Under 10 minutes</span>
+                <span className="font-bold text-emerald-700 font-mono">100% Data Alignment</span>
               </div>
             </div>
           </div>
