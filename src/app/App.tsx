@@ -1257,12 +1257,12 @@ function CtaBand({ setPage }: { setPage: (p: Page) => void }) {
 const homeFaqs = [
   { q: "What is cost forecasting software for ETO manufacturers?", a: "Cost forecasting software for engineer-to-order manufacturers predicts material, labour, and program costs in volatile markets so sales, finance, and program teams can price bids and manage margin with current data instead of static spreadsheets. Saphran is built specifically for this use case." },
   { q: "How is Saphran different from spreadsheet-based cost forecasting?", a: "Spreadsheets rely on manually updated, siloed data that goes stale as soon as costs shift. Saphran connects directly to a manufacturer's ERP, PLM, and market data sources to keep cost and margin models current in real time — replacing manual updates with a single always-current source of truth." },
-  { q: "Does Saphran replace our ERP or PLM system?", a: "No. Saphran is designed to sit on top of existing systems — including SAP, Oracle ERP, Salesforce CRM, and Aras PLM — connecting their data into one decision layer without requiring a system migration or replacement." },
-  { q: "What industries use Saphran?", a: "Saphran is built for engineer-to-order manufacturers, including Tier 1 and Tier 2 automotive suppliers and other complex manufacturing businesses managing volatile input costs, custom program bids, and multi-plant operations." },
+  { q: "Does Saphran replace our ERP or PLM system?", a: "No. Saphran is designed to sit on top of any existing ERP, CRM, or PLM system — including SAP, Oracle ERP, Salesforce CRM, Aras PLM, QAD, and proprietary internal databases — connecting their data into one decision layer without requiring a system migration or replacement." },
+  { q: "What industries use Saphran?", a: "Saphran is built for engineer-to-order manufacturers, including Tier 1, Tier 2, and Tier 3 automotive suppliers and other complex manufacturing businesses managing volatile input costs, custom program bids, and multi-plant operations." },
 ];
 
 const capFaqs = [
-  { q: "What systems does Saphran integrate with?", a: "Saphran's ConnectBase layer connects to SAP ERP, Oracle ERP, Salesforce CRM, Aras PLM, and live market data feeds including commodity price indices and freight rate feeds. Integration does not require changes to existing systems or data migration." },
+  { q: "What systems does Saphran integrate with?", a: "Saphran's ConnectBase layer connects seamlessly to any ERP, CRM, or PLM system — including SAP, Oracle ERP, Salesforce CRM, Aras PLM, QAD, and custom databases — as well as live market data feeds. Integration does not require changes to existing systems or data migration." },
   { q: "How does SaphranAI improve forecast accuracy?", a: "SaphranAI analyses historical program cost patterns, current market data, and input cost trends to identify and correct systematic forecast biases. In documented deployments this has improved forecast accuracy by +10% year-over-year." },
   { q: "Can Saphran handle multi-plant, multi-currency operations?", a: "Yes. Saphran is architected for global ETO manufacturers with operations across multiple plants, geographies, and currencies. The platform supports 20+ countries and handles currency-adjusted cost modelling natively." },
 ];
@@ -1289,13 +1289,13 @@ function HomePage({ setPage }: { setPage: (p: Page) => void }) {
       problem: "The Bid Pressure Trap",
       problemDesc: "Sales teams submit aggressive bids to win — without visibility into true program margins. You win the contract and lose the profit.",
       solution: "Win Bids Without Sacrificing Margin",
-      solutionDesc: "Quote complex RFQs in days, not weeks. Every bid is modelled against current costs with margin thresholds that flag risk before you commit.",
+      solutionDesc: "Quote complex RFQs in days, not weeks. Every bid is modelled against current and future costs with margin thresholds that flag risk before you commit.",
     },
     {
       problem: "The Disconnected Systems Trap",
       problemDesc: "Cost data lives in separate spreadsheets, ERP exports, and email threads. One stale number cascades across an entire program.",
       solution: "One Source of Truth Across Every System",
-      solutionDesc: "ConnectBase integrates SAP, Oracle ERP, Salesforce CRM, and Aras PLM into a single live decision layer — no migration required.",
+      solutionDesc: "ConnectBase integrates with any ERP, CRM, or PLM system — including SAP, Oracle, Salesforce, Aras, and custom internal databases — into a single live decision layer with no migration required.",
     },
     {
       problem: "The Visibility Gap",
@@ -1429,6 +1429,7 @@ function HomePage({ setPage }: { setPage: (p: Page) => void }) {
                 "Oracle ERP",
                 "Salesforce CRM",
                 "Aras PLM",
+                "Any ERP / CRM / PLM",
                 "Market Data Feeds",
               ].map((s) => (
                 <span
@@ -1659,8 +1660,10 @@ function HomePage({ setPage }: { setPage: (p: Page) => void }) {
         },
         {
           eyebrow: "ConnectBase",
-          headline: "One decision layer across every system you already run.",
-          body: "Saphran connects to SAP, Oracle ERP, Salesforce CRM, Aras PLM, and live market data feeds — without replacing any of them — so cost, margin, and forecasting decisions are made on one current, reliable view.",
+          headline: "Unified integration across your legacy stack.",
+          body: "Saphran connects to any ERP, CRM, or PLM system — including SAP, Oracle ERP, Salesforce CRM, Aras PLM, and live market data feeds — without replacing any of them, so cost, margin, and forecasting decisions are made on one current, reliable view.",
+          ctaText: "Explore ConnectBase",
+          page: "connectbase",
           mockup: <IntegrationMockup />,
           flip: true,
           bg: BONE,
@@ -1700,8 +1703,8 @@ function HomePage({ setPage }: { setPage: (p: Page) => void }) {
                 >
                   {row.body}
                 </p>
-                <OutlineBtn onClick={() => setPage("capabilities")}>
-                  Learn more <ArrowRight size={13} />
+                <OutlineBtn onClick={() => setPage((row.page as Page) || "capabilities")}>
+                  {row.ctaText || "Learn more"} <ArrowRight size={13} />
                 </OutlineBtn>
               </div>
               <div>{row.mockup}</div>
@@ -1870,9 +1873,9 @@ function CapabilitiesPage({ setPage }: { setPage: (p: Page) => void }) {
                 className="text-[15px] leading-relaxed mb-8 max-w-xl"
                 style={{ color: SLATE, fontFamily: "'Inter', sans-serif" }}
               >
-                Saphran connects to SAP, Oracle ERP, Salesforce CRM, Aras PLM, and
-                live market data feeds — without replacing any of them — so cost,
-                margin, and forecasting decisions are made on one current, reliable
+                Saphran connects to any ERP, CRM, or PLM system — including SAP, Oracle ERP,
+                Salesforce CRM, Aras PLM, and live market data feeds — without replacing any of them,
+                so cost, margin, and forecasting decisions are made on one current, reliable
                 view of the business.
               </p>
               <div className="flex gap-3 flex-wrap">
@@ -2078,6 +2081,7 @@ function CapabilitiesPage({ setPage }: { setPage: (p: Page) => void }) {
               "Oracle ERP",
               "Salesforce CRM",
               "Aras PLM",
+              "Any ERP / CRM / PLM",
               "Market Data Feeds",
             ].map((s) => (
               <span
@@ -2725,7 +2729,7 @@ function ContactPage({ setPage }: { setPage: (p: Page) => void }) {
                   >
                     Works with your existing stack.
                   </span>{" "}
-                  SAP, Oracle ERP, Salesforce CRM, Aras PLM — Saphran connects
+                  SAP, Oracle ERP, Salesforce CRM, Aras PLM, or any legacy ERP, CRM, or PLM — Saphran connects
                   without replacing any of them.
                 </p>
               </div>
@@ -3346,11 +3350,11 @@ function QuoteBasePage({ setPage }: { setPage: (p: Page) => void }) {
       name: "Sales",
       icon: <FileText size={15} />,
       title: "Initiate RFQ Response & Manage Pricing",
-      tagline: "Define opportunities and link directly to IHS Markit forecasts.",
+      tagline: "Define opportunities and link directly to market forecast subscriptions.",
       description: "Sales coordinators define the RFQ parameters, import long-range volumes, structure LTA price schedules, and kickoff cross-functional tasks.",
       bullets: [
         "Configure custom RFQ opportunities using industry-specific parameters",
-        "Direct drop-down integration with IHS Markit Forecast data for accurate program volumes",
+        "Direct drop-down integration with market forecast subscription data for accurate program volumes",
         "Assign and manage multi-year price lists and Long-Term Agreements (LTAs)",
         "Attach customer drawings, terms, and purchase orders in one central record",
         "Orchestrate workflow tasks by assigning Design, Mfg, Tooling, and Purchasing teams"
@@ -3362,7 +3366,7 @@ function QuoteBasePage({ setPage }: { setPage: (p: Page) => void }) {
       icon: <Layers size={15} />,
       title: "Develop BOMs & Manage Part Versions",
       tagline: "Create indented Bill of Materials and explore scenario variations.",
-      description: "Design engineers construct the engineering BOM and operations routing, comparing multiple versions of the quote to find the optimal commercial path.",
+      description: "Design engineers construct the bill of material and operations routing sufficient for multiple versions of the quote to be evaluated downstream.",
       bullets: [
         "Build indented BOM structures with materials, components, and routings",
         "Create, copy, and compare infinite versions of a quote (e.g., local vs. offshore sourcing)",
@@ -3495,7 +3499,7 @@ function QuoteBasePage({ setPage }: { setPage: (p: Page) => void }) {
               <div className="border border-emerald-500/20 bg-emerald-500/5 p-3 rounded flex items-start gap-2.5">
                 <Check size={16} className="text-emerald-400 shrink-0 mt-0.5" />
                 <div>
-                  <span className="font-semibold text-emerald-400 text-xs">IHS Forecast Integration Active</span>
+                  <span className="font-semibold text-emerald-400 text-xs">Market Forecast Integration Active</span>
                   <p className="text-[11px] text-slate-300 mt-0.5">Program assignments synced with light vehicle production volume forecast Solihull &amp; Pune plants (2026–2030).</p>
                 </div>
               </div>
@@ -3523,19 +3527,19 @@ function QuoteBasePage({ setPage }: { setPage: (p: Page) => void }) {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr className="border-b border-slate-800 hover:bg-slate-800/30">
+                    <tr className="border-b border-slate-800">
                       <td className="p-2 text-slate-200">▪ 1 &gt; N12345</td>
                       <td className="p-2 text-slate-350">Nickel Chemicals</td>
                       <td className="p-2 text-right">0.697 lb</td>
                       <td className="p-2 text-right text-emerald-400">€ 7.00</td>
                     </tr>
-                    <tr className="border-b border-slate-800 hover:bg-slate-800/30">
+                    <tr className="border-b border-slate-800">
                       <td className="p-2 pl-4 text-slate-300">↳ 2 &gt; F73738</td>
                       <td className="p-2 text-slate-400">Chrome Plating</td>
                       <td className="p-2 text-right">6.114 sq ft</td>
                       <td className="p-2 text-right text-emerald-400">€ 0.42</td>
                     </tr>
-                    <tr className="border-b border-slate-800 hover:bg-slate-800/30">
+                    <tr className="border-b border-slate-800">
                       <td className="p-2 pl-6 text-slate-300">↳ 3 &gt; F72672</td>
                       <td className="p-2 text-slate-400">Nickel Anode</td>
                       <td className="p-2 text-right">1.100 ea</td>
@@ -3712,7 +3716,7 @@ function QuoteBasePage({ setPage }: { setPage: (p: Page) => void }) {
                 <span className="text-slate-350">Amortization Period</span>
                 <div className="flex items-center gap-1.5">
                   <span className="text-emerald-400 font-semibold">12</span>
-                  <span className="text-slate-450 text-[9px]">years</span>
+                  <span className="text-slate-450 text-[9px]">/ years</span>
                 </div>
               </div>
               
@@ -3819,7 +3823,7 @@ function QuoteBasePage({ setPage }: { setPage: (p: Page) => void }) {
               
               <p className="text-[15px] leading-relaxed mb-8"
                 style={{ color: SLATE, fontFamily: "'Inter', sans-serif" }}>
-                Say goodbye to disconnected spreadsheets. QuoteBase is Saphran's enterprise-class costing and quoting solution, specifically designed for Tier 1 suppliers and ETO manufacturers. Speed up RFQ response, eliminate pricing errors, and connect every quote directly to your long-range business plans.
+                Say goodbye to disconnected spreadsheets. QuoteBase is Saphran's enterprise-class costing and quoting solution, specifically designed for Tier 1, Tier 2, and Tier 3 suppliers and ETO manufacturers. Speed up RFQ response, eliminate costing and pricing errors, and connect every quote directly to your business plan.
               </p>
 
               <div className="border-l-4 border-emerald-500 bg-[#f9f9fb] p-5 rounded-r-[5px] mb-8 max-w-2xl"
@@ -3861,7 +3865,7 @@ function QuoteBasePage({ setPage }: { setPage: (p: Page) => void }) {
               The Costing &amp; Quoting Dilemma
             </h2>
             <p className="text-sm text-slate-600" style={{ fontFamily: "'Inter', sans-serif" }}>
-              How a tiny quoting error compounding across ETO operations causes millions in hidden profit leakage.
+              How a tiny quoting error compounding across ETO operations causes substantial hidden profit leakage.
             </p>
           </div>
 
@@ -3882,14 +3886,14 @@ function QuoteBasePage({ setPage }: { setPage: (p: Page) => void }) {
                   {/* Compounding Calculation Highlight */}
                   <div className="p-4 bg-slate-900/60 rounded border border-slate-800 font-mono text-center">
                     <div className="text-[10px] text-slate-400 uppercase tracking-wider">Compounded Profit Leakage</div>
-                    <div className="text-2xl font-extrabold text-rose-400 mt-1">2.5¢ error / unit → $12.5M lost</div>
-                    <div className="text-[9px] text-slate-500 mt-1">Based on a $20M program bid error compounded across 25% of active parts</div>
+                    <div className="text-2xl font-extrabold text-rose-400 mt-1">2.5¢ error / unit → $1.0M profit leakage</div>
+                    <div className="text-[9px] text-slate-500 mt-1">Based on $250K/yr loss across a 10-part family (1M units/yr over 4 yrs) when OEM applies benchmark price</div>
                   </div>
 
                   {/* CAR Stats Table */}
                   <div className="border border-slate-750 rounded overflow-hidden">
                     <div className="bg-slate-800 px-3 py-1.5 font-mono text-[9px] text-slate-400 border-b border-slate-750">
-                      Center for Automotive Research (CAR) Benchmarks
+                      Center for Automotive Research (CAR) Survey Benchmarks
                     </div>
                     <div className="divide-y divide-slate-750 text-[11px] font-mono">
                       <div className="p-3 flex justify-between gap-4">
@@ -3968,7 +3972,7 @@ function QuoteBasePage({ setPage }: { setPage: (p: Page) => void }) {
 
               <div className="border-t border-slate-100 pt-5 mt-8">
                 <p className="text-xs text-slate-500 italic">
-                  &quot;IHS with Saphran&apos;s real time integration for improved part-program volumes has helped us avoid any new bad business.&quot;
+                  &quot;Market data with Saphran&apos;s real time integration for improved part-program volumes has helped us avoid any new bad business.&quot;
                 </p>
                 <span className="block text-[8px] uppercase tracking-wide text-slate-400 font-bold mt-1">— Mid-Size Manufacturer</span>
               </div>
@@ -4264,7 +4268,7 @@ function QuoteBasePage({ setPage }: { setPage: (p: Page) => void }) {
         <div className="max-w-[1280px] mx-auto px-6 lg:px-8 relative">
           <div className="max-w-xl">
             <Eyebrow dark>Costing &amp; Quoting Control</Eyebrow>
-            <h2 className="font-extrabold text-white mb-5 leading-[1.06]"
+            <h2 className="font-extrabold text-white mb-5 leading-[1.06] "
               style={{ fontFamily: "'Poppins', sans-serif", fontSize: "clamp(30px, 4vw, 48px)", letterSpacing: "-0.022em" }}>
               Bring Profit Certainty to Every Bid.
             </h2>
@@ -4298,13 +4302,13 @@ function PartBasePage({ setPage }: { setPage: (p: Page) => void }) {
 
   const scenarios = {
     baseline: {
-      title: "Baseline Forecast (IHS Standard)",
+      title: "Baseline Forecast",
       vol: "1,200,000 units",
       rev: "$24.0M",
       margin: "18.2%",
       status: "Optimized",
       color: "#58A972",
-      desc: "Standard production volumes and contract rates synced with the latest CSM/IHS Monthly releases.",
+      desc: "Standard production volumes and contract rates synced with the latest monthly market forecast releases.",
       tip: "All active programs are aligned. Current capacity usage is at 82%."
     },
     optimistic: {
@@ -4371,7 +4375,7 @@ function PartBasePage({ setPage }: { setPage: (p: Page) => void }) {
               
               <p className="text-[15px] leading-relaxed mb-8 text-slate-650"
                 style={{ color: SLATE, fontFamily: "'Inter', sans-serif" }}>
-                Saphran PartBase is the industry's leading active commercial management system powered by CSM Worldwide. Seamlessly merge external market intelligence (IHS/CSM subscription data) and internal cost structure records into one live, dynamic rolling forecast. Optimize profitability, run instant risk simulations, and make strategic decisions based on accurate data.
+                Saphran PartBase is the industry's leading active commercial management system. Seamlessly merge external market intelligence (market forecast subscription data) and internal cost structure records into one live, dynamic rolling forecast. Optimize profitability, run instant risk simulations, and make strategic decisions based on accurate data.
               </p>
 
               <div className="border-l-4 border-emerald-500 bg-[#f9f9fb] p-5 rounded-r-[5px] mb-8 max-w-2xl"
@@ -4478,7 +4482,7 @@ function PartBasePage({ setPage }: { setPage: (p: Page) => void }) {
                   <div className="w-6 h-6 rounded-full flex items-center justify-center bg-emerald-50 border border-emerald-250 shrink-0 font-mono text-xs font-bold text-emerald-650">01</div>
                   <div>
                     <h4 className="font-bold text-xs text-slate-900 font-sans">Automated Ingestion</h4>
-                    <p className="text-[11px] text-slate-500 mt-0.5">Direct SFTP sync of market databases and internal systems in under 10 minutes.</p>
+                    <p className="text-[11px] text-slate-500 mt-0.5">Direct sync of market databases and internal systems in under 10 minutes.</p>
                   </div>
                 </div>
                 {/* Arrow */}
@@ -4525,7 +4529,7 @@ function PartBasePage({ setPage }: { setPage: (p: Page) => void }) {
                 80 Hours vs. 10 Minutes
               </h2>
               <p className="text-[14px] leading-relaxed text-slate-650 mb-6" style={{ fontFamily: "'Inter', sans-serif" }}>
-                Updating a supplier book of business conventionally takes about 80 hours of manual lookup, translation, and verification. PartBase leverages **Smart_ItemLink™** and CSM automation to download and align your whole subscription in under 10 minutes.
+                Updating a supplier book of business conventionally takes about 80 hours of manual lookup, translation, and verification. PartBase leverages **Smart_ItemLink™** and Market Data Integration to download and align your whole subscription in under 10 minutes.
               </p>
 
               <div className="space-y-4">
@@ -4583,7 +4587,7 @@ function PartBasePage({ setPage }: { setPage: (p: Page) => void }) {
         </div>
       </section>
 
-      {/* Live System Interface Mockup (IHS Reference & Internal Forecasts) */}
+      {/* Live System Interface Mockup (Market Forecast Reference & Internal Forecasts) */}
       <section className="py-24 text-white" style={{ background: INK }}>
         <div className="max-w-[1280px] mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_1.9fr] gap-12 items-center">
@@ -4597,27 +4601,27 @@ function PartBasePage({ setPage }: { setPage: (p: Page) => void }) {
                   fontSize: "clamp(26px, 2.8vw, 36px)",
                   letterSpacing: "-0.02em"
                 }}>
-                Automated Flags on Monthly IHS Changes
+                Automated Flags on Monthly Market Forecast Changes
               </h2>
-              <p className="text-[14px] leading-relaxed mb-6" style={{ color: "rgba(255,255,255,0.52)", fontFamily: "'Inter', sans-serif" }}>
-                PartBase protects forecast integrity by highlighting monthly adjustments to the IHS subscription database. The system automatically identifies volume changes and applies indicators.
+              <p className="text-xs leading-relaxed text-slate-650 mb-6" style={{ fontFamily: "'Inter', sans-serif" }}>
+                PartBase protects forecast integrity by highlighting monthly adjustments to the market forecast subscription database. The system automatically identifies volume changes and applies indicators.
               </p>
 
-              <div className="space-y-4">
-                <div className="flex items-start gap-3 bg-[#1b2b3a] p-3.5 rounded border border-[#ef4444]/20">
-                  <span className="w-5 h-5 rounded bg-rose-500/20 text-rose-400 font-bold font-mono text-xs flex items-center justify-center shrink-0">■</span>
-                  <div>
-                    <span className="font-bold text-[12px] text-rose-400 font-mono">RED FLAG (Dropped Program)</span>
-                    <p className="text-xs text-slate-400 mt-1">Indicates a previously assigned program has been dropped from the CSM subscription database. Alerts account managers immediately.</p>
+              <div className="space-y-3">
+                <div className="p-3 bg-rose-50/50 border border-rose-100 rounded">
+                  <div className="flex items-center justify-between">
+                    <span className="font-bold text-xs text-rose-800">Dropped Program (Red Flag)</span>
+                    <span className="text-[9px] font-mono bg-rose-100 text-rose-700 px-1.5 py-0.5 rounded">Critical Action</span>
                   </div>
+                  <p className="text-xs text-slate-400 mt-1">Indicates a previously assigned program has been dropped from the market forecast subscription database. Alerts account managers immediately.</p>
                 </div>
-
-                <div className="flex items-start gap-3 bg-[#1b2b3a] p-3.5 rounded border border-emerald-500/20">
-                  <span className="w-5 h-5 rounded bg-emerald-500/20 text-emerald-400 font-bold font-mono text-xs flex items-center justify-center shrink-0">+</span>
-                  <div>
-                    <span className="font-bold text-[12px] text-emerald-400 font-mono">GREEN PLUS (Similar Program)</span>
-                    <p className="text-xs text-slate-400 mt-1">Identifies new program entries with similar attributes to existing parts, suggesting target routing configurations.</p>
+                
+                <div className="p-3 bg-emerald-50/50 border border-emerald-100 rounded">
+                  <div className="flex items-center justify-between">
+                    <span className="font-bold text-xs text-emerald-800">Similar Program (Green Plus)</span>
+                    <span className="text-[9px] font-mono bg-emerald-100 text-emerald-700 px-1.5 py-0.5 rounded">Suggestion</span>
                   </div>
+                  <p className="text-xs text-slate-400 mt-1">Identifies new program entries with similar attributes to existing parts, suggesting target routing configurations.</p>
                 </div>
               </div>
             </div>
@@ -4731,7 +4735,7 @@ function PartBasePage({ setPage }: { setPage: (p: Page) => void }) {
 
               <div className="space-y-2">
                 {[
-                  { id: "baseline", name: "Baseline Forecast", label: "IHS Standard monthly volumes" },
+                  { id: "baseline", name: "Baseline Forecast", label: "Baseline market forecast monthly volumes" },
                   { id: "optimistic", name: "Optimistic Growth", label: "Accelerated platform launches" },
                   { id: "strike", name: "OEM Plant Strike", label: "Temporary 2-month customer halt" },
                   { id: "shift", name: "Customer Volume Shift", label: "Domestic platform consolidation" },
@@ -4831,7 +4835,7 @@ function PartBasePage({ setPage }: { setPage: (p: Page) => void }) {
                 <Shield size={16} />
               </div>
               <h4 className="font-bold text-sm mb-2 text-slate-900" style={{ fontFamily: "'Inter', sans-serif" }}>Automated Monthly Change Alerts</h4>
-              <p className="text-xs leading-relaxed text-slate-500">IdentifyDropped (Red Flag) or Added (Green Plus) programs on monthly IHS updates automatically to adjust pricing.</p>
+              <p className="text-xs leading-relaxed text-slate-500">Identify Dropped (Red Flag) or Added (Green Plus) programs on monthly market forecast updates automatically to adjust pricing.</p>
             </div>
 
             <div className="bg-white p-6 rounded border border-slate-200">
@@ -5376,7 +5380,7 @@ function ConnectBasePage({ setPage }: { setPage: (p: Page) => void }) {
                 <Sparkles size={16} />
               </div>
               <h4 className="font-bold text-sm mb-2 text-slate-900" style={{ fontFamily: "'Inter', sans-serif" }}>Composite Forecast Engine</h4>
-              <p className="text-xs leading-relaxed text-slate-500">Combine ship history, customer EDI releases, and third-party forecasts (IHS Auto) into a single rolling forecast view.</p>
+              <p className="text-xs leading-relaxed text-slate-500">Combine ship history, customer EDI releases, and third-party market forecasts into a single rolling forecast view.</p>
             </div>
           </div>
         </div>
@@ -5415,7 +5419,7 @@ function ConnectBasePage({ setPage }: { setPage: (p: Page) => void }) {
 // ─── IntelligenceBase Page ─────────────────────────────────────────────────────
 
 function IntelligenceBasePage({ setPage }: { setPage: (p: Page) => void }) {
-  const [activeCubeDimension, setActiveCubeDimension] = useState("ihs");
+  const [activeCubeDimension, setActiveCubeDimension] = useState("market_data");
   const cubeSectionRef = useRef<HTMLDivElement>(null);
 
   const scrollToCube = () => {
@@ -5424,11 +5428,11 @@ function IntelligenceBasePage({ setPage }: { setPage: (p: Page) => void }) {
 
   const cubeDimensions = [
     {
-      id: "ihs",
-      name: "IHS Subscription Data",
+      id: "market_data",
+      name: "Market Forecast Data",
       icon: <Database size={15} />,
       title: "Market Intelligence Integration",
-      description: "Directly merges automotive vehicle production forecasts and powertrain details from your IHS/CSM subscription into the Saphran data warehouse.",
+      description: "Directly merges automotive vehicle production forecasts and powertrain details from your market forecast subscription into the Saphran data warehouse.",
       fields: ["Vehicle Platforms", "Powertrain Specs", "Engine & Transmission volumes", "OEM Launch Timelines"]
     },
     {
@@ -5570,7 +5574,7 @@ function IntelligenceBasePage({ setPage }: { setPage: (p: Page) => void }) {
                 </tr>
 
                 <tr className="hover:bg-slate-50/50">
-                  <td className="p-4 md:p-5 font-bold text-slate-900 font-sans">IHS Auto Updates</td>
+                  <td className="p-4 md:p-5 font-bold text-slate-900 font-sans">Market Data Updates</td>
                   <td className="p-4 md:p-5 text-slate-500">
                     <span className="font-semibold text-rose-700">Manual Ingestion</span>
                     <p className="text-[10px] text-slate-400 mt-1">Logging into portal to download, translate, and copy volume updates.</p>
@@ -5740,8 +5744,8 @@ function IntelligenceBasePage({ setPage }: { setPage: (p: Page) => void }) {
                             <span className="text-slate-700">Currency</span>
                           </label>
                           <label className="flex items-center gap-1.5 cursor-pointer">
-                            <input type="checkbox" defaultChecked={currentDim.id === "ihs"} readOnly className="accent-emerald-500" />
-                            <span className={currentDim.id === "ihs" ? "text-emerald-600 font-bold" : "text-slate-600"}>IHS Volume</span>
+                            <input type="checkbox" defaultChecked={currentDim.id === "market_data"} readOnly className="accent-emerald-500" />
+                            <span className={currentDim.id === "market_data" ? "text-emerald-600 font-bold" : "text-slate-600"}>Market Volume</span>
                           </label>
                           <label className="flex items-center gap-1.5 cursor-pointer">
                             <input type="checkbox" defaultChecked={currentDim.id === "parts"} readOnly className="accent-emerald-500" />
@@ -5787,7 +5791,7 @@ function IntelligenceBasePage({ setPage }: { setPage: (p: Page) => void }) {
                 <Database size={16} />
               </div>
               <h4 className="font-bold text-sm mb-2 text-slate-900" style={{ fontFamily: "'Inter', sans-serif" }}>Unified Data Warehouse</h4>
-              <p className="text-xs leading-relaxed text-slate-500">Automatically aggregates your sales inputs, internal costing structures, and IHS powertrain databases in a pre-compiled warehouse.</p>
+              <p className="text-xs leading-relaxed text-slate-500">Automatically aggregates your sales inputs, internal costing structures, and market forecast databases in a pre-compiled warehouse.</p>
             </div>
 
             <div className="bg-white p-6 rounded border border-slate-200">
@@ -5818,8 +5822,8 @@ function IntelligenceBasePage({ setPage }: { setPage: (p: Page) => void }) {
               <div className="w-8 h-8 rounded-lg bg-emerald-50 border border-emerald-200 flex items-center justify-center mb-4 text-emerald-600">
                 <Globe2 size={16} />
               </div>
-              <h4 className="font-bold text-sm mb-2 text-slate-900" style={{ fontFamily: "'Inter', sans-serif" }}>Direct IHS Data Pulls</h4>
-              <p className="text-xs leading-relaxed text-slate-500">Retrieve regional vehicle production volumes and powertrain data directly inside Excel tabs without logging into the IHS website.</p>
+              <h4 className="font-bold text-sm mb-2 text-slate-900" style={{ fontFamily: "'Inter', sans-serif" }}>Direct Market Data Pulls</h4>
+              <p className="text-xs leading-relaxed text-slate-500">Retrieve regional vehicle production volumes and powertrain data directly inside Excel tabs without logging into third-party portals.</p>
             </div>
 
             <div className="bg-white p-6 rounded border border-slate-200">
@@ -5846,7 +5850,7 @@ function IntelligenceBasePage({ setPage }: { setPage: (p: Page) => void }) {
               Active Business Intelligence Awaits.
             </h2>
             <p className="text-[15px] leading-relaxed mb-8" style={{ color: "rgba(255,255,255,0.46)", fontFamily: "'Inter', sans-serif" }}>
-              Ready to replace slow, heavy spreadsheets, automate IHS subscription reporting, and query a pre-calculated data warehouse in milliseconds? Book a discovery call today to see Saphran IntelligenceBase in action.
+              Ready to replace slow, heavy spreadsheets, automate market forecast reporting, and query a pre-calculated data warehouse in milliseconds? Book a discovery call today to see Saphran IntelligenceBase in action.
             </p>
             <div className="flex gap-3 flex-wrap">
               <PrimaryBtn onClick={() => setPage("contact")}>
