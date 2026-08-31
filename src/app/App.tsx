@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { ArrowRight, ArrowLeft, ChevronDown, ChevronUp, Check, BarChart2, Layers, Globe2, Cpu, Shield, TrendingUp, Clock, Database, DollarSign, Activity, FileText, AlertCircle, RefreshCw, Sparkles, HelpCircle, ArrowUpRight, TrendingDown } from "lucide-react";
+import { ArrowRight, ArrowLeft, ChevronDown, ChevronUp, Check, BarChart2, Layers, Globe2, Cpu, Shield, TrendingUp, Clock, Database, DollarSign, Activity, FileText, AlertCircle, RefreshCw, Sparkles, HelpCircle, ArrowUpRight, TrendingDown, Target, Zap, Award } from "lucide-react";
 import logoSrc from "../imports/image.png";
 import watermarkLightSrc from "../imports/watermark_light.png";
 import watermarkDarkSrc from "../imports/watermark_dark.png";
