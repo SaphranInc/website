@@ -9,7 +9,7 @@ import teamAmiSrc from "../imports/team_ami.png";
 import teamMeganSrc from "../imports/team_megan.png";
 
 
-type Page = "home" | "capabilities" | "contact" | "startup" | "quotebase" | "partbase" | "connectbase" | "intelligencebase" | "saphranai" | "scenariopro" | "privacypolicy" | "termsofuse" | "about" | "casestudies";
+type Page = "home" | "capabilities" | "contact" | "startup" | "quotebase" | "partbase" | "intelligencebase" | "saphranai" | "scenariopro" | "privacypolicy" | "termsofuse" | "about" | "casestudies";
 
 const INK = "#213343";
 const GREEN = "#58A972";
@@ -453,7 +453,6 @@ function HeroMockup({ setPage }: { setPage: (p: Page) => void }) {
           {[
             ["PartBase", false, "partbase"],
             ["QuoteBase", false, "quotebase"],
-            ["ConnectBase", false, "connectbase"],
             ["IntelligenceBase", true, "intelligencebase"],
             ["SaphranAI", false, "saphranai"],
           ].map(([m, active, target]) => (
@@ -899,7 +898,6 @@ function Header({
     { name: "Capabilities Overview", tag: "Platform Summary", page: "capabilities" },
     { name: "PartBase™", tag: "Active Commercial Mgmt", page: "partbase" },
     { name: "QuoteBase™", tag: "Costing & Quoting", page: "quotebase" },
-    { name: "ConnectBase™", tag: "ERP & EDI Integration", page: "connectbase" },
     { name: "IntelligenceBase™", tag: "Calculated Data Cube", page: "intelligencebase" },
     { name: "SaphranAI™", tag: "Predictive AI Core", page: "saphranai" },
     { name: "ScenarioPro™", tag: "What-If Simulations", page: "scenariopro" },
@@ -1011,7 +1009,7 @@ function Header({
 
 function Footer({ setPage }: { setPage: (p: Page) => void }) {
   const cols = [
-    { h: "Platform",  links: ["PartBase", "QuoteBase", "ConnectBase", "IntelligenceBase", "SaphranAI", "ScenarioPro"] },
+    { h: "Platform",  links: ["PartBase", "QuoteBase", "IntelligenceBase", "SaphranAI", "ScenarioPro"] },
     { h: "Company",   links: ["About", "Case Studies"] },
     { h: "Programs",  links: ["Startup Partner Program"] },
     { h: "Legal",     links: ["Privacy Policy", "Terms of Use"] },
@@ -1080,16 +1078,6 @@ function Footer({ setPage }: { setPage: (p: Page) => void }) {
                     ) : l === "PartBase" ? (
                       <button
                         onClick={() => setPage("partbase")}
-                        className="text-xs transition-colors text-left"
-                        style={{ color: "rgba(255,255,255,0.40)", fontFamily: "'Inter', sans-serif" }}
-                        onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.72)"; }}
-                        onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.40)"; }}
-                      >
-                        {l}
-                      </button>
-                    ) : l === "ConnectBase" ? (
-                      <button
-                        onClick={() => setPage("connectbase")}
                         className="text-xs transition-colors text-left"
                         style={{ color: "rgba(255,255,255,0.40)", fontFamily: "'Inter', sans-serif" }}
                         onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.72)"; }}
@@ -1662,7 +1650,7 @@ function HomePage({ setPage }: { setPage: (p: Page) => void }) {
                 letterSpacing: "-0.02em",
               }}
             >
-              How teams utilise Saphran across the program lifecycle.
+              How teams utilize Saphran across the program lifecycle.
             </h2>
           </div>
           <ArchFlow />
@@ -1678,16 +1666,6 @@ function HomePage({ setPage }: { setPage: (p: Page) => void }) {
           mockup: <ScenarioMockup />,
           flip: false,
           bg: "#fff",
-        },
-        {
-          eyebrow: "ConnectBase",
-          headline: "Unified integration across your legacy stack.",
-          body: "Saphran connects to any ERP, CRM, or PLM system — including SAP, Oracle ERP, Salesforce CRM, Aras PLM, and live market data feeds — without replacing any of them, so cost, margin, and forecasting decisions are made on one current, reliable view.",
-          ctaText: "Explore ConnectBase",
-          page: "connectbase",
-          mockup: <IntegrationMockup />,
-          flip: true,
-          bg: BONE,
         },
         {
           eyebrow: "QuoteBase",
@@ -2159,8 +2137,8 @@ function CapabilitiesPage({ setPage }: { setPage: (p: Page) => void }) {
             {[
               { name: "PartBase",          desc: "Single reliable source for component costs across programs and plants.", page: "partbase" },
               { name: "QuoteBase",         desc: "Generate cost and margin models during RFQ response, in days not weeks.", page: "quotebase" },
-              { name: "ConnectBase",       desc: "Pull data from ERP, PLM, CRM, and market feeds into Saphran without migration.", page: "connectbase" },
               { name: "IntelligenceBase",  desc: "Executive-ready dashboards, alerts, and margin visibility across the business.", page: "intelligencebase" },
+              { name: "SaphranAI",         desc: "Detect forecasting bias and protect margins before changes affect the business.", page: "saphranai" },
               { name: "ScenarioPro",       desc: "Run rapid what-if cost and margin scenarios before committing to any bid.", page: "scenariopro" },
             ].map((m, i) => (
               <div key={i} className="bg-white p-6 flex flex-col justify-between min-h-[200px]">
@@ -3363,6 +3341,44 @@ function StartupPage({ setPage }: { setPage: (p: Page) => void }) {
   );
 }
 
+const capabilityPages = [
+  { name: "PartBase", page: "partbase" },
+  { name: "QuoteBase", page: "quotebase" },
+  { name: "IntelligenceBase", page: "intelligencebase" },
+  { name: "SaphranAI", page: "saphranai" },
+  { name: "ScenarioPro", page: "scenariopro" },
+] as const;
+
+function CapabilityNavigation({
+  currentPage,
+  setPage,
+}: {
+  currentPage: (typeof capabilityPages)[number]["page"];
+  setPage: (p: Page) => void;
+}) {
+  return (
+    <section className="py-14" style={{ background: BONE }}>
+      <div className="max-w-[1280px] mx-auto px-6 lg:px-8">
+        <p
+          className="text-[10px] font-semibold tracking-[0.14em] uppercase mb-4"
+          style={{ color: GREEN, fontFamily: "'Inter', sans-serif" }}
+        >
+          Explore more capabilities
+        </p>
+        <div className="flex flex-wrap gap-3">
+          {capabilityPages
+            .filter(({ page }) => page !== currentPage)
+            .map(({ name, page }) => (
+              <OutlineBtn key={page} onClick={() => setPage(page)}>
+                {name} <ArrowRight size={14} />
+              </OutlineBtn>
+            ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 // ─── QuoteBase Page ────────────────────────────────────────────────────────────
 
 function QuoteBasePage({ setPage }: { setPage: (p: Page) => void }) {
@@ -4289,6 +4305,8 @@ function QuoteBasePage({ setPage }: { setPage: (p: Page) => void }) {
         </div>
       </section>
 
+      <CapabilityNavigation currentPage="quotebase" setPage={setPage} />
+
       {/* CTA Band */}
       <section className="py-24 relative overflow-hidden" style={{ background: INK }}>
         <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/3 pointer-events-none" style={{ opacity: 0.05 }}>
@@ -4901,6 +4919,8 @@ function PartBasePage({ setPage }: { setPage: (p: Page) => void }) {
           </div>
         </div>
       </section>
+
+      <CapabilityNavigation currentPage="partbase" setPage={setPage} />
 
       {/* CTA Band */}
       <section className="py-24 relative overflow-hidden" style={{ background: INK }}>
@@ -5905,6 +5925,8 @@ function IntelligenceBasePage({ setPage }: { setPage: (p: Page) => void }) {
         </div>
       </section>
 
+      <CapabilityNavigation currentPage="intelligencebase" setPage={setPage} />
+
       {/* CTA Band */}
       <section className="py-24 relative overflow-hidden" style={{ background: INK }}>
         <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/3 pointer-events-none" style={{ opacity: 0.05 }}>
@@ -6407,6 +6429,8 @@ function SaphranAIPage({ setPage }: { setPage: (p: Page) => void }) {
         </div>
       </section>
 
+      <CapabilityNavigation currentPage="saphranai" setPage={setPage} />
+
       {/* CTA Band */}
       <section className="py-24 relative overflow-hidden" style={{ background: INK }}>
         <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/3 pointer-events-none" style={{ opacity: 0.05 }}>
@@ -6844,6 +6868,8 @@ function ScenarioProPage({ setPage }: { setPage: (p: Page) => void }) {
           </div>
         </div>
       </section>
+
+      <CapabilityNavigation currentPage="scenariopro" setPage={setPage} />
 
       {/* CTA Band */}
       <section className="py-24 relative overflow-hidden" style={{ background: INK }}>
@@ -7511,7 +7537,7 @@ export default function App() {
     const hash = window.location.hash.replace("#", "") as Page;
     const validPages: Page[] = [
       "home", "capabilities", "contact", "startup", 
-      "quotebase", "partbase", "connectbase", 
+      "quotebase", "partbase",
       "intelligencebase", "saphranai", "scenariopro",
       "privacypolicy", "termsofuse", "about", "casestudies"
     ];
@@ -7528,7 +7554,7 @@ export default function App() {
       const hash = window.location.hash.replace("#", "") as Page;
       const validPages: Page[] = [
         "home", "capabilities", "contact", "startup", 
-        "quotebase", "partbase", "connectbase", 
+        "quotebase", "partbase",
         "intelligencebase", "saphranai", "scenariopro",
         "privacypolicy", "termsofuse", "about", "casestudies"
       ];
@@ -7559,7 +7585,6 @@ export default function App() {
       {page === "startup"      && <StartupPage setPage={setPage} />}
       {page === "quotebase"    && <QuoteBasePage setPage={setPage} />}
       {page === "partbase"     && <PartBasePage setPage={setPage} />}
-      {page === "connectbase"  && <ConnectBasePage setPage={setPage} />}
       {page === "intelligencebase" && <IntelligenceBasePage setPage={setPage} />}
       {page === "saphranai"    && <SaphranAIPage setPage={setPage} />}
       {page === "scenariopro"  && <ScenarioProPage setPage={setPage} />}
