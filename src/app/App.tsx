@@ -5067,6 +5067,8 @@ function PartBasePage({ setPage }: { setPage: (p: Page) => void }) {
         </div>
       </section>
     </>
+  );
+}
 
 // ─── IntelligenceBase Page ─────────────────────────────────────────────────────
 
