@@ -9,7 +9,7 @@ import teamAmiSrc from "../imports/team_ami.png";
 import teamMeganSrc from "../imports/team_megan.png";
 
 
-type Page = "home" | "capabilities" | "contact" | "startup" | "quotebase" | "partbase" | "connectbase" | "intelligencebase" | "saphranai" | "scenariopro" | "privacypolicy" | "termsofuse" | "about" | "casestudies";
+type Page = "home" | "capabilities" | "contact" | "startup" | "quotebase" | "partbase" | "intelligencebase" | "saphranai" | "scenariopro" | "privacypolicy" | "termsofuse" | "about" | "casestudies";
 
 const INK = "#213343";
 const GREEN = "#58A972";
@@ -211,6 +211,146 @@ function CountUp({
       {val}
       {suffix}
     </span>
+  );
+}
+
+const CAPABILITY_MODULES: { page: Page; name: string; tag: string; icon: React.ReactNode; desc: string }[] = [
+  { page: "quotebase", name: "QuoteBase", tag: "Costing & Quoting", icon: <FileText size={15} />, desc: "Speed up RFQ turnaround and build accurate margin models during bidding." },
+  { page: "partbase", name: "PartBase", tag: "Component & Cost Mgmt", icon: <Layers size={15} />, desc: "Maintain single-source component costs across programs, plants, and BOMs." },
+  { page: "intelligencebase", name: "IntelligenceBase", tag: "Analytics & Data Cube", icon: <BarChart2 size={15} />, desc: "Executive-ready analytics, automated margin walks, and program reporting." },
+  { page: "saphranai", name: "SaphranAI", tag: "Predictive AI Core", icon: <Sparkles size={15} />, desc: "Detect and eliminate systematic forecasting biases using AI analysis." },
+  { page: "scenariopro", name: "ScenarioPro", tag: "What-If Simulations", icon: <TrendingUp size={15} />, desc: "Simulate material, volume, and currency shifts before committing to bids." },
+];
+
+function CapabilitySubNav({ currentPage, setPage }: { currentPage: Page; setPage: (p: Page) => void }) {
+  return (
+    <div className="w-full bg-white/90 backdrop-blur-md border-b border-slate-200/90 sticky top-[60px] z-40 shadow-xs">
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 py-2.5 flex items-center justify-between gap-4 overflow-x-auto no-scrollbar">
+        <div className="flex items-center gap-2 shrink-0">
+          <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 font-mono">Capabilities:</span>
+        </div>
+        <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+          {CAPABILITY_MODULES.map((m) => {
+            const isActive = m.page === currentPage;
+            return (
+              <button
+                key={m.page}
+                onClick={() => setPage(m.page)}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold transition-all ${
+                  isActive
+                    ? "bg-[#213343] text-white shadow-xs"
+                    : "bg-slate-100/90 text-slate-600 hover:bg-slate-200/70 hover:text-slate-900"
+                }`}
+              >
+                <span className={isActive ? "text-[#58A972]" : "text-slate-400"}>{m.icon}</span>
+                <span>{m.name}</span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function CapabilityFooterNav({ currentPage, setPage }: { currentPage: Page; setPage: (p: Page) => void }) {
+  const currentIndex = CAPABILITY_MODULES.findIndex((m) => m.page === currentPage);
+  const prevIndex = (currentIndex - 1 + CAPABILITY_MODULES.length) % CAPABILITY_MODULES.length;
+  const nextIndex = (currentIndex + 1) % CAPABILITY_MODULES.length;
+
+  const prevModule = CAPABILITY_MODULES[prevIndex];
+  const nextModule = CAPABILITY_MODULES[nextIndex];
+
+  return (
+    <section className="py-14 bg-[#F6F4EF] border-t border-b border-slate-200">
+      <div className="max-w-[1280px] mx-auto px-6 lg:px-8">
+        {/* Next / Previous Capability Buttons */}
+        <div className="mb-10">
+          <div className="text-center mb-6">
+            <span className="text-[11px] font-bold uppercase tracking-widest font-mono text-[#58A972]">Capability Navigation</span>
+            <h3 className="text-xl font-bold text-[#213343] font-sans mt-1">Explore Saphran Modules</h3>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {/* Previous Button */}
+            <button
+              onClick={() => setPage(prevModule.page)}
+              className="group p-5 bg-white rounded-xl border border-slate-200/90 hover:border-[#58A972] shadow-xs hover:shadow-md transition-all text-left flex items-start gap-4 cursor-pointer"
+            >
+              <div className="w-10 h-10 rounded-lg bg-slate-100 group-hover:bg-[#58A972]/10 text-slate-600 group-hover:text-[#58A972] flex items-center justify-center shrink-0 transition-colors">
+                <ArrowLeft size={18} />
+              </div>
+              <div className="min-w-0">
+                <div className="text-[11px] font-mono text-slate-400 uppercase tracking-wide">Previous Capability</div>
+                <div className="text-base font-bold text-[#213343] font-sans group-hover:text-[#58A972] transition-colors flex items-center gap-1.5 mt-0.5">
+                  {prevModule.icon}
+                  <span>{prevModule.name}</span>
+                </div>
+                <div className="text-xs text-slate-500 line-clamp-1 mt-1 font-sans">{prevModule.desc}</div>
+              </div>
+            </button>
+
+            {/* Next Button */}
+            <button
+              onClick={() => setPage(nextModule.page)}
+              className="group p-5 bg-white rounded-xl border border-slate-200/90 hover:border-[#58A972] shadow-xs hover:shadow-md transition-all text-right flex items-start justify-between gap-4 cursor-pointer"
+            >
+              <div className="min-w-0">
+                <div className="text-[11px] font-mono text-slate-400 uppercase tracking-wide">Next Capability</div>
+                <div className="text-base font-bold text-[#213343] font-sans group-hover:text-[#58A972] transition-colors flex items-center justify-end gap-1.5 mt-0.5">
+                  <span>{nextModule.name}</span>
+                  {nextModule.icon}
+                </div>
+                <div className="text-xs text-slate-500 line-clamp-1 mt-1 font-sans">{nextModule.desc}</div>
+              </div>
+              <div className="w-10 h-10 rounded-lg bg-[#213343] group-hover:bg-[#58A972] text-white flex items-center justify-center shrink-0 transition-colors">
+                <ArrowRight size={18} />
+              </div>
+            </button>
+          </div>
+        </div>
+
+        {/* Quick Switcher Grid for All Capabilities */}
+        <div>
+          <div className="flex items-center justify-between mb-4">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500 font-mono">Jump Directly To Any Capability:</h4>
+            <button
+              onClick={() => setPage("capabilities")}
+              className="text-xs font-semibold text-[#58A972] hover:text-[#213343] flex items-center gap-1 transition-colors cursor-pointer"
+            >
+              All Capabilities Overview <ArrowRight size={12} />
+            </button>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+            {CAPABILITY_MODULES.map((m) => {
+              const isActive = m.page === currentPage;
+              return (
+                <button
+                  key={m.page}
+                  onClick={() => setPage(m.page)}
+                  disabled={isActive}
+                  className={`p-3.5 rounded-lg border text-left transition-all flex flex-col justify-between h-full ${
+                    isActive
+                      ? "bg-[#213343] border-[#213343] text-white cursor-default shadow-xs"
+                      : "bg-white border-slate-200 hover:border-[#58A972] text-slate-700 hover:shadow-xs cursor-pointer"
+                  }`}
+                >
+                  <div>
+                    <div className="flex items-center justify-between mb-2">
+                      <span className={isActive ? "text-[#58A972]" : "text-slate-400"}>{m.icon}</span>
+                      {isActive && <span className="text-[9px] font-mono px-1.5 py-0.5 rounded bg-[#58A972]/20 text-[#58A972] font-semibold">Viewing</span>}
+                    </div>
+                    <div className={`text-xs font-bold font-sans ${isActive ? "text-white" : "text-[#213343]"}`}>{m.name}</div>
+                    <div className={`text-[10px] line-clamp-2 mt-1 leading-tight font-sans ${isActive ? "text-slate-300" : "text-slate-500"}`}>
+                      {m.tag}
+                    </div>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -453,9 +593,9 @@ function HeroMockup({ setPage }: { setPage: (p: Page) => void }) {
           {[
             ["PartBase", false, "partbase"],
             ["QuoteBase", false, "quotebase"],
-            ["ConnectBase", false, "connectbase"],
             ["IntelligenceBase", true, "intelligencebase"],
             ["SaphranAI", false, "saphranai"],
+            ["ScenarioPro", false, "scenariopro"],
           ].map(([m, active, target]) => (
             <button
               key={m as string}
@@ -612,7 +752,7 @@ function IntegrationMockup() {
         className="text-[9px] uppercase tracking-wider mb-5"
         style={{ color: SLATE, fontFamily: "'JetBrains Mono', monospace" }}
       >
-        ConnectBase — Enterprise Decision Layer
+        Saphran — Enterprise Decision Layer
       </p>
       <div className="flex justify-center mb-0.5">
         <div
@@ -899,7 +1039,6 @@ function Header({
     { name: "Capabilities Overview", tag: "Platform Summary", page: "capabilities" },
     { name: "PartBase™", tag: "Active Commercial Mgmt", page: "partbase" },
     { name: "QuoteBase™", tag: "Costing & Quoting", page: "quotebase" },
-    { name: "ConnectBase™", tag: "ERP & EDI Integration", page: "connectbase" },
     { name: "IntelligenceBase™", tag: "Calculated Data Cube", page: "intelligencebase" },
     { name: "SaphranAI™", tag: "Predictive AI Core", page: "saphranai" },
     { name: "ScenarioPro™", tag: "What-If Simulations", page: "scenariopro" },
@@ -1011,7 +1150,7 @@ function Header({
 
 function Footer({ setPage }: { setPage: (p: Page) => void }) {
   const cols = [
-    { h: "Platform",  links: ["PartBase", "QuoteBase", "ConnectBase", "IntelligenceBase", "SaphranAI", "ScenarioPro"] },
+    { h: "Platform",  links: ["PartBase", "QuoteBase", "IntelligenceBase", "SaphranAI", "ScenarioPro"] },
     { h: "Company",   links: ["About", "Case Studies"] },
     { h: "Programs",  links: ["Startup Partner Program"] },
     { h: "Legal",     links: ["Privacy Policy", "Terms of Use"] },
@@ -1087,16 +1226,7 @@ function Footer({ setPage }: { setPage: (p: Page) => void }) {
                       >
                         {l}
                       </button>
-                    ) : l === "ConnectBase" ? (
-                      <button
-                        onClick={() => setPage("connectbase")}
-                        className="text-xs transition-colors text-left"
-                        style={{ color: "rgba(255,255,255,0.40)", fontFamily: "'Inter', sans-serif" }}
-                        onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.72)"; }}
-                        onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.40)"; }}
-                      >
-                        {l}
-                      </button>
+
                     ) : l === "IntelligenceBase" ? (
                       <button
                         onClick={() => setPage("intelligencebase")}
@@ -1283,7 +1413,7 @@ const homeFaqs = [
 ];
 
 const capFaqs = [
-  { q: "What systems does Saphran integrate with?", a: "Saphran's ConnectBase layer connects seamlessly to any ERP, CRM, or PLM system — including SAP, Oracle ERP, Salesforce CRM, Aras PLM, QAD, and custom databases — as well as live market data feeds. Integration does not require changes to existing systems or data migration." },
+  { q: "What systems does Saphran integrate with?", a: "Saphran connects seamlessly to any ERP, CRM, or PLM system — including SAP, Oracle ERP, Salesforce CRM, Aras PLM, QAD, and custom databases — as well as live market data feeds. Integration does not require changes to existing systems or data migration." },
   { q: "How does SaphranAI improve forecast accuracy?", a: "SaphranAI analyses historical program cost patterns, current market data, and input cost trends to identify and correct systematic forecast biases. In documented deployments this has improved forecast accuracy by +10% year-over-year." },
   { q: "Can Saphran handle multi-plant, multi-currency operations?", a: "Yes. Saphran is architected for global ETO manufacturers with operations across multiple plants, geographies, and currencies. The platform supports 20+ countries and handles currency-adjusted cost modelling natively." },
 ];
@@ -1316,7 +1446,7 @@ function HomePage({ setPage }: { setPage: (p: Page) => void }) {
       problem: "The Disconnected Systems Trap",
       problemDesc: "Cost data lives in separate spreadsheets, ERP exports, and email threads. One stale number cascades across an entire program.",
       solution: "One Source of Truth Across Every System",
-      solutionDesc: "ConnectBase integrates with any ERP, CRM, or PLM system — including SAP, Oracle, Salesforce, Aras, and custom internal databases — into a single live decision layer with no migration required.",
+      solutionDesc: "Saphran integrates with any ERP, CRM, or PLM system — including SAP, Oracle, Salesforce, Aras, and custom internal databases — into a single live decision layer with no migration required.",
     },
     {
       problem: "The Visibility Gap",
@@ -1369,7 +1499,7 @@ function HomePage({ setPage }: { setPage: (p: Page) => void }) {
                 className="text-[15px] leading-relaxed mb-8 max-w-[500px]"
                 style={{ color: SLATE, fontFamily: "'Inter', sans-serif" }}
               >
-                Saphran unifies your ERP, PLM, and CRM data into one live decision layer — so every bid, forecast, and pricing call is grounded in current numbers, not last quarter&apos;s spreadsheet.
+                Saphran unifies your ERP, PLM, CRM, and MES data into one live decision layer — so every bid, forecast, and pricing call is grounded in current numbers, not last quarter&apos;s spreadsheet.
               </p>
               <div className="flex items-center gap-3 flex-wrap">
                 <PrimaryBtn onClick={() => setPage("contact")}>
@@ -1588,7 +1718,7 @@ function HomePage({ setPage }: { setPage: (p: Page) => void }) {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             {[
               {
-                sector: "Tier 1 & Tier 2 Automotive Suppliers",
+                sector: "Tier 1, Tier 2, and Tier 3 Automotive Suppliers",
                 desc: "Managing program margins across multi-plant, multi-currency operations with volatile input costs.",
               },
               {
@@ -1662,7 +1792,7 @@ function HomePage({ setPage }: { setPage: (p: Page) => void }) {
                 letterSpacing: "-0.02em",
               }}
             >
-              How teams utilise Saphran across the program lifecycle.
+              How teams Utilize Saphran across the program lifecycle.
             </h2>
           </div>
           <ArchFlow />
@@ -1680,11 +1810,11 @@ function HomePage({ setPage }: { setPage: (p: Page) => void }) {
           bg: "#fff",
         },
         {
-          eyebrow: "ConnectBase",
-          headline: "Unified integration across your legacy stack.",
-          body: "Saphran connects to any ERP, CRM, or PLM system — including SAP, Oracle ERP, Salesforce CRM, Aras PLM, and live market data feeds — without replacing any of them, so cost, margin, and forecasting decisions are made on one current, reliable view.",
-          ctaText: "Explore ConnectBase",
-          page: "connectbase",
+          eyebrow: "PartBase",
+          headline: "Single reliable source for component cost tracking.",
+          body: "PartBase maintains an integrated bill of materials and active commercial history across all programs and manufacturing plants, eliminating siloed cost spreadsheets.",
+          ctaText: "Explore PartBase",
+          page: "partbase",
           mockup: <IntegrationMockup />,
           flip: true,
           bg: BONE,
@@ -2159,8 +2289,8 @@ function CapabilitiesPage({ setPage }: { setPage: (p: Page) => void }) {
             {[
               { name: "PartBase",          desc: "Single reliable source for component costs across programs and plants.", page: "partbase" },
               { name: "QuoteBase",         desc: "Generate cost and margin models during RFQ response, in days not weeks.", page: "quotebase" },
-              { name: "ConnectBase",       desc: "Pull data from ERP, PLM, CRM, and market feeds into Saphran without migration.", page: "connectbase" },
               { name: "IntelligenceBase",  desc: "Executive-ready dashboards, alerts, and margin visibility across the business.", page: "intelligencebase" },
+              { name: "SaphranAI",         desc: "AI-driven forecasting and bias correction using historical program data.", page: "saphranai" },
               { name: "ScenarioPro",       desc: "Run rapid what-if cost and margin scenarios before committing to any bid.", page: "scenariopro" },
             ].map((m, i) => (
               <div key={i} className="bg-white p-6 flex flex-col justify-between min-h-[200px]">
@@ -2401,7 +2531,7 @@ function CapabilitiesPage({ setPage }: { setPage: (p: Page) => void }) {
               <div className="grid md:grid-cols-3 gap-6">
                 {[
                   { tag: "Challenge", text: "Managing program costs across disconnected spreadsheets and siloed ERP data, with no unified view of margin across plants and geographies." },
-                  { tag: "Solution",  text: "Deployed Saphran's full platform — PartBase, QuoteBase, ConnectBase, and IntelligenceBase — connecting SAP and Oracle into a single decision layer." },
+                  { tag: "Solution",  text: "Deployed Saphran's full platform — PartBase, QuoteBase, IntelligenceBase, and ScenarioPro — connecting SAP and Oracle into a single decision layer." },
                   { tag: "Impact",    text: "$46M+ annual business impact including $8.2M in documented freight savings and +10% forecast accuracy improvement." },
                 ].map((c, i) => (
                   <div key={i}>
@@ -2988,7 +3118,7 @@ function StartupPage({ setPage }: { setPage: (p: Page) => void }) {
   const whatYouGet = [
     {
       title: "Full Platform Access from Day One",
-      desc: "PartBase, QuoteBase, ConnectBase, SaphranAI — no feature-gating. The same platform used by $500M+ manufacturers, available to you at startup pricing.",
+      desc: "PartBase, QuoteBase, IntelligenceBase, SaphranAI — no feature-gating. The same platform used by $500M+ manufacturers, available to you at startup pricing.",
     },
     {
       title: "Startup Pricing — ~40% Off Standard Rate",
@@ -3824,6 +3954,7 @@ function QuoteBasePage({ setPage }: { setPage: (p: Page) => void }) {
 
   return (
     <>
+      <CapabilitySubNav currentPage="quotebase" setPage={setPage} />
       {/* Hero Section */}
       <section className="pt-32 pb-20 relative overflow-hidden" style={{ background: "#fff" }}>
         <div className="absolute pointer-events-none select-none"
@@ -4289,6 +4420,9 @@ function QuoteBasePage({ setPage }: { setPage: (p: Page) => void }) {
         </div>
       </section>
 
+      {/* Capability Navigation */}
+      <CapabilityFooterNav currentPage="quotebase" setPage={setPage} />
+
       {/* CTA Band */}
       <section className="py-24 relative overflow-hidden" style={{ background: INK }}>
         <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/3 pointer-events-none" style={{ opacity: 0.05 }}>
@@ -4368,7 +4502,7 @@ function PartBasePage({ setPage }: { setPage: (p: Page) => void }) {
       status: "Volatile",
       color: "#f59e0b",
       desc: "Models a 20% volume drop on domestic platforms offset by foreign expansion program gains.",
-      tip: "Verify currency conversion matrices for Euro and BRL transactions in ConnectBase."
+      tip: "Verify currency conversion matrices for Euro and BRL transactions in PartBase."
     }
   };
 
@@ -4376,6 +4510,7 @@ function PartBasePage({ setPage }: { setPage: (p: Page) => void }) {
 
   return (
     <>
+      <CapabilitySubNav currentPage="partbase" setPage={setPage} />
       {/* Hero Section */}
       <section className="pt-32 pb-20 relative overflow-hidden" style={{ background: "#fff" }}>
         <div className="absolute pointer-events-none select-none"
@@ -4888,7 +5023,7 @@ function PartBasePage({ setPage }: { setPage: (p: Page) => void }) {
                 <RefreshCw size={16} />
               </div>
               <h4 className="font-bold text-sm mb-2 text-slate-900" style={{ fontFamily: "'Inter', sans-serif" }}>ERP Ship History Integration</h4>
-              <p className="text-xs leading-relaxed text-slate-500">Connect your SAP, QAD, or other ERP systems using ConnectBase to import actual ship history and customer EDI releases.</p>
+              <p className="text-xs leading-relaxed text-slate-500">Connect your SAP, QAD, or other ERP systems to import actual ship history and customer EDI releases.</p>
             </div>
 
             <div className="bg-white p-6 rounded border border-slate-200">
@@ -4901,6 +5036,9 @@ function PartBasePage({ setPage }: { setPage: (p: Page) => void }) {
           </div>
         </div>
       </section>
+
+      {/* Capability Navigation */}
+      <CapabilityFooterNav currentPage="partbase" setPage={setPage} />
 
       {/* CTA Band */}
       <section className="py-24 relative overflow-hidden" style={{ background: INK }}>
@@ -4929,560 +5067,6 @@ function PartBasePage({ setPage }: { setPage: (p: Page) => void }) {
         </div>
       </section>
     </>
-  );
-}
-
-// ─── ConnectBase Page ──────────────────────────────────────────────────────────
-
-function ConnectBasePage({ setPage }: { setPage: (p: Page) => void }) {
-  const [alignmentStep, setAlignmentStep] = useState(1);
-  const simulatorRef = useRef<HTMLDivElement>(null);
-
-  const scrollToSimulator = () => {
-    simulatorRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
-
-  const getStepData = (step: number) => {
-    switch (step) {
-      case 1:
-        return {
-          title: "Step 1: Automated ERP Ingestion",
-          desc: "Ship history and customer EDI releases are imported directly from your ERP (SAP, QAD, Oracle) via Secure FTP (SFTP) or a database view.",
-          details: [
-            "Connection Setup: Supports source plant, ship-to customer, and dates",
-            "Automatic Syncing: Eliminates cut-and-paste or manual Excel workbook imports",
-            "In-Process Job Logs: View active jobs, imported records, and date ranges"
-          ]
-        };
-      case 2:
-        return {
-          title: "Step 2: Align Unique Matches",
-          desc: "Our matching algorithm automatically detects 1-to-1 relationships where a shipped part maps to exactly one forecast part based on plant, customer, and part number.",
-          details: [
-            "One-Click Acceptance: Process and accept all unique matches instantly",
-            "Productivity Enhancement: Reduces hours of lookup work to seconds",
-            "Skip or Comment: Skip and optionally record notes for later review"
-          ]
-        };
-      case 3:
-        return {
-          title: "Step 3: Resolve Mismatches & Aliases",
-          desc: "For shipped parts with multiple potential matches (mismatches), the system suggests best matches which you can approve or manually expand.",
-          details: [
-            "Customer ship-to aliases: Align customer locations to forecast names",
-            "Part number matching suggestions: Expand match options based on plant attributes",
-            "Historical database memory: Remember resolved alignments for future uploads"
-          ]
-        };
-      case 4:
-        return {
-          title: "Step 4: Shared Opportunities & Volume Splits",
-          desc: "When a single shipped part number maps to multiple forecast records (e.g. front and rear bumper opportunities), ConnectBase splits the shipped volume based on forecast ratios.",
-          details: [
-            "Proportional allocation: January actual ship volume is divided across program parts",
-            "BOM Pricing Alignment: Check latest shipped pricing vs. forecast price",
-            "Unpredicted volume flags: Catches ship volume with no active forecast assignments"
-          ]
-        };
-      default:
-        return { title: "", desc: "", details: [] };
-    }
-  };
-
-  const currentStep = getStepData(alignmentStep);
-
-  return (
-    <>
-      {/* Hero Section */}
-      <section className="pt-32 pb-20 relative overflow-hidden" style={{ background: "#fff" }}>
-        <div className="absolute pointer-events-none select-none"
-          style={{ right: "-8%", top: "50%", transform: "translateY(-50%)", opacity: 0.055 }}>
-          <SwirlMark size={480} color={GREEN} className="animate-spin" style={{ animationDuration: "32s" }} />
-        </div>
-        
-        <div className="max-w-[1280px] mx-auto px-6 lg:px-8 relative">
-          <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-16 items-center">
-            <div>
-
-              <h1 className="font-extrabold leading-[1.03] mb-6"
-                style={{
-                  fontFamily: "'Poppins', sans-serif",
-                  fontSize: "clamp(42px, 5.5vw, 72px)",
-                  letterSpacing: "-0.024em",
-                  color: INK,
-                }}>
-                ConnectBase™
-              </h1>
-              
-              <p className="text-lg font-semibold leading-snug mb-5"
-                style={{ color: INK, fontFamily: "'Poppins', sans-serif" }}>
-                Automated ERP &amp; EDI Integration for Closed-Loop Forecasts.
-              </p>
-              
-              <p className="text-[15px] leading-relaxed mb-8 text-slate-650"
-                style={{ color: SLATE, fontFamily: "'Inter', sans-serif" }}>
-                Saphran ConnectBase closes the loop between forecast planning and actual shipments. Automatically import actual ship history and customer EDI releases from your SAP, Oracle, QAD, or custom database systems. Align shipped parts, update prices based on actual transactions, and generate actual-vs-forecast comparison reports in real time.
-              </p>
-
-              <div className="border-l-4 border-emerald-500 bg-[#f9f9fb] p-5 rounded-r-[5px] mb-8 max-w-2xl"
-                style={{ borderLeftColor: GREEN }}>
-                <p className="text-xs italic leading-relaxed text-slate-750 mb-2">
-                  &quot;ConnectBase closed the loop for our business. Aligning actual shipment data with long-range vehicle program forecasts is now completely automated, saving us weeks of manual data lookup.&quot;
-                </p>
-                <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wide">
-                  — Automotive Tier 1 VP of Planning
-                </span>
-              </div>
-              
-              <div className="flex gap-3 flex-wrap">
-                <OutlineBtn onClick={scrollToSimulator}>
-                  Explore Data Alignment Flow
-                </OutlineBtn>
-              </div>
-            </div>
-
-            <div>
-              <DiscoveryCallForm />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Challenge vs Solution Section */}
-      <section className="py-24" style={{ background: BONE, borderTop: "1px solid rgba(33,51,67,0.07)", borderBottom: "1px solid rgba(33,51,67,0.07)" }}>
-        <div className="max-w-[1280px] mx-auto px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <Eyebrow>The Alignment Dilemma</Eyebrow>
-            <h2 className="font-bold leading-[1.12] mb-4 text-slate-900"
-              style={{
-                fontFamily: "'Poppins', sans-serif",
-                fontSize: "clamp(28px, 3.2vw, 42px)",
-                letterSpacing: "-0.02em",
-                color: INK
-              }}>
-              The Data Reconciling Challenge
-            </h2>
-            <p className="text-sm text-slate-650" style={{ fontFamily: "'Inter', sans-serif" }}>
-              Reconciling actual shipments against vehicle program forecasts is traditionally a massive manual effort.
-            </p>
-          </div>
-
-          {/* Systems Integration & Alignment Architecture */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-12">
-            {/* The Manual Reconciliation Problem Card */}
-            <div className="bg-white rounded-xl p-8 border border-slate-200 shadow-sm flex flex-col justify-between relative overflow-hidden">
-              <div>
-                <div className="flex items-center justify-between mb-6">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-50 border border-rose-100 text-rose-700 text-xs font-semibold">
-                    <AlertCircle size={14} />
-                    <span>Conventional Setup</span>
-                  </div>
-                  <span className="text-xs font-mono text-slate-400">Spreadsheet Bottleneck</span>
-                </div>
-
-                <h3 className="text-xl font-bold text-slate-900 mb-3" style={{ fontFamily: "'Poppins', sans-serif" }}>
-                  Manual Reconciliation &amp; Data Gaps
-                </h3>
-                <p className="text-xs text-slate-600 leading-relaxed mb-8" style={{ fontFamily: "'Inter', sans-serif" }}>
-                  ERP shipment history records raw customer part numbers and invoice codes, while long-range commercial forecasts live in sales spreadsheets. Manually mapping the two takes weeks of VLOOKUP work and hides unpredicted shipment variances.
-                </p>
-
-                {/* Broken Connection Flow Graphic */}
-                <div className="bg-[#fcfaf8] p-5 rounded-lg border border-slate-200/80 space-y-4">
-                  <div className="flex items-center justify-between p-3.5 bg-white rounded-lg border border-slate-200 shadow-2xs">
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-slate-600 font-mono text-xs font-bold shrink-0">ERP</div>
-                      <div>
-                        <div className="text-xs font-bold text-slate-800 font-sans">Raw Shipment History</div>
-                        <div className="text-[10px] text-slate-500">Customer part #s &amp; plant ship codes</div>
-                      </div>
-                    </div>
-                    <span className="text-[10px] font-mono bg-slate-100 text-slate-600 px-2 py-0.5 rounded">Isolated</span>
-                  </div>
-
-                  <div className="flex items-center justify-center gap-2 py-1 text-rose-500">
-                    <div className="h-px bg-rose-200 flex-1" />
-                    <div className="flex items-center gap-1.5 px-3 py-1 rounded bg-rose-50 border border-rose-200 text-[10px] font-medium">
-                      <span>Manual Lookup Gap (Weeks Spent on Spreadsheets)</span>
-                    </div>
-                    <div className="h-px bg-rose-200 flex-1" />
-                  </div>
-
-                  <div className="flex items-center justify-between p-3.5 bg-white rounded-lg border border-slate-200 shadow-2xs">
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-slate-600 font-mono text-xs font-bold shrink-0">PLAN</div>
-                      <div>
-                        <div className="text-xs font-bold text-slate-800 font-sans">Commercial Program Forecasts</div>
-                        <div className="text-[10px] text-slate-500">Sales opportunities &amp; long-range LTAs</div>
-                      </div>
-                    </div>
-                    <span className="text-[10px] font-mono bg-slate-100 text-slate-600 px-2 py-0.5 rounded">Unlinked</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
-                <span>Result: Delayed margin visibility</span>
-                <span className="font-semibold text-rose-600">Unmapped Volume Risk</span>
-              </div>
-            </div>
-
-            {/* The ConnectBase Solution Card */}
-            <div className="bg-white rounded-xl p-8 border border-emerald-200/80 shadow-md flex flex-col justify-between relative overflow-hidden" style={{ borderTop: `4px solid ${GREEN}` }}>
-              <div>
-                <div className="flex items-center justify-between mb-6">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-semibold">
-                    <Sparkles size={14} className="text-emerald-600" />
-                    <span>Saphran ConnectBase Engine</span>
-                  </div>
-                  <div className="flex items-center gap-1.5 text-xs font-mono text-emerald-600 font-semibold">
-                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                    <span>Real-Time Sync</span>
-                  </div>
-                </div>
-
-                <h3 className="text-xl font-bold text-slate-900 mb-3" style={{ fontFamily: "'Poppins', sans-serif" }}>
-                  Automated Closed-Loop Data Router
-                </h3>
-                <p className="text-xs text-slate-600 leading-relaxed mb-8" style={{ fontFamily: "'Inter', sans-serif" }}>
-                  ConnectBase ingests actual shipment history and customer EDI releases, automatically aligning customer part numbers to rolling program forecasts with 1-to-1 matching, mismatch assistance, and instant volume flag alerts.
-                </p>
-
-                {/* Automated Flow Architecture Graphic */}
-                <div className="bg-[#f7faf8] p-5 rounded-lg border border-emerald-100 space-y-3">
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-3 items-center">
-                    {/* Stage 1 */}
-                    <div className="bg-white p-3 rounded-lg border border-emerald-100 shadow-2xs text-center">
-                      <div className="text-[10px] font-bold text-emerald-700 uppercase tracking-wider mb-1 font-mono">1. Automated Ingestion</div>
-                      <div className="text-[11px] font-semibold text-slate-800">ERP &amp; EDI Feeds</div>
-                      <div className="text-[9px] text-slate-500 mt-0.5">Ship records &amp; release schedules</div>
-                    </div>
-
-                    {/* Stage 2 */}
-                    <div className="bg-slate-900 text-white p-3 rounded-lg border border-slate-800 shadow-sm text-center">
-                      <div className="text-[10px] font-bold text-emerald-400 uppercase tracking-wider mb-1 font-mono">2. ConnectBase Router</div>
-                      <div className="text-[11px] font-semibold">1-to-1 Matching Engine</div>
-                      <div className="text-[9px] text-slate-350 mt-0.5">Mismatch wizard &amp; volume splitter</div>
-                    </div>
-
-                    {/* Stage 3 */}
-                    <div className="bg-white p-3 rounded-lg border border-emerald-200 shadow-2xs text-center" style={{ borderLeft: `3px solid ${GREEN}` }}>
-                      <div className="text-[10px] font-bold text-emerald-700 uppercase tracking-wider mb-1 font-mono">3. Live Closed-Loop</div>
-                      <div className="text-[11px] font-semibold text-slate-800">Rolling Forecast</div>
-                      <div className="text-[9px] text-slate-500 mt-0.5">Unpredicted shipment flags</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-[11px]">
-                <span className="text-slate-600">Turnaround: Under 10 minutes</span>
-                <span className="font-bold text-emerald-700 font-mono">100% Data Alignment</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Interactive Alignment Simulator */}
-      <section ref={simulatorRef} className="py-24 text-white" style={{ background: INK }}>
-        <div className="max-w-[1280px] mx-auto px-6 lg:px-8">
-          <div className="max-w-3xl mb-16">
-            <Eyebrow dark>Data Flow Simulator</Eyebrow>
-            <h2 className="font-bold leading-[1.12] mb-4"
-              style={{
-                fontFamily: "'Poppins', sans-serif",
-                fontSize: "clamp(28px, 3.2vw, 42px)",
-                letterSpacing: "-0.02em"
-              }}>
-              Saphran ConnectBase Alignment In Action
-            </h2>
-            <p className="text-sm" style={{ color: "rgba(255,255,255,0.44)", fontFamily: "'Inter', sans-serif" }}>
-              Explore how raw shipment datasets are ingested, mapped, and aligned to keep your forecasts living and accurate. Use the workflow buttons to step through the integration.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_1.8fr] gap-12 items-start">
-            {/* Left Steps Panel */}
-            <div className="space-y-6">
-              <div className="flex gap-2 flex-wrap mb-4">
-                {[1, 2, 3, 4].map((stepNum) => (
-                  <button
-                    key={stepNum}
-                    onClick={() => setAlignmentStep(stepNum)}
-                    className={`px-3 py-1.5 rounded font-mono text-xs font-bold transition-all duration-150 ${
-                      alignmentStep === stepNum 
-                        ? "bg-[#2d4356] text-white border-b-2 border-emerald-450" 
-                        : "text-slate-400 hover:text-white bg-white/5"
-                    }`}
-                  >
-                    Step {stepNum}
-                  </button>
-                ))}
-              </div>
-
-              <div className="bg-[#16222e] p-6 rounded-lg border border-white/5">
-                <span className="text-[10px] font-mono uppercase tracking-widest" style={{ color: GREEN_TINT }}>
-                  Workflow Process
-                </span>
-                <h3 className="font-bold text-lg mb-3 mt-1 text-slate-100" style={{ fontFamily: "'Poppins', sans-serif" }}>
-                  {currentStep.title}
-                </h3>
-                <p className="text-[13px] leading-relaxed mb-6" style={{ color: "rgba(255,255,255,0.52)", fontFamily: "'Inter', sans-serif" }}>
-                  {currentStep.desc}
-                </p>
-
-                <ul className="space-y-3">
-                  {currentStep.details.map((detail, idx) => (
-                    <li key={idx} className="flex items-start gap-2.5 text-[12px] leading-relaxed" style={{ color: "rgba(255,255,255,0.7)" }}>
-                      <div className="w-3.5 h-3.5 rounded-full flex items-center justify-center shrink-0 mt-0.5 bg-emerald-500/10 border border-emerald-500/20">
-                        <Check size={7} className="text-emerald-400" />
-                      </div>
-                      <span>{detail}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {alignmentStep < 4 ? (
-                <button
-                  onClick={() => setAlignmentStep(alignmentStep + 1)}
-                  className="inline-flex items-center gap-2 text-xs font-semibold px-4 py-2.5 rounded bg-emerald-600 hover:bg-emerald-500 text-slate-900 font-mono transition-colors"
-                >
-                  Proceed to Next Step <ArrowRight size={12} />
-                </button>
-              ) : (
-                <button
-                  onClick={() => setAlignmentStep(1)}
-                  className="inline-flex items-center gap-2 text-xs font-semibold px-4 py-2.5 rounded border border-white/20 hover:bg-white/5 text-white font-mono transition-all"
-                >
-                  Restart Simulation <RefreshCw size={12} />
-                </button>
-              )}
-            </div>
-
-            {/* Right Live UI Mockup */}
-            <div>
-              <span className="block text-[9px] uppercase tracking-wider text-slate-400 mb-2 font-mono text-center">
-                Simulated ConnectBase Alignment Interface
-              </span>
-
-              {alignmentStep === 1 && (
-                <div className="bg-[#1c2a38] text-white p-5 rounded-lg border border-slate-700 font-sans shadow-lg text-[12px] leading-relaxed font-mono">
-                  <div className="flex items-center justify-between pb-3 mb-4 border-b border-slate-700">
-                    <span className="font-semibold text-slate-200">System Admin: Ship History Upload</span>
-                    <span className="text-[9px] text-slate-400 bg-slate-800 px-1.5 py-0.5 rounded">SFTP Status</span>
-                  </div>
-                  <div className="space-y-4">
-                    <div className="bg-slate-900/60 p-3 rounded border border-slate-800 text-[11px] space-y-2">
-                      <div>External Source: <span className="text-emerald-400">POCRM</span></div>
-                      <div>Latest Month/Year: <span className="text-slate-200">Q2 2026</span></div>
-                      <div>Most Recent Import: <span className="text-slate-200">Thu May 18 10:02:31 EDT 2026</span></div>
-                    </div>
-                    <div className="p-3 bg-slate-800/80 rounded border border-slate-700">
-                      <span className="block text-[8px] uppercase tracking-wider text-slate-400 mb-1 font-bold">Active Connection Stream</span>
-                      <div className="flex justify-between items-center text-[10px]">
-                        <span>SFTP Stream (saphran_upload_job)</span>
-                        <span className="text-emerald-400 animate-pulse">● CONNECTED</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {alignmentStep === 2 && (
-                <div className="bg-[#1c2a38] text-white p-5 rounded-lg border border-slate-700 font-sans shadow-lg text-[12px] leading-relaxed">
-                  <div className="flex items-center justify-between pb-3 mb-4 border-b border-slate-700 font-mono">
-                    <span className="font-semibold text-slate-200">Unique Part Number Alignment</span>
-                    <span className="text-[9px] text-slate-400 bg-slate-800 px-1.5 py-0.5 rounded">1-to-1 Matches</span>
-                  </div>
-                  <div className="space-y-3">
-                    <div className="p-3 bg-slate-800/70 rounded border border-slate-700">
-                      <div className="flex justify-between font-mono text-[10px] text-slate-400">
-                        <span>Imported Part No</span>
-                        <span>Matching parent Customer</span>
-                      </div>
-                      <div className="flex justify-between items-center mt-1.5 font-sans">
-                        <span className="font-semibold text-slate-200 text-xs">Dana Holding [Dana Long]</span>
-                        <span className="text-emerald-400 font-semibold font-mono text-[11px]">General Motors</span>
-                      </div>
-                      <div className="flex gap-2 justify-end mt-2.5 font-mono text-[9px]">
-                        <button className="bg-slate-750 hover:bg-slate-700 border border-slate-700 text-slate-300 px-2 py-0.5 rounded">SKIP &amp; NOTE</button>
-                        <button className="bg-emerald-500 hover:bg-emerald-450 text-slate-900 font-bold px-2 py-0.5 rounded">ALIGN PART</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {alignmentStep === 3 && (
-                <div className="bg-[#1c2a38] text-white p-5 rounded-lg border border-slate-700 font-sans shadow-lg text-[11px] leading-relaxed">
-                  <div className="flex items-center justify-between pb-3 mb-4 border-b border-slate-700 font-mono">
-                    <span className="font-semibold text-slate-200">Part Number Mismatches Console</span>
-                    <span className="text-[9px] text-slate-400 bg-slate-800 px-1.5 py-0.5 rounded">Suggestions</span>
-                  </div>
-                  <div className="space-y-4">
-                    <div className="border border-slate-700 rounded overflow-hidden font-mono">
-                      <table className="w-full text-left">
-                        <thead>
-                          <tr className="bg-slate-800 text-slate-400 border-b border-slate-700 text-[8px] uppercase">
-                            <th className="p-2">Imported Part #</th>
-                            <th className="p-2">Suggested Matches</th>
-                            <th className="p-2 text-right">Actions</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr className="border-b border-slate-800">
-                            <td className="p-2 font-semibold text-slate-200">12345-a</td>
-                            <td className="p-2">
-                              <select className="bg-slate-850 border border-slate-700 text-slate-200 rounded px-1 text-[10px]">
-                                <option>12345-C (Exhaust Manifold)</option>
-                                <option>12345-Crr (Exhaust Manifold)</option>
-                              </select>
-                            </td>
-                            <td className="p-2 text-right">
-                              <button className="bg-slate-700 hover:bg-slate-650 text-white px-2 py-0.5 rounded text-[8px] font-bold">SUGGEST</button>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {alignmentStep === 4 && (
-                <div className="bg-[#1c2a38] text-white p-5 rounded-lg border border-slate-700 font-sans shadow-lg text-[12px] leading-relaxed">
-                  <div className="flex items-center justify-between pb-3 mb-4 border-b border-slate-700 font-mono">
-                    <span className="font-semibold text-slate-200">Proportional Volume Allocation</span>
-                    <span className="text-[9px] text-slate-400 bg-slate-800 px-1.5 py-0.5 rounded">Shared Alignment</span>
-                  </div>
-                  <div className="space-y-4">
-                    <div className="bg-slate-900/60 p-3.5 rounded border border-slate-800 text-[11px] font-mono space-y-2">
-                      <div className="flex justify-between border-b border-slate-750 pb-1">
-                        <span>Total Shipped Volume:</span>
-                        <span className="text-emerald-400 font-bold">6,000 units</span>
-                      </div>
-                      <div className="flex justify-between items-center">
-                        <div>
-                          <span className="block font-sans text-slate-200">Part A (GM-Dis1)</span>
-                          <span className="block text-[8px] text-slate-500">Forecast ratio: 66.7%</span>
-                        </div>
-                        <span className="text-slate-100 font-semibold font-mono">4,000 units</span>
-                      </div>
-                      <div className="flex justify-between items-center pt-1.5 border-t border-slate-800">
-                        <div>
-                          <span className="block font-sans text-slate-200">Part B (GM-Dis2)</span>
-                          <span className="block text-[8px] text-slate-500">Forecast ratio: 33.3%</span>
-                        </div>
-                        <span className="text-slate-100 font-semibold font-mono">2,000 units</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Key Features & Technology */}
-      <section className="py-24 bg-white">
-        <div className="max-w-[1280px] mx-auto px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <Eyebrow>Core Platform Features</Eyebrow>
-            <h2 className="font-bold leading-[1.12] mb-4 text-slate-900"
-              style={{
-                fontFamily: "'Poppins', sans-serif",
-                fontSize: "clamp(28px, 3.2vw, 42px)",
-                letterSpacing: "-0.02em",
-                color: INK
-              }}>
-              ConnectBase™ Key Features
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="bg-white p-6 rounded border border-slate-200">
-              <div className="w-8 h-8 rounded-lg bg-emerald-50 border border-emerald-200 flex items-center justify-center mb-4 text-emerald-600">
-                <Database size={16} />
-              </div>
-              <h4 className="font-bold text-sm mb-2 text-slate-900" style={{ fontFamily: "'Inter', sans-serif" }}>ERP Ship History Integration</h4>
-              <p className="text-xs leading-relaxed text-slate-500">Connect to your SAP, QAD, Oracle, or specialized databases using SFTP or database views. Automatically transfer shipped part records.</p>
-            </div>
-
-            <div className="bg-white p-6 rounded border border-slate-200">
-              <div className="w-8 h-8 rounded-lg bg-emerald-50 border border-emerald-200 flex items-center justify-center mb-4 text-emerald-600">
-                <Layers size={16} />
-              </div>
-              <h4 className="font-bold text-sm mb-2 text-slate-900" style={{ fontFamily: "'Inter', sans-serif" }}>Smart Mismatch Routing</h4>
-              <p className="text-xs leading-relaxed text-slate-500">Suggested alignments map customer aliases, ship-to codes, and parts automatically, letting you resolve mismatches quickly.</p>
-            </div>
-
-            <div className="bg-white p-6 rounded border border-slate-200">
-              <div className="w-8 h-8 rounded-lg bg-emerald-50 border border-emerald-200 flex items-center justify-center mb-4 text-emerald-600">
-                <Clock size={16} />
-              </div>
-              <h4 className="font-bold text-sm mb-2 text-slate-900" style={{ fontFamily: "'Inter', sans-serif" }}>Proportional Volume Splits</h4>
-              <p className="text-xs leading-relaxed text-slate-500">Distribute shipment volumes and revenues across multiple program assignments proportionally based on forecast ratio.</p>
-            </div>
-
-            <div className="bg-white p-6 rounded border border-slate-200">
-              <div className="w-8 h-8 rounded-lg bg-emerald-50 border border-emerald-200 flex items-center justify-center mb-4 text-emerald-600">
-                <DollarSign size={16} />
-              </div>
-              <h4 className="font-bold text-sm mb-2 text-slate-900" style={{ fontFamily: "'Inter', sans-serif" }}>Automated Price Updates</h4>
-              <p className="text-xs leading-relaxed text-slate-500">Update forecast unit prices automatically based on actual shipped prices. Includes a manual bypass option to use forecast rates.</p>
-            </div>
-
-            <div className="bg-white p-6 rounded border border-slate-200">
-              <div className="w-8 h-8 rounded-lg bg-emerald-50 border border-emerald-200 flex items-center justify-center mb-4 text-emerald-600">
-                <BarChart2 size={16} />
-              </div>
-              <h4 className="font-bold text-sm mb-2 text-slate-900" style={{ fontFamily: "'Inter', sans-serif" }}>Actuals vs. Forecast Reporting</h4>
-              <p className="text-xs leading-relaxed text-slate-500">Produce direct comparison reports comparing actual ship history with long-range plans, exposing unpredicted volumes.</p>
-            </div>
-
-            <div className="bg-white p-6 rounded border border-slate-200">
-              <div className="w-8 h-8 rounded-lg bg-emerald-50 border border-emerald-200 flex items-center justify-center mb-4 text-emerald-600">
-                <Sparkles size={16} />
-              </div>
-              <h4 className="font-bold text-sm mb-2 text-slate-900" style={{ fontFamily: "'Inter', sans-serif" }}>Composite Forecast Engine</h4>
-              <p className="text-xs leading-relaxed text-slate-500">Combine ship history, customer EDI releases, and third-party market forecasts into a single rolling forecast view.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Band */}
-      <section className="py-24 relative overflow-hidden" style={{ background: INK }}>
-        <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/3 pointer-events-none" style={{ opacity: 0.05 }}>
-          <SwirlMark size={440} color={GREEN} className="animate-spin" style={{ animationDuration: "30s" }} dark />
-        </div>
-        <div className="max-w-[1280px] mx-auto px-6 lg:px-8 relative">
-          <div className="max-w-xl">
-            <Eyebrow dark>Data Alignment Control</Eyebrow>
-            <h2 className="font-extrabold text-white mb-5 leading-[1.06]"
-              style={{ fontFamily: "'Poppins', sans-serif", fontSize: "clamp(30px, 4vw, 48px)", letterSpacing: "-0.022em" }}>
-              Close the Loop on Actuals.
-            </h2>
-            <p className="text-[15px] leading-relaxed mb-8" style={{ color: "rgba(255,255,255,0.46)", fontFamily: "'Inter', sans-serif" }}>
-              Ready to replace manual alignment spreadsheet loops, automate ship history allocations, and report against real-time transactional pricing? Book a discovery call today to see Saphran ConnectBase in action.
-            </p>
-            <div className="flex gap-3 flex-wrap">
-              <PrimaryBtn onClick={() => setPage("contact")}>
-                Book a Discovery Call <ArrowRight size={14} />
-              </PrimaryBtn>
-              <OutlineBtn dark onClick={() => setPage("capabilities")}>
-                Explore All Modules
-              </OutlineBtn>
-            </div>
-          </div>
-        </div>
-      </section>
-    </>
-  );
-}
 
 // ─── IntelligenceBase Page ─────────────────────────────────────────────────────
 
@@ -5533,6 +5117,7 @@ function IntelligenceBasePage({ setPage }: { setPage: (p: Page) => void }) {
 
   return (
     <>
+      <CapabilitySubNav currentPage="intelligencebase" setPage={setPage} />
       {/* Hero Section */}
       <section className="pt-32 pb-20 relative overflow-hidden" style={{ background: "#fff" }}>
         <div className="absolute pointer-events-none select-none"
@@ -5905,6 +5490,9 @@ function IntelligenceBasePage({ setPage }: { setPage: (p: Page) => void }) {
         </div>
       </section>
 
+      {/* Capability Navigation */}
+      <CapabilityFooterNav currentPage="intelligencebase" setPage={setPage} />
+
       {/* CTA Band */}
       <section className="py-24 relative overflow-hidden" style={{ background: INK }}>
         <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/3 pointer-events-none" style={{ opacity: 0.05 }}>
@@ -5955,6 +5543,7 @@ function SaphranAIPage({ setPage }: { setPage: (p: Page) => void }) {
 
   return (
     <>
+      <CapabilitySubNav currentPage="saphranai" setPage={setPage} />
       {/* Hero Section (Deep slate dark styling for AI focus) */}
       <section className="pt-32 pb-24 relative overflow-hidden text-white" style={{ background: INK }}>
         <div className="absolute pointer-events-none select-none"
@@ -6338,7 +5927,7 @@ function SaphranAIPage({ setPage }: { setPage: (p: Page) => void }) {
                   <Cpu size={20} className="text-emerald-450" />
                 </div>
                 <span className="block font-bold text-xs">Saphran Platform</span>
-                <p className="text-[10px] text-slate-500 mt-1 leading-relaxed">PartBase, QuoteBase, ConnectBase, IntelligenceBase</p>
+                <p className="text-[10px] text-slate-500 mt-1 leading-relaxed">PartBase, QuoteBase, IntelligenceBase, ScenarioPro</p>
                 <div className="mt-3.5 border-t border-slate-750 pt-3 w-full">
                   <span className="block text-[8px] font-mono text-emerald-400 uppercase tracking-widest">Data Integrity Layer</span>
                 </div>
@@ -6360,7 +5949,7 @@ function SaphranAIPage({ setPage }: { setPage: (p: Page) => void }) {
                 letterSpacing: "-0.02em",
                 color: INK
               }}>
-              SaphranAI Readiness Ladder
+              3 Steps to AI Bias Elimination
             </h2>
             <p className="text-sm text-slate-650" style={{ fontFamily: "'Inter', sans-serif" }}>
               More integrated database connections trigger higher forecasting accuracy and greater financial returns.
@@ -6372,11 +5961,11 @@ function SaphranAIPage({ setPage }: { setPage: (p: Page) => void }) {
             <div className="bg-[#f9f9fb] p-6 rounded border border-slate-200 relative flex flex-col justify-between">
               <div>
                 <span className="font-mono text-xs font-bold text-emerald-650 bg-emerald-50 px-2 py-0.5 rounded">Step 1</span>
-                <h4 className="font-bold text-sm mb-2 mt-4 text-slate-900" style={{ fontFamily: "'Inter', sans-serif" }}>Rolling Forecast Link</h4>
-                <p className="text-xs leading-relaxed text-slate-500">Your core forecast opportunity database is linked directly with third-party automotive market volume forecast data.</p>
+                <h4 className="font-bold text-sm mb-2 mt-4 text-slate-900" style={{ fontFamily: "'Inter', sans-serif" }}>Platform Activation</h4>
+                <p className="text-xs leading-relaxed text-slate-500">Deploy QuoteBase &amp; PartBase to aggregate your live program BOMs, quotes, and market forecast subscription feeds.</p>
               </div>
-              <div className="mt-6 pt-3 border-t border-slate-200 text-[10px] text-slate-400 uppercase font-mono">
-                *Minimum Requirement
+              <div className="mt-6 pt-3 border-t border-slate-200 text-[10px] text-slate-450 uppercase font-mono font-bold">
+                Foundation Stage
               </div>
             </div>
 
@@ -6384,8 +5973,8 @@ function SaphranAIPage({ setPage }: { setPage: (p: Page) => void }) {
             <div className="bg-[#f9f9fb] p-6 rounded border border-slate-200 relative flex flex-col justify-between" style={{ borderLeft: `3px solid ${GREEN}` }}>
               <div>
                 <span className="font-mono text-xs font-bold text-emerald-650 bg-emerald-50 px-2 py-0.5 rounded">Step 2</span>
-                <h4 className="font-bold text-sm mb-2 mt-4 text-slate-900" style={{ fontFamily: "'Inter', sans-serif" }}>ConnectBase Integration</h4>
-                <p className="text-xs leading-relaxed text-slate-500">Import actual ship history from your ERP. ConnectBase maps parts to close the actuals loop, enabling AI to learn from deviations.</p>
+                <h4 className="font-bold text-sm mb-2 mt-4 text-slate-900" style={{ fontFamily: "'Inter', sans-serif" }}>ERP &amp; EDI Integration</h4>
+                <p className="text-xs leading-relaxed text-slate-500">Import actual ship history from your ERP to close the actuals loop, enabling AI to learn from deviations.</p>
               </div>
               <div className="mt-6 pt-3 border-t border-slate-200 text-[10px] text-slate-450 uppercase font-mono font-bold">
                 *Recommended Setup
@@ -6406,6 +5995,9 @@ function SaphranAIPage({ setPage }: { setPage: (p: Page) => void }) {
           </div>
         </div>
       </section>
+
+      {/* Capability Navigation */}
+      <CapabilityFooterNav currentPage="saphranai" setPage={setPage} />
 
       {/* CTA Band */}
       <section className="py-24 relative overflow-hidden" style={{ background: INK }}>
@@ -6488,6 +6080,7 @@ function ScenarioProPage({ setPage }: { setPage: (p: Page) => void }) {
 
   return (
     <>
+      <CapabilitySubNav currentPage="scenariopro" setPage={setPage} />
       {/* Hero Section */}
       <section className="pt-32 pb-20 relative overflow-hidden" style={{ background: "#fff" }}>
         <div className="absolute pointer-events-none select-none"
@@ -6844,6 +6437,9 @@ function ScenarioProPage({ setPage }: { setPage: (p: Page) => void }) {
           </div>
         </div>
       </section>
+
+      {/* Capability Navigation */}
+      <CapabilityFooterNav currentPage="scenariopro" setPage={setPage} />
 
       {/* CTA Band */}
       <section className="py-24 relative overflow-hidden" style={{ background: INK }}>
@@ -7373,7 +6969,7 @@ function CaseStudiesPage({ setPage }: { setPage: (p: Page) => void }) {
                   Unified Active Decision Layer
                 </h3>
                 <p className="text-xs text-slate-600 leading-relaxed mb-6">
-                  Deployed Saphran's full platform — PartBase, QuoteBase, ConnectBase, and IntelligenceBase — unifying SAP ERP, Oracle, and live market forecast databases into one single source of truth without data migration.
+                  Deployed Saphran's full platform — PartBase, QuoteBase, IntelligenceBase, and SaphranAI — unifying SAP ERP, Oracle, and live market forecast databases into one single source of truth without data migration.
                 </p>
                 <ul className="space-y-2.5 text-xs text-slate-700 font-sans">
                   <li className="flex items-start gap-2">
@@ -7511,7 +7107,7 @@ export default function App() {
     const hash = window.location.hash.replace("#", "") as Page;
     const validPages: Page[] = [
       "home", "capabilities", "contact", "startup", 
-      "quotebase", "partbase", "connectbase", 
+      "quotebase", "partbase", 
       "intelligencebase", "saphranai", "scenariopro",
       "privacypolicy", "termsofuse", "about", "casestudies"
     ];
@@ -7528,7 +7124,7 @@ export default function App() {
       const hash = window.location.hash.replace("#", "") as Page;
       const validPages: Page[] = [
         "home", "capabilities", "contact", "startup", 
-        "quotebase", "partbase", "connectbase", 
+        "quotebase", "partbase", 
         "intelligencebase", "saphranai", "scenariopro",
         "privacypolicy", "termsofuse", "about", "casestudies"
       ];
@@ -7559,7 +7155,6 @@ export default function App() {
       {page === "startup"      && <StartupPage setPage={setPage} />}
       {page === "quotebase"    && <QuoteBasePage setPage={setPage} />}
       {page === "partbase"     && <PartBasePage setPage={setPage} />}
-      {page === "connectbase"  && <ConnectBasePage setPage={setPage} />}
       {page === "intelligencebase" && <IntelligenceBasePage setPage={setPage} />}
       {page === "saphranai"    && <SaphranAIPage setPage={setPage} />}
       {page === "scenariopro"  && <ScenarioProPage setPage={setPage} />}
