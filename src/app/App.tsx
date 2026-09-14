@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { ArrowRight, ArrowLeft, ChevronDown, ChevronUp, Check, BarChart2, Layers, Globe2, Cpu, Shield, TrendingUp, Clock, Database, DollarSign, Activity, FileText, AlertCircle, RefreshCw, Sparkles, HelpCircle, ArrowUpRight, TrendingDown, Target, Zap, Award } from "lucide-react";
 import logoSrc from "../imports/image.png";
+import logoDarkSrc from "../imports/saphran_logo_dark.png";
 import watermarkLightSrc from "../imports/watermark_light.png";
 import watermarkDarkSrc from "../imports/watermark_dark.png";
 import teamSeanSrc from "../imports/team_sean.png";
@@ -33,43 +34,21 @@ function SwirlMark({
   style?: React.CSSProperties;
   dark?: boolean;
 }) {
-  if (size >= 100) {
-    return (
-      <img
-        src={dark ? watermarkDarkSrc : watermarkLightSrc}
-        width={size}
-        height={size}
-        className={className}
-        style={{
-          ...s,
-          width: size,
-          height: size,
-          objectFit: "contain",
-        }}
-        alt=""
-        aria-hidden="true"
-      />
-    );
-  }
-
   return (
-    <svg
+    <img
+      src={dark ? watermarkDarkSrc : watermarkLightSrc}
       width={size}
       height={size}
-      viewBox="0 0 100 100"
       className={className}
-      style={s}
+      style={{
+        ...s,
+        width: size,
+        height: size,
+        objectFit: "contain",
+      }}
+      alt=""
       aria-hidden="true"
-    >
-      {[0, 72, 144, 216, 288].map((angle, i) => (
-        <path
-          key={i}
-          d="M50,50 C54,36 65,30 61,14 C57,-2 43,12 50,50"
-          fill={color}
-          transform={`rotate(${angle} 50 50)`}
-        />
-      ))}
-    </svg>
+    />
   );
 }
 
@@ -756,22 +735,17 @@ function IntegrationMockup() {
       </p>
       <div className="flex justify-center mb-0.5">
         <div
-          className="flex items-center gap-2.5 px-5 py-3 rounded-[5px]"
+          className="flex items-center justify-center px-4 py-2.5 rounded-[5px]"
           style={{
             background: INK,
             boxShadow: "0 4px 16px rgba(33,51,67,0.22)",
           }}
         >
-          <SwirlMark size={16} color={GREEN} />
-          <span
-            className="text-[11px] font-bold text-white"
-            style={{
-              fontFamily: "'Poppins', sans-serif",
-              letterSpacing: "0.06em",
-            }}
-          >
-            SAPHRAN
-          </span>
+          <img
+            src={logoDarkSrc}
+            alt="Saphran"
+            style={{ height: 20, width: "auto" }}
+          />
         </div>
       </div>
       <div className="flex justify-around mb-0">
@@ -1170,7 +1144,7 @@ function Footer({ setPage }: { setPage: (p: Page) => void }) {
               onClick={() => setPage("home")}
               className="flex items-center gap-2 mb-4"
             >
-              <img src={logoSrc} alt="Saphran" style={{ height: 24, width: "auto", filter: "brightness(0) invert(1)" }} />
+              <img src={logoDarkSrc} alt="Saphran" style={{ height: 24, width: "auto" }} />
             </button>
             <p
               className="text-xs leading-relaxed max-w-[170px]"
