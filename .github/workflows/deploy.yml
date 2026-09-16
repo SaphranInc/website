@@ -2,7 +2,8 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, copilot/styling-fixes-about-page-team-photos ]
+  workflow_dispatch:
 
 permissions:
   contents: read
