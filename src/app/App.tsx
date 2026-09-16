@@ -6990,7 +6990,7 @@ function CaseStudiesPage({ setPage }: { setPage: (p: Page) => void }) {
                   Unified Active Decision Layer
                 </h3>
                 <p className="text-xs text-slate-600 leading-relaxed mb-6">
-                  Deployed Saphran's full platform (PartBase, QuoteBase, IntelligenceBase, and SaphranAI), unifying
+                  Deployed Saphran&apos;s full platform (PartBase, QuoteBase, IntelligenceBase, and SaphranAI), unifying
                   SAP ERP, Oracle, and live market forecast databases into one single source of truth without data
                   migration.
                 </p>
