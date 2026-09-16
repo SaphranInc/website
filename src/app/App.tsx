@@ -2329,7 +2329,7 @@ function CapabilitiesPage({ setPage }: { setPage: (p: Page) => void }) {
               {[
                 { icon: <BarChart2 size={15} />, name: "Scenario Analysis",     desc: "Run multiple cost and pricing scenarios side-by-side before any commitment." },
                 { icon: <TrendingUp size={15} />, name: "Margin Forecasts",     desc: "Real-time margin visibility across programs, plants, and geographies." },
-                { icon: <Cpu size={15} />,        name: "Cost Simulations",     desc: "Model input cost changes, steel, freight, labour, against live program margins." },
+                { icon: <Cpu size={15} />,        name: "Cost Simulations",     desc: "Model input cost changes, such as steel, freight, and labour, against live program margins." },
                 { icon: <Layers size={15} />,     name: "Executive Dashboards", desc: "Board-ready views of margin health, forecast accuracy, and RFQ pipeline." },
                 { icon: <Shield size={15} />,     name: "Alerts",               desc: "Automatic flags when cost variances exceed defined margin thresholds." },
                 { icon: <Globe2 size={15} />,     name: "Global Operations",    desc: "Multi-plant, multi-currency cost management across 20+ countries." },
@@ -5531,7 +5531,10 @@ function SaphranAIPage({ setPage }: { setPage: (p: Page) => void }) {
   const totalScale = revenue <= baselineRevenue
     ? revenue / baselineRevenue
     : (() => {
-        const normalized = (revenue - baselineRevenue) / (maxRevenue - baselineRevenue);
+        const normalized = Math.min(
+          1,
+          Math.max(0, (revenue - baselineRevenue) / (maxRevenue - baselineRevenue))
+        );
         const diminishingCurve =
           (1 - Math.exp(-diminishingSteepness * normalized)) /
           (1 - Math.exp(-diminishingSteepness));
@@ -6744,7 +6747,7 @@ function AboutPage({ setPage }: { setPage: (p: Page) => void }) {
                     <img 
                       src={member.img} 
                       alt={member.name}
-                      className={`w-full h-full object-cover object-top transition-transform duration-500 ${member.imageClass}`}
+                      className={`w-full h-full object-cover object-top ${member.imageClass}`}
                     />
                   </div>
                   <div className="p-5">
