@@ -66,7 +66,7 @@ function Eyebrow({
       className="text-[11px] font-semibold tracking-[0.14em] uppercase mb-4"
       style={{
         color: dark ? GREEN_TINT : GREEN,
-        fontFamily: "'Inter', sans-serif",
+        fontFamily: "'Poppins', sans-serif",
       }}
     >
       {children}
@@ -95,7 +95,7 @@ function PrimaryBtn({
       style={{
         background: GREEN,
         color: INK,
-        fontFamily: "'Inter', sans-serif",
+        fontFamily: "'Poppins', sans-serif",
       }}
       onMouseEnter={(e) => {
         (e.currentTarget as HTMLElement).style.background = "#4f9e68";
@@ -127,7 +127,7 @@ function OutlineBtn({
       style={{
         color: col,
         border: `1px solid ${bdr}`,
-        fontFamily: "'Inter', sans-serif",
+        fontFamily: "'Poppins', sans-serif",
       }}
       onMouseEnter={(e) => {
         (e.currentTarget as HTMLElement).style.color = dark ? "#fff" : GRAPHITE;
@@ -185,7 +185,14 @@ function CountUp({
   }, [to]);
 
   return (
-    <span ref={ref} style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+    <span
+      ref={ref}
+      style={{
+        fontFamily: "'Poppins', sans-serif",
+        fontWeight: 700,
+        fontVariantNumeric: "tabular-nums",
+      }}
+    >
       {prefix}
       {val}
       {suffix}
@@ -356,7 +363,7 @@ function FaqItem({
       >
         <span
           className="text-sm font-medium leading-relaxed"
-          style={{ fontFamily: "'Inter', sans-serif" }}
+          style={{ fontFamily: "'Poppins', sans-serif" }}
         >
           {q}
         </span>
@@ -371,7 +378,7 @@ function FaqItem({
           className="pb-5 text-sm leading-relaxed"
           style={{
             color: dark ? "rgba(255,255,255,0.44)" : SLATE,
-            fontFamily: "'Inter', sans-serif",
+            fontFamily: "'Poppins', sans-serif",
           }}
         >
           {a}
@@ -381,7 +388,7 @@ function FaqItem({
   );
 }
 
-// ─── Hero product mockup — light ──────────────────────────────────────────────
+// ─── Hero product mockup, light ──────────────────────────────────────────────
 
 function HeroMockup({ setPage }: { setPage: (p: Page) => void }) {
   return (
@@ -418,7 +425,7 @@ function HeroMockup({ setPage }: { setPage: (p: Page) => void }) {
           </span>
           <span
             className="text-[10px]"
-            style={{ color: SLATE, fontFamily: "'Inter', sans-serif" }}
+            style={{ color: SLATE, fontFamily: "'Poppins', sans-serif" }}
           >
             Margin Intelligence
           </span>
@@ -431,7 +438,7 @@ function HeroMockup({ setPage }: { setPage: (p: Page) => void }) {
               style={{
                 background: i === 0 ? `${GREEN}1A` : "rgba(33,51,67,0.06)",
                 color: i === 0 ? GREEN : SLATE,
-                fontFamily: "'Inter', sans-serif",
+                fontFamily: "'Poppins', sans-serif",
               }}
             >
               {l}
@@ -461,14 +468,14 @@ function HeroMockup({ setPage }: { setPage: (p: Page) => void }) {
                 className="text-[8px] uppercase tracking-wider mb-1.5"
                 style={{
                   color: SLATE,
-                  fontFamily: "'JetBrains Mono', monospace",
+                  fontFamily: "'Poppins', sans-serif",
                 }}
               >
                 {k.label}
               </p>
               <p
                 className="text-[17px] font-bold leading-none mb-1"
-                style={{ color: INK, fontFamily: "'JetBrains Mono', monospace" }}
+                style={{ color: INK, fontFamily: "'Poppins', sans-serif" }}
               >
                 {k.val}
               </p>
@@ -476,7 +483,7 @@ function HeroMockup({ setPage }: { setPage: (p: Page) => void }) {
                 className="text-[8px]"
                 style={{
                   color: k.pos ? GREEN : "#C4473A",
-                  fontFamily: "'JetBrains Mono', monospace",
+                  fontFamily: "'Poppins', sans-serif",
                 }}
               >
                 {k.delta}
@@ -493,9 +500,9 @@ function HeroMockup({ setPage }: { setPage: (p: Page) => void }) {
           <div className="flex items-center justify-between mb-3">
             <span
               className="text-[9px] font-medium"
-              style={{ color: INK, fontFamily: "'Inter', sans-serif" }}
+              style={{ color: INK, fontFamily: "'Poppins', sans-serif" }}
             >
-              Margin Waterfall — Q4 2024
+              Margin Waterfall, Q4 2024
             </span>
             <div className="flex gap-4">
               {[
@@ -510,7 +517,7 @@ function HeroMockup({ setPage }: { setPage: (p: Page) => void }) {
                   />
                   <span
                     className="text-[8px]"
-                    style={{ color: SLATE, fontFamily: "'Inter', sans-serif" }}
+                    style={{ color: SLATE, fontFamily: "'Poppins', sans-serif" }}
                   >
                     {l}
                   </span>
@@ -596,7 +603,7 @@ function HeroMockup({ setPage }: { setPage: (p: Page) => void }) {
                 className="text-[7.5px] font-semibold leading-none"
                 style={{
                   color: active ? GREEN : SLATE,
-                  fontFamily: "'Inter', sans-serif",
+                  fontFamily: "'Poppins', sans-serif",
                 }}
               >
                 {m as string}
@@ -630,13 +637,13 @@ function ScenarioMockup() {
       >
         <span
           className="text-[10px] font-medium"
-          style={{ color: INK, fontFamily: "'Inter', sans-serif" }}
+          style={{ color: INK, fontFamily: "'Poppins', sans-serif" }}
         >
-          ScenarioPro — What-if Analysis
+          ScenarioPro, What-if Analysis
         </span>
         <span
           className="text-[9px]"
-          style={{ color: GREEN, fontFamily: "'JetBrains Mono', monospace" }}
+          style={{ color: GREEN, fontFamily: "'Poppins', sans-serif" }}
         >
           3 scenarios
         </span>
@@ -659,7 +666,7 @@ function ScenarioMockup() {
             <div className="flex items-center justify-between mb-2">
               <span
                 className="text-[10px] font-medium"
-                style={{ color: GRAPHITE, fontFamily: "'Inter', sans-serif" }}
+                style={{ color: GRAPHITE, fontFamily: "'Poppins', sans-serif" }}
               >
                 {s.label}
               </span>
@@ -668,7 +675,7 @@ function ScenarioMockup() {
                   className="text-[9px]"
                   style={{
                     color: SLATE,
-                    fontFamily: "'JetBrains Mono', monospace",
+                    fontFamily: "'Poppins', sans-serif",
                   }}
                 >
                   {s.delta}
@@ -677,7 +684,7 @@ function ScenarioMockup() {
                   className="text-[13px] font-bold"
                   style={{
                     color: s.active ? GREEN : INK,
-                    fontFamily: "'JetBrains Mono', monospace",
+                    fontFamily: "'Poppins', sans-serif",
                   }}
                 >
                   {s.margin}
@@ -701,7 +708,7 @@ function ScenarioMockup() {
         ))}
         <p
           className="text-[8px] pt-1"
-          style={{ color: SLATE, fontFamily: "'JetBrains Mono', monospace" }}
+          style={{ color: SLATE, fontFamily: "'Poppins', sans-serif" }}
         >
           Material cost: $2,847/unit · Connected to SAP live feed
         </p>
@@ -729,9 +736,9 @@ function IntegrationMockup() {
     >
       <p
         className="text-[9px] uppercase tracking-wider mb-5"
-        style={{ color: SLATE, fontFamily: "'JetBrains Mono', monospace" }}
+        style={{ color: SLATE, fontFamily: "'Poppins', sans-serif" }}
       >
-        Saphran — Enterprise Decision Layer
+        Saphran, Enterprise Decision Layer
       </p>
       <div className="flex justify-center mb-0.5">
         <div
@@ -766,7 +773,7 @@ function IntegrationMockup() {
           >
             <p
               className="text-[7.5px] leading-tight mb-1.5"
-              style={{ color: SLATE, fontFamily: "'Inter', sans-serif" }}
+              style={{ color: SLATE, fontFamily: "'Poppins', sans-serif" }}
             >
               {s}
             </p>
@@ -781,7 +788,7 @@ function IntegrationMockup() {
       </div>
       <p
         className="text-[8px] text-center mt-3"
-        style={{ color: GREEN_TINT, fontFamily: "'JetBrains Mono', monospace" }}
+        style={{ color: GREEN_TINT, fontFamily: "'Poppins', sans-serif" }}
       >
         All feeds connected · Last sync 00:42 ago
       </p>
@@ -808,9 +815,9 @@ function QuotingMockup() {
       >
         <span
           className="text-[10px] font-medium"
-          style={{ color: INK, fontFamily: "'Inter', sans-serif" }}
+          style={{ color: INK, fontFamily: "'Poppins', sans-serif" }}
         >
-          QuoteBase — RFQ Response Time
+          QuoteBase, RFQ Response Time
         </span>
       </div>
       <div className="p-5 space-y-4">
@@ -821,13 +828,13 @@ function QuotingMockup() {
           >
             <p
               className="text-[8px] uppercase tracking-wider mb-2"
-              style={{ color: SLATE, fontFamily: "'JetBrains Mono', monospace" }}
+              style={{ color: SLATE, fontFamily: "'Poppins', sans-serif" }}
             >
               Before Saphran
             </p>
             <p
               className="text-[30px] font-bold leading-none"
-              style={{ color: SLATE, fontFamily: "'JetBrains Mono', monospace" }}
+              style={{ color: SLATE, fontFamily: "'Poppins', sans-serif" }}
             >
               14d
             </p>
@@ -844,13 +851,13 @@ function QuotingMockup() {
           >
             <p
               className="text-[8px] uppercase tracking-wider mb-2"
-              style={{ color: GREEN, fontFamily: "'JetBrains Mono', monospace" }}
+              style={{ color: GREEN, fontFamily: "'Poppins', sans-serif" }}
             >
               With Saphran
             </p>
             <p
               className="text-[30px] font-bold leading-none"
-              style={{ color: INK, fontFamily: "'JetBrains Mono', monospace" }}
+              style={{ color: INK, fontFamily: "'Poppins', sans-serif" }}
             >
               2d
             </p>
@@ -885,7 +892,7 @@ function QuotingMockup() {
               </div>
               <span
                 className="flex-1 text-[9px]"
-                style={{ color: GRAPHITE, fontFamily: "'Inter', sans-serif" }}
+                style={{ color: GRAPHITE, fontFamily: "'Poppins', sans-serif" }}
               >
                 {s.step}
               </span>
@@ -893,7 +900,7 @@ function QuotingMockup() {
                 className="text-[9px]"
                 style={{
                   color: SLATE,
-                  fontFamily: "'JetBrains Mono', monospace",
+                  fontFamily: "'Poppins', sans-serif",
                 }}
               >
                 {s.time}
@@ -938,7 +945,7 @@ function ArchFlow() {
                 className="text-[9px] mb-3 block"
                 style={{
                   color: GREEN_TINT,
-                  fontFamily: "'JetBrains Mono', monospace",
+                  fontFamily: "'Poppins', sans-serif",
                   letterSpacing: "0.1em",
                 }}
               >
@@ -954,7 +961,7 @@ function ArchFlow() {
                 className="text-[11px] leading-relaxed"
                 style={{
                   color: "rgba(255,255,255,0.36)",
-                  fontFamily: "'Inter', sans-serif",
+                  fontFamily: "'Poppins', sans-serif",
                 }}
               >
                 {s.desc}
@@ -1054,7 +1061,7 @@ function Header({
               style={{
                 color: page === "capabilities" || capItems.some(i => i.page === page) ? INK : SLATE,
                 fontWeight: page === "capabilities" || capItems.some(i => i.page === page) ? 600 : 400,
-                fontFamily: "'Inter', sans-serif",
+                fontFamily: "'Poppins', sans-serif",
               }}
             >
               Capabilities <ChevronDown size={14} className={`transition-transform duration-200 ${capDropdownOpen ? "rotate-180" : ""}`} />
@@ -1095,7 +1102,7 @@ function Header({
             style={{
               color: page === "casestudies" ? INK : SLATE,
               fontWeight: page === "casestudies" ? 600 : 400,
-              fontFamily: "'Inter', sans-serif",
+              fontFamily: "'Poppins', sans-serif",
             }}
           >
             Case Studies
@@ -1106,7 +1113,7 @@ function Header({
             style={{
               color: page === "contact" ? INK : SLATE,
               fontWeight: page === "contact" ? 600 : 400,
-              fontFamily: "'Inter', sans-serif",
+              fontFamily: "'Poppins', sans-serif",
             }}
           >
             Contact
@@ -1150,7 +1157,7 @@ function Footer({ setPage }: { setPage: (p: Page) => void }) {
               className="text-xs leading-relaxed max-w-[170px]"
               style={{
                 color: "rgba(255,255,255,0.32)",
-                fontFamily: "'Inter', sans-serif",
+                fontFamily: "'Poppins', sans-serif",
               }}
             >
               Cost forecasting &amp; margin management for ETO manufacturers.
@@ -1162,7 +1169,7 @@ function Footer({ setPage }: { setPage: (p: Page) => void }) {
                 className="text-[10px] uppercase tracking-[0.12em] mb-4"
                 style={{
                   color: "rgba(255,255,255,0.28)",
-                  fontFamily: "'JetBrains Mono', monospace",
+                  fontFamily: "'Poppins', sans-serif",
                 }}
               >
                 {col.h}
@@ -1174,7 +1181,7 @@ function Footer({ setPage }: { setPage: (p: Page) => void }) {
                       <button
                         onClick={() => setPage("startup")}
                         className="text-xs transition-colors text-left"
-                        style={{ color: "rgba(255,255,255,0.40)", fontFamily: "'Inter', sans-serif" }}
+                        style={{ color: "rgba(255,255,255,0.40)", fontFamily: "'Poppins', sans-serif" }}
                         onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.72)"; }}
                         onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.40)"; }}
                       >
@@ -1184,7 +1191,7 @@ function Footer({ setPage }: { setPage: (p: Page) => void }) {
                       <button
                         onClick={() => setPage("quotebase")}
                         className="text-xs transition-colors text-left"
-                        style={{ color: "rgba(255,255,255,0.40)", fontFamily: "'Inter', sans-serif" }}
+                        style={{ color: "rgba(255,255,255,0.40)", fontFamily: "'Poppins', sans-serif" }}
                         onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.72)"; }}
                         onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.40)"; }}
                       >
@@ -1194,7 +1201,7 @@ function Footer({ setPage }: { setPage: (p: Page) => void }) {
                       <button
                         onClick={() => setPage("partbase")}
                         className="text-xs transition-colors text-left"
-                        style={{ color: "rgba(255,255,255,0.40)", fontFamily: "'Inter', sans-serif" }}
+                        style={{ color: "rgba(255,255,255,0.40)", fontFamily: "'Poppins', sans-serif" }}
                         onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.72)"; }}
                         onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.40)"; }}
                       >
@@ -1205,7 +1212,7 @@ function Footer({ setPage }: { setPage: (p: Page) => void }) {
                       <button
                         onClick={() => setPage("intelligencebase")}
                         className="text-xs transition-colors text-left"
-                        style={{ color: "rgba(255,255,255,0.40)", fontFamily: "'Inter', sans-serif" }}
+                        style={{ color: "rgba(255,255,255,0.40)", fontFamily: "'Poppins', sans-serif" }}
                         onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.72)"; }}
                         onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.40)"; }}
                       >
@@ -1215,7 +1222,7 @@ function Footer({ setPage }: { setPage: (p: Page) => void }) {
                       <button
                         onClick={() => setPage("saphranai")}
                         className="text-xs transition-colors text-left"
-                        style={{ color: "rgba(255,255,255,0.40)", fontFamily: "'Inter', sans-serif" }}
+                        style={{ color: "rgba(255,255,255,0.40)", fontFamily: "'Poppins', sans-serif" }}
                         onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.72)"; }}
                         onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.40)"; }}
                       >
@@ -1225,7 +1232,7 @@ function Footer({ setPage }: { setPage: (p: Page) => void }) {
                       <button
                         onClick={() => setPage("scenariopro")}
                         className="text-xs transition-colors text-left"
-                        style={{ color: "rgba(255,255,255,0.40)", fontFamily: "'Inter', sans-serif" }}
+                        style={{ color: "rgba(255,255,255,0.40)", fontFamily: "'Poppins', sans-serif" }}
                         onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.72)"; }}
                         onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.40)"; }}
                       >
@@ -1235,7 +1242,7 @@ function Footer({ setPage }: { setPage: (p: Page) => void }) {
                       <button
                         onClick={() => setPage("privacypolicy")}
                         className="text-xs transition-colors text-left"
-                        style={{ color: "rgba(255,255,255,0.40)", fontFamily: "'Inter', sans-serif" }}
+                        style={{ color: "rgba(255,255,255,0.40)", fontFamily: "'Poppins', sans-serif" }}
                         onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.72)"; }}
                         onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.40)"; }}
                       >
@@ -1245,7 +1252,7 @@ function Footer({ setPage }: { setPage: (p: Page) => void }) {
                       <button
                         onClick={() => setPage("termsofuse")}
                         className="text-xs transition-colors text-left"
-                        style={{ color: "rgba(255,255,255,0.40)", fontFamily: "'Inter', sans-serif" }}
+                        style={{ color: "rgba(255,255,255,0.40)", fontFamily: "'Poppins', sans-serif" }}
                         onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.72)"; }}
                         onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.40)"; }}
                       >
@@ -1255,7 +1262,7 @@ function Footer({ setPage }: { setPage: (p: Page) => void }) {
                       <button
                         onClick={() => setPage("about")}
                         className="text-xs transition-colors text-left"
-                        style={{ color: "rgba(255,255,255,0.40)", fontFamily: "'Inter', sans-serif" }}
+                        style={{ color: "rgba(255,255,255,0.40)", fontFamily: "'Poppins', sans-serif" }}
                         onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.72)"; }}
                         onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.40)"; }}
                       >
@@ -1265,7 +1272,7 @@ function Footer({ setPage }: { setPage: (p: Page) => void }) {
                       <button
                         onClick={() => setPage("casestudies")}
                         className="text-xs transition-colors text-left"
-                        style={{ color: "rgba(255,255,255,0.40)", fontFamily: "'Inter', sans-serif" }}
+                        style={{ color: "rgba(255,255,255,0.40)", fontFamily: "'Poppins', sans-serif" }}
                         onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.72)"; }}
                         onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.40)"; }}
                       >
@@ -1277,7 +1284,7 @@ function Footer({ setPage }: { setPage: (p: Page) => void }) {
                       className="text-xs transition-colors"
                       style={{
                         color: "rgba(255,255,255,0.40)",
-                        fontFamily: "'Inter', sans-serif",
+                        fontFamily: "'Poppins', sans-serif",
                       }}
                       onMouseEnter={(e) => {
                         (e.currentTarget as HTMLElement).style.color =
@@ -1305,7 +1312,7 @@ function Footer({ setPage }: { setPage: (p: Page) => void }) {
             className="text-[11px]"
             style={{
               color: "rgba(255,255,255,0.22)",
-              fontFamily: "'JetBrains Mono', monospace",
+              fontFamily: "'Poppins', sans-serif",
             }}
           >
             © 2024 Saphran Inc. All rights reserved.
@@ -1314,7 +1321,7 @@ function Footer({ setPage }: { setPage: (p: Page) => void }) {
             className="text-[11px]"
             style={{
               color: "rgba(255,255,255,0.22)",
-              fontFamily: "'JetBrains Mono', monospace",
+              fontFamily: "'Poppins', sans-serif",
             }}
           >
             Built for ETO manufacturers worldwide · 20+ countries
@@ -1358,7 +1365,7 @@ function CtaBand({ setPage }: { setPage: (p: Page) => void }) {
           className="max-w-lg mx-auto mb-10 text-[15px] leading-relaxed"
           style={{
             color: "rgba(255,255,255,0.44)",
-            fontFamily: "'Inter', sans-serif",
+            fontFamily: "'Poppins', sans-serif",
           }}
         >
           Join manufacturers across 20+ countries using Saphran to forecast
@@ -1381,22 +1388,22 @@ function CtaBand({ setPage }: { setPage: (p: Page) => void }) {
 
 const homeFaqs = [
   { q: "What is cost forecasting software for ETO manufacturers?", a: "Cost forecasting software for engineer-to-order manufacturers predicts material, labour, and program costs in volatile markets so sales, finance, and program teams can price bids and manage margin with current data instead of static spreadsheets. Saphran is built specifically for this use case." },
-  { q: "How is Saphran different from spreadsheet-based cost forecasting?", a: "Spreadsheets rely on manually updated, siloed data that goes stale as soon as costs shift. Saphran connects directly to a manufacturer's ERP, PLM, and market data sources to keep cost and margin models current in real time — replacing manual updates with a single always-current source of truth." },
-  { q: "Does Saphran replace our ERP or PLM system?", a: "No. Saphran is designed to sit on top of any existing ERP, CRM, or PLM system — including SAP, Oracle ERP, Salesforce CRM, Aras PLM, QAD, and proprietary internal databases — connecting their data into one decision layer without requiring a system migration or replacement." },
+  { q: "How is Saphran different from spreadsheet-based cost forecasting?", a: "Spreadsheets rely on manually updated, siloed data that goes stale as soon as costs shift. Saphran connects directly to a manufacturer's ERP, PLM, and market data sources to keep cost and margin models current in real time, replacing manual updates with a single always-current source of truth." },
+  { q: "Does Saphran replace our ERP or PLM system?", a: "No. Saphran is designed to sit on top of any existing ERP, CRM, or PLM system, including SAP, Oracle ERP, Salesforce CRM, Aras PLM, QAD, and proprietary internal databases, connecting their data into one decision layer without requiring a system migration or replacement." },
   { q: "What industries use Saphran?", a: "Saphran is built for engineer-to-order manufacturers, including Tier 1, Tier 2, and Tier 3 automotive suppliers and other complex manufacturing businesses managing volatile input costs, custom program bids, and multi-plant operations." },
 ];
 
 const capFaqs = [
-  { q: "What systems does Saphran integrate with?", a: "Saphran connects seamlessly to any ERP, CRM, or PLM system — including SAP, Oracle ERP, Salesforce CRM, Aras PLM, QAD, and custom databases — as well as live market data feeds. Integration does not require changes to existing systems or data migration." },
+  { q: "What systems does Saphran integrate with?", a: "Saphran connects seamlessly to any ERP, CRM, or PLM system, including SAP, Oracle ERP, Salesforce CRM, Aras PLM, QAD, and custom databases, as well as live market data feeds. Integration does not require changes to existing systems or data migration." },
   { q: "How does SaphranAI improve forecast accuracy?", a: "SaphranAI analyses historical program cost patterns, current market data, and input cost trends to identify and correct systematic forecast biases. In documented deployments this has improved forecast accuracy by +10% year-over-year." },
   { q: "Can Saphran handle multi-plant, multi-currency operations?", a: "Yes. Saphran is architected for global ETO manufacturers with operations across multiple plants, geographies, and currencies. The platform supports 20+ countries and handles currency-adjusted cost modelling natively." },
 ];
 
 const contactFaqs = [
-  { q: "What happens on the discovery call?", a: "A 30-minute walkthrough of your specific use case — cost forecasting, RFQ response, or margin management. We'll show how Saphran connects to your existing ERP or PLM and what a deployment looks like for your operation." },
-  { q: "Do I need to prepare anything?", a: "No preparation required. It helps to share a rough description of your current cost forecasting process and which systems you run — but we can gather that on the call." },
-  { q: "Is this a sales pitch or a real evaluation?", a: "It's a real evaluation. We don't run generic product demos — every call is scoped to your manufacturing context. If Saphran isn't the right fit, we'll tell you." },
-  { q: "How long does a Saphran deployment take?", a: "A typical initial deployment — connecting your primary ERP and activating QuoteBase and PartBase — takes 8–12 weeks. Full platform rollout including SaphranAI depends on the number of systems and plants involved." },
+  { q: "What happens on the discovery call?", a: "A 30-minute walkthrough of your specific use case, cost forecasting, RFQ response, or margin management. We'll show how Saphran connects to your existing ERP or PLM and what a deployment looks like for your operation." },
+  { q: "Do I need to prepare anything?", a: "No preparation required. It helps to share a rough description of your current cost forecasting process and which systems you run, but we can gather that on the call." },
+  { q: "Is this a sales pitch or a real evaluation?", a: "It's a real evaluation. We don't run generic product demos, every call is scoped to your manufacturing context. If Saphran isn't the right fit, we'll tell you." },
+  { q: "How long does a Saphran deployment take?", a: "A typical initial deployment, connecting your primary ERP and activating QuoteBase and PartBase, takes 8–12 weeks. Full platform rollout including SaphranAI depends on the number of systems and plants involved." },
 ];
 
 // ─── Home Page ────────────────────────────────────────────────────────────────
@@ -1406,13 +1413,13 @@ function HomePage({ setPage }: { setPage: (p: Page) => void }) {
   const homeTraps = [
     {
       problem: "The Volatility Trap",
-      problemDesc: "Costs that shift faster than your forecasts — steel, components, freight — leaving bids priced on last quarter's reality.",
+      problemDesc: "Costs that shift faster than your forecasts, steel, components, freight, leaving bids priced on last quarter's reality.",
       solution: "Forecast Cost Shifts in Real Time",
-      solutionDesc: "Saphran connects live market feeds and ERP data so cost models update before a bid goes out — not after margin is already lost.",
+      solutionDesc: "Saphran connects live market feeds and ERP data so cost models update before a bid goes out, not after margin is already lost.",
     },
     {
       problem: "The Bid Pressure Trap",
-      problemDesc: "Sales teams submit aggressive bids to win — without visibility into true program margins. You win the contract and lose the profit.",
+      problemDesc: "Sales teams submit aggressive bids to win, without visibility into true program margins. You win the contract and lose the profit.",
       solution: "Win Bids Without Sacrificing Margin",
       solutionDesc: "Quote complex RFQs in days, not weeks. Every bid is modelled against current and future costs with margin thresholds that flag risk before you commit.",
     },
@@ -1420,7 +1427,7 @@ function HomePage({ setPage }: { setPage: (p: Page) => void }) {
       problem: "The Disconnected Systems Trap",
       problemDesc: "Cost data lives in separate spreadsheets, ERP exports, and email threads. One stale number cascades across an entire program.",
       solution: "One Source of Truth Across Every System",
-      solutionDesc: "Saphran integrates with any ERP, CRM, or PLM system — including SAP, Oracle, Salesforce, Aras, and custom internal databases — into a single live decision layer with no migration required.",
+      solutionDesc: "Saphran integrates with any ERP, CRM, or PLM system, including SAP, Oracle, Salesforce, Aras, and custom internal databases, into a single live decision layer with no migration required.",
     },
     {
       problem: "The Visibility Gap",
@@ -1432,7 +1439,7 @@ function HomePage({ setPage }: { setPage: (p: Page) => void }) {
 
   return (
     <>
-      {/* 1. Hero — white, navy headline */}
+      {/* 1. Hero, white, navy headline */}
       <section
         className="relative overflow-hidden pt-32 pb-20"
         style={{ background: "#fff" }}
@@ -1471,9 +1478,9 @@ function HomePage({ setPage }: { setPage: (p: Page) => void }) {
               </h1>
               <p
                 className="text-[15px] leading-relaxed mb-8 max-w-[500px]"
-                style={{ color: SLATE, fontFamily: "'Inter', sans-serif" }}
+                style={{ color: SLATE, fontFamily: "'Poppins', sans-serif" }}
               >
-                Saphran unifies your ERP, PLM, CRM, and MES data into one live decision layer — so every bid, forecast, and pricing call is grounded in current numbers, not last quarter&apos;s spreadsheet.
+                Saphran unifies your ERP, PLM, CRM, and MES data into one live decision layer, so every bid, forecast, and pricing call is grounded in current numbers, not last quarter&apos;s spreadsheet.
               </p>
               <div className="flex items-center gap-3 flex-wrap">
                 <PrimaryBtn onClick={() => setPage("contact")}>
@@ -1494,7 +1501,7 @@ function HomePage({ setPage }: { setPage: (p: Page) => void }) {
         </div>
       </section>
 
-      {/* 2. Stat row — plain numbers on white, thin dividers */}
+      {/* 2. Stat row, plain numbers on white, thin dividers */}
       <section
         style={{
           background: "#fff",
@@ -1529,7 +1536,7 @@ function HomePage({ setPage }: { setPage: (p: Page) => void }) {
                 </p>
                 <p
                   className="text-[12px] leading-snug"
-                  style={{ color: SLATE, fontFamily: "'Inter', sans-serif" }}
+                  style={{ color: SLATE, fontFamily: "'Poppins', sans-serif" }}
                 >
                   {s.label}
                 </p>
@@ -1544,7 +1551,7 @@ function HomePage({ setPage }: { setPage: (p: Page) => void }) {
           >
             <p
               className="text-[10px] uppercase tracking-[0.14em] shrink-0"
-              style={{ color: SLATE, fontFamily: "'JetBrains Mono', monospace" }}
+              style={{ color: SLATE, fontFamily: "'Poppins', sans-serif" }}
             >
               Works with
             </p>
@@ -1562,7 +1569,7 @@ function HomePage({ setPage }: { setPage: (p: Page) => void }) {
                   className="text-[12px] font-semibold cursor-default transition-colors"
                   style={{
                     color: "rgba(33,51,67,0.22)",
-                    fontFamily: "'Inter', sans-serif",
+                    fontFamily: "'Poppins', sans-serif",
                   }}
                   onMouseEnter={(e) => {
                     (e.currentTarget as HTMLElement).style.color =
@@ -1641,7 +1648,7 @@ function HomePage({ setPage }: { setPage: (p: Page) => void }) {
                   <h3 className="font-bold text-lg mb-3 text-slate-900" style={{ fontFamily: "'Poppins', sans-serif" }}>
                     {homeTraps[activeHomeTab].problem}
                   </h3>
-                  <p className="text-xs leading-relaxed text-slate-550" style={{ fontFamily: "'Inter', sans-serif" }}>
+                  <p className="text-xs leading-relaxed text-slate-550" style={{ fontFamily: "'Poppins', sans-serif" }}>
                     {homeTraps[activeHomeTab].problemDesc}
                   </p>
                 </div>
@@ -1662,7 +1669,7 @@ function HomePage({ setPage }: { setPage: (p: Page) => void }) {
                   <h3 className="font-bold text-lg mb-3 text-slate-900" style={{ fontFamily: "'Poppins', sans-serif" }}>
                     {homeTraps[activeHomeTab].solution}
                   </h3>
-                  <p className="text-xs leading-relaxed text-slate-650" style={{ fontFamily: "'Inter', sans-serif" }}>
+                  <p className="text-xs leading-relaxed text-slate-650" style={{ fontFamily: "'Poppins', sans-serif" }}>
                     {homeTraps[activeHomeTab].solutionDesc}
                   </p>
                 </div>
@@ -1716,13 +1723,13 @@ function HomePage({ setPage }: { setPage: (p: Page) => void }) {
                 <div className="w-4 h-px mb-4" style={{ background: GREEN }} />
                 <p
                   className="text-sm font-semibold mb-2 leading-snug"
-                  style={{ color: INK, fontFamily: "'Inter', sans-serif" }}
+                  style={{ color: INK, fontFamily: "'Poppins', sans-serif" }}
                 >
                   {s.sector}
                 </p>
                 <p
                   className="text-xs leading-relaxed flex-1"
-                  style={{ color: SLATE, fontFamily: "'Inter', sans-serif" }}
+                  style={{ color: SLATE, fontFamily: "'Poppins', sans-serif" }}
                 >
                   {s.desc}
                 </p>
@@ -1731,14 +1738,14 @@ function HomePage({ setPage }: { setPage: (p: Page) => void }) {
           </div>
           <p
             className="text-xs mt-6 italic"
-            style={{ color: SLATE, fontFamily: "'Inter', sans-serif" }}
+            style={{ color: SLATE, fontFamily: "'Poppins', sans-serif" }}
           >
-            If your business builds complex, configured products to customer specification and cost certainty matters to margin — Saphran is built for you.
+            If your business builds complex, configured products to customer specification and cost certainty matters to margin, Saphran is built for you.
           </p>
         </div>
       </section>
 
-      {/* 5. Architecture — THE deliberate dark section on Home */}
+      {/* 5. Architecture, THE deliberate dark section on Home */}
       <section
         className="py-24 relative overflow-hidden"
         style={{ background: INK }}
@@ -1778,7 +1785,7 @@ function HomePage({ setPage }: { setPage: (p: Page) => void }) {
         {
           eyebrow: "SaphranAI",
           headline: "How SaphranAI reduces forecasting bias in ETO manufacturing.",
-          body: "SaphranAI analyses historical program data, current market feeds, and cost patterns to detect and correct systematic forecasting biases — before they influence a bid or pricing decision.",
+          body: "SaphranAI analyses historical program data, current market feeds, and cost patterns to detect and correct systematic forecasting biases, before they influence a bid or pricing decision.",
           mockup: <ScenarioMockup />,
           flip: false,
           bg: "#fff",
@@ -1796,7 +1803,7 @@ function HomePage({ setPage }: { setPage: (p: Page) => void }) {
         {
           eyebrow: "QuoteBase",
           headline: "Cut RFQ response time from weeks to days.",
-          body: "QuoteBase generates cost and margin models during RFQ response, pulling live data from connected systems so engineers and sales teams build quotes on current numbers — not last month's spreadsheet.",
+          body: "QuoteBase generates cost and margin models during RFQ response, pulling live data from connected systems so engineers and sales teams build quotes on current numbers, not last month's spreadsheet.",
           mockup: <QuotingMockup />,
           flip: false,
           bg: "#fff",
@@ -1824,7 +1831,7 @@ function HomePage({ setPage }: { setPage: (p: Page) => void }) {
                 </h2>
                 <p
                   className="text-[15px] leading-relaxed mb-7"
-                  style={{ color: SLATE, fontFamily: "'Inter', sans-serif" }}
+                  style={{ color: SLATE, fontFamily: "'Poppins', sans-serif" }}
                 >
                   {row.body}
                 </p>
@@ -1857,7 +1864,7 @@ function HomePage({ setPage }: { setPage: (p: Page) => void }) {
             <div>
               <p
                 className="text-[15px] leading-relaxed mb-8"
-                style={{ color: SLATE, fontFamily: "'Inter', sans-serif" }}
+                style={{ color: SLATE, fontFamily: "'Poppins', sans-serif" }}
               >
                 A Tier 1 automotive supplier managing program costs across
                 disconnected spreadsheets deployed Saphran to unify cost
@@ -1885,7 +1892,7 @@ function HomePage({ setPage }: { setPage: (p: Page) => void }) {
                       className="text-xs leading-relaxed"
                       style={{
                         color: SLATE,
-                        fontFamily: "'Inter', sans-serif",
+                        fontFamily: "'Poppins', sans-serif",
                       }}
                     >
                       {s.label}
@@ -1953,7 +1960,7 @@ function CapabilitiesPage({ setPage }: { setPage: (p: Page) => void }) {
   }
 
   const fieldBase: React.CSSProperties = {
-    fontFamily: "'Inter', sans-serif",
+    fontFamily: "'Poppins', sans-serif",
     background: BONE,
     color: GRAPHITE,
     border: "1px solid rgba(33,51,67,0.13)",
@@ -2004,10 +2011,10 @@ function CapabilitiesPage({ setPage }: { setPage: (p: Page) => void }) {
               </h1>
               <p
                 className="text-[15px] leading-relaxed mb-8 max-w-xl"
-                style={{ color: SLATE, fontFamily: "'Inter', sans-serif" }}
+                style={{ color: SLATE, fontFamily: "'Poppins', sans-serif" }}
               >
-                Saphran connects to any ERP, CRM, or PLM system — including SAP, Oracle ERP,
-                Salesforce CRM, Aras PLM, and live market data feeds — without replacing any of them,
+                Saphran connects to any ERP, CRM, or PLM system, including SAP, Oracle ERP,
+                Salesforce CRM, Aras PLM, and live market data feeds, without replacing any of them,
                 so cost, margin, and forecasting decisions are made on one current, reliable
                 view of the business.
               </p>
@@ -2039,7 +2046,7 @@ function CapabilitiesPage({ setPage }: { setPage: (p: Page) => void }) {
                   />
                   <p
                     className="text-sm animate-pulse"
-                    style={{ color: SLATE, fontFamily: "'Inter', sans-serif" }}
+                    style={{ color: SLATE, fontFamily: "'Poppins', sans-serif" }}
                   >
                     Sending your request…
                   </p>
@@ -2068,7 +2075,7 @@ function CapabilitiesPage({ setPage }: { setPage: (p: Page) => void }) {
                     className="text-sm leading-relaxed"
                     style={{
                       color: SLATE,
-                      fontFamily: "'Inter', sans-serif",
+                      fontFamily: "'Poppins', sans-serif",
                     }}
                   >
                     We&apos;ll be in touch within one business day to schedule
@@ -2096,7 +2103,7 @@ function CapabilitiesPage({ setPage }: { setPage: (p: Page) => void }) {
                           className="block text-[11px] font-medium mb-1.5"
                           style={{
                             color: GRAPHITE,
-                            fontFamily: "'Inter', sans-serif",
+                            fontFamily: "'Poppins', sans-serif",
                           }}
                         >
                           {f.label}
@@ -2131,7 +2138,7 @@ function CapabilitiesPage({ setPage }: { setPage: (p: Page) => void }) {
                         className="block text-[11px] font-medium mb-1.5"
                         style={{
                           color: GRAPHITE,
-                          fontFamily: "'Inter', sans-serif",
+                          fontFamily: "'Poppins', sans-serif",
                         }}
                       >
                         {f.label}
@@ -2160,7 +2167,7 @@ function CapabilitiesPage({ setPage }: { setPage: (p: Page) => void }) {
                       className="block text-[11px] font-medium mb-1.5"
                       style={{
                         color: GRAPHITE,
-                        fontFamily: "'Inter', sans-serif",
+                        fontFamily: "'Poppins', sans-serif",
                       }}
                     >
                       What&apos;s your biggest challenge?
@@ -2204,7 +2211,7 @@ function CapabilitiesPage({ setPage }: { setPage: (p: Page) => void }) {
         <div className="max-w-[1280px] mx-auto px-6 lg:px-8 flex flex-col md:flex-row items-center gap-5">
           <p
             className="text-[10px] uppercase tracking-[0.14em] shrink-0"
-            style={{ color: SLATE, fontFamily: "'JetBrains Mono', monospace" }}
+            style={{ color: SLATE, fontFamily: "'Poppins', sans-serif" }}
           >
             Native integrations
           </p>
@@ -2222,7 +2229,7 @@ function CapabilitiesPage({ setPage }: { setPage: (p: Page) => void }) {
                 className="text-[12px] font-semibold cursor-default transition-colors"
                 style={{
                   color: "rgba(33,51,67,0.24)",
-                  fontFamily: "'Inter', sans-serif",
+                  fontFamily: "'Poppins', sans-serif",
                 }}
                 onMouseEnter={(e) => {
                   (e.currentTarget as HTMLElement).style.color =
@@ -2281,7 +2288,7 @@ function CapabilitiesPage({ setPage }: { setPage: (p: Page) => void }) {
                   </p>
                   <p
                     className="text-xs leading-relaxed"
-                    style={{ color: SLATE, fontFamily: "'Inter', sans-serif" }}
+                    style={{ color: SLATE, fontFamily: "'Poppins', sans-serif" }}
                   >
                     {m.desc}
                   </p>
@@ -2322,7 +2329,7 @@ function CapabilitiesPage({ setPage }: { setPage: (p: Page) => void }) {
               {[
                 { icon: <BarChart2 size={15} />, name: "Scenario Analysis",     desc: "Run multiple cost and pricing scenarios side-by-side before any commitment." },
                 { icon: <TrendingUp size={15} />, name: "Margin Forecasts",     desc: "Real-time margin visibility across programs, plants, and geographies." },
-                { icon: <Cpu size={15} />,        name: "Cost Simulations",     desc: "Model input cost changes — steel, freight, labour — against live program margins." },
+                { icon: <Cpu size={15} />,        name: "Cost Simulations",     desc: "Model input cost changes, steel, freight, labour, against live program margins." },
                 { icon: <Layers size={15} />,     name: "Executive Dashboards", desc: "Board-ready views of margin health, forecast accuracy, and RFQ pipeline." },
                 { icon: <Shield size={15} />,     name: "Alerts",               desc: "Automatic flags when cost variances exceed defined margin thresholds." },
                 { icon: <Globe2 size={15} />,     name: "Global Operations",    desc: "Multi-plant, multi-currency cost management across 20+ countries." },
@@ -2337,13 +2344,13 @@ function CapabilitiesPage({ setPage }: { setPage: (p: Page) => void }) {
                   </div>
                   <p
                     className="text-sm font-semibold mb-1.5"
-                    style={{ color: INK, fontFamily: "'Inter', sans-serif" }}
+                    style={{ color: INK, fontFamily: "'Poppins', sans-serif" }}
                   >
                     {o.name}
                   </p>
                   <p
                     className="text-xs leading-relaxed"
-                    style={{ color: SLATE, fontFamily: "'Inter', sans-serif" }}
+                    style={{ color: SLATE, fontFamily: "'Poppins', sans-serif" }}
                   >
                     {o.desc}
                   </p>
@@ -2354,7 +2361,7 @@ function CapabilitiesPage({ setPage }: { setPage: (p: Page) => void }) {
         </div>
       </section>
 
-      {/* SaphranAI — dark section */}
+      {/* SaphranAI, dark section */}
       <section
         className="py-24 relative overflow-hidden"
         style={{ background: INK }}
@@ -2377,12 +2384,12 @@ function CapabilitiesPage({ setPage }: { setPage: (p: Page) => void }) {
                 className="text-[15px] leading-relaxed mb-8"
                 style={{
                   color: "rgba(255,255,255,0.44)",
-                  fontFamily: "'Inter', sans-serif",
+                  fontFamily: "'Poppins', sans-serif",
                 }}
               >
                 SaphranAI analyses historical program data, current market
                 feeds, and cost patterns to detect and correct systematic
-                forecasting biases — before they influence a bid or pricing
+                forecasting biases, before they influence a bid or pricing
                 decision.
               </p>
               <ul className="space-y-4">
@@ -2406,7 +2413,7 @@ function CapabilitiesPage({ setPage }: { setPage: (p: Page) => void }) {
                       className="text-sm leading-relaxed"
                       style={{
                         color: "rgba(255,255,255,0.52)",
-                        fontFamily: "'Inter', sans-serif",
+                        fontFamily: "'Poppins', sans-serif",
                       }}
                     >
                       {b}
@@ -2434,7 +2441,7 @@ function CapabilitiesPage({ setPage }: { setPage: (p: Page) => void }) {
                     className="text-xs leading-relaxed"
                     style={{
                       color: "rgba(255,255,255,0.32)",
-                      fontFamily: "'Inter', sans-serif",
+                      fontFamily: "'Poppins', sans-serif",
                     }}
                   >
                     {s.label}
@@ -2466,7 +2473,7 @@ function CapabilitiesPage({ setPage }: { setPage: (p: Page) => void }) {
                 className="text-xs uppercase tracking-wider"
                 style={{
                   color: SLATE,
-                  fontFamily: "'JetBrains Mono', monospace",
+                  fontFamily: "'Poppins', sans-serif",
                 }}
               >
                 Tier&nbsp;1 Automotive Supplier · Global · 20+ countries
@@ -2494,7 +2501,7 @@ function CapabilitiesPage({ setPage }: { setPage: (p: Page) => void }) {
                       className="text-xs leading-relaxed"
                       style={{
                         color: SLATE,
-                        fontFamily: "'Inter', sans-serif",
+                        fontFamily: "'Poppins', sans-serif",
                       }}
                     >
                       {s.label}
@@ -2505,7 +2512,7 @@ function CapabilitiesPage({ setPage }: { setPage: (p: Page) => void }) {
               <div className="grid md:grid-cols-3 gap-6">
                 {[
                   { tag: "Challenge", text: "Managing program costs across disconnected spreadsheets and siloed ERP data, with no unified view of margin across plants and geographies." },
-                  { tag: "Solution",  text: "Deployed Saphran's full platform — PartBase, QuoteBase, IntelligenceBase, and ScenarioPro — connecting SAP and Oracle into a single decision layer." },
+                  { tag: "Solution",  text: "Deployed Saphran's full platform, PartBase, QuoteBase, IntelligenceBase, and ScenarioPro, connecting SAP and Oracle into a single decision layer." },
                   { tag: "Impact",    text: "$46M+ annual business impact including $8.2M in documented freight savings and +10% forecast accuracy improvement." },
                 ].map((c, i) => (
                   <div key={i}>
@@ -2513,14 +2520,14 @@ function CapabilitiesPage({ setPage }: { setPage: (p: Page) => void }) {
                       className="text-[10px] uppercase tracking-[0.13em] mb-3"
                       style={{
                         color: GREEN,
-                        fontFamily: "'JetBrains Mono', monospace",
+                        fontFamily: "'Poppins', sans-serif",
                       }}
                     >
                       {c.tag}
                     </p>
                     <p
                       className="text-sm leading-relaxed"
-                      style={{ color: SLATE, fontFamily: "'Inter', sans-serif" }}
+                      style={{ color: SLATE, fontFamily: "'Poppins', sans-serif" }}
                     >
                       {c.text}
                     </p>
@@ -2578,7 +2585,7 @@ function DiscoveryCallForm({ dark = false }: { dark?: boolean }) {
   }
 
   const fieldBase = {
-    fontFamily: "'Inter', sans-serif",
+    fontFamily: "'Poppins', sans-serif",
     fontSize: "13px",
     background: dark ? "rgba(255,255,255,0.06)" : BONE,
     border: dark ? "1px solid rgba(255,255,255,0.15)" : "1px solid rgba(33,51,67,0.13)",
@@ -2608,7 +2615,7 @@ function DiscoveryCallForm({ dark = false }: { dark?: boolean }) {
           />
           <p
             className="text-sm"
-            style={{ color: dark ? "rgba(255,255,255,0.8)" : SLATE, fontFamily: "'Inter', sans-serif" }}
+            style={{ color: dark ? "rgba(255,255,255,0.8)" : SLATE, fontFamily: "'Poppins', sans-serif" }}
           >
             Sending your request…
           </p>
@@ -2637,7 +2644,7 @@ function DiscoveryCallForm({ dark = false }: { dark?: boolean }) {
             className="text-sm leading-relaxed"
             style={{
               color: dark ? "rgba(255,255,255,0.7)" : SLATE,
-              fontFamily: "'Inter', sans-serif",
+              fontFamily: "'Poppins', sans-serif",
             }}
           >
             We&apos;ll be in touch within one business day to schedule your discovery call.
@@ -2664,7 +2671,7 @@ function DiscoveryCallForm({ dark = false }: { dark?: boolean }) {
                   className="block text-[11px] font-medium mb-1.5"
                   style={{
                     color: dark ? "rgba(255,255,255,0.8)" : GRAPHITE,
-                    fontFamily: "'Inter', sans-serif",
+                    fontFamily: "'Poppins', sans-serif",
                   }}
                 >
                   {f.label}
@@ -2699,7 +2706,7 @@ function DiscoveryCallForm({ dark = false }: { dark?: boolean }) {
                 className="block text-[11px] font-medium mb-1.5"
                 style={{
                   color: dark ? "rgba(255,255,255,0.8)" : GRAPHITE,
-                  fontFamily: "'Inter', sans-serif",
+                  fontFamily: "'Poppins', sans-serif",
                 }}
               >
                 {f.label}
@@ -2728,7 +2735,7 @@ function DiscoveryCallForm({ dark = false }: { dark?: boolean }) {
               className="block text-[11px] font-medium mb-1.5"
               style={{
                 color: dark ? "rgba(255,255,255,0.8)" : GRAPHITE,
-                fontFamily: "'Inter', sans-serif",
+                fontFamily: "'Poppins', sans-serif",
               }}
             >
               What&apos;s your biggest cost or margin challenge right now?
@@ -2756,7 +2763,7 @@ function DiscoveryCallForm({ dark = false }: { dark?: boolean }) {
           </PrimaryBtn>
           <p
             className="text-[10px] text-center"
-            style={{ color: dark ? "rgba(255,255,255,0.6)" : SLATE, fontFamily: "'Inter', sans-serif" }}
+            style={{ color: dark ? "rgba(255,255,255,0.6)" : SLATE, fontFamily: "'Poppins', sans-serif" }}
           >
             We&apos;ll respond within one business day. No commitment required.
           </p>
@@ -2783,7 +2790,7 @@ function ContactPage({ setPage }: { setPage: (p: Page) => void }) {
   }
 
   const fieldBase: React.CSSProperties = {
-    fontFamily: "'Inter', sans-serif",
+    fontFamily: "'Poppins', sans-serif",
     background: BONE,
     color: GRAPHITE,
     border: "1px solid rgba(33,51,67,0.13)",
@@ -2815,10 +2822,10 @@ function ContactPage({ setPage }: { setPage: (p: Page) => void }) {
               </h1>
               <p
                 className="text-[15px] leading-relaxed mb-10"
-                style={{ color: SLATE, fontFamily: "'Inter', sans-serif" }}
+                style={{ color: SLATE, fontFamily: "'Poppins', sans-serif" }}
               >
                 No commitment. A 30-minute walkthrough scoped to your actual
-                manufacturing use case — not a generic software demo.
+                manufacturing use case, not a generic software demo.
               </p>
               <ul className="space-y-5 mb-10">
                 {[
@@ -2840,7 +2847,7 @@ function ContactPage({ setPage }: { setPage: (p: Page) => void }) {
                       className="text-sm leading-relaxed"
                       style={{
                         color: GRAPHITE,
-                        fontFamily: "'Inter', sans-serif",
+                        fontFamily: "'Poppins', sans-serif",
                       }}
                     >
                       {b}
@@ -2854,7 +2861,7 @@ function ContactPage({ setPage }: { setPage: (p: Page) => void }) {
               >
                 <p
                   className="text-xs leading-relaxed"
-                  style={{ color: SLATE, fontFamily: "'Inter', sans-serif" }}
+                  style={{ color: SLATE, fontFamily: "'Poppins', sans-serif" }}
                 >
                   <span
                     className="font-medium"
@@ -2862,7 +2869,7 @@ function ContactPage({ setPage }: { setPage: (p: Page) => void }) {
                   >
                     Works with your existing stack.
                   </span>{" "}
-                  SAP, Oracle ERP, Salesforce CRM, Aras PLM, or any legacy ERP, CRM, or PLM — Saphran connects
+                  SAP, Oracle ERP, Salesforce CRM, Aras PLM, or any legacy ERP, CRM, or PLM, Saphran connects
                   without replacing any of them.
                 </p>
               </div>
@@ -2885,7 +2892,7 @@ function ContactPage({ setPage }: { setPage: (p: Page) => void }) {
                   />
                   <p
                     className="text-sm"
-                    style={{ color: SLATE, fontFamily: "'Inter', sans-serif" }}
+                    style={{ color: SLATE, fontFamily: "'Poppins', sans-serif" }}
                   >
                     Sending your request…
                   </p>
@@ -2914,7 +2921,7 @@ function ContactPage({ setPage }: { setPage: (p: Page) => void }) {
                     className="text-sm leading-relaxed"
                     style={{
                       color: SLATE,
-                      fontFamily: "'Inter', sans-serif",
+                      fontFamily: "'Poppins', sans-serif",
                     }}
                   >
                     We&apos;ll be in touch within one business day to schedule
@@ -2942,7 +2949,7 @@ function ContactPage({ setPage }: { setPage: (p: Page) => void }) {
                           className="block text-[11px] font-medium mb-1.5"
                           style={{
                             color: GRAPHITE,
-                            fontFamily: "'Inter', sans-serif",
+                            fontFamily: "'Poppins', sans-serif",
                           }}
                         >
                           {f.label}
@@ -2977,7 +2984,7 @@ function ContactPage({ setPage }: { setPage: (p: Page) => void }) {
                         className="block text-[11px] font-medium mb-1.5"
                         style={{
                           color: GRAPHITE,
-                          fontFamily: "'Inter', sans-serif",
+                          fontFamily: "'Poppins', sans-serif",
                         }}
                       >
                         {f.label}
@@ -3006,7 +3013,7 @@ function ContactPage({ setPage }: { setPage: (p: Page) => void }) {
                       className="block text-[11px] font-medium mb-1.5"
                       style={{
                         color: GRAPHITE,
-                        fontFamily: "'Inter', sans-serif",
+                        fontFamily: "'Poppins', sans-serif",
                       }}
                     >
                       What&apos;s your biggest cost or margin challenge right
@@ -3035,7 +3042,7 @@ function ContactPage({ setPage }: { setPage: (p: Page) => void }) {
                   </PrimaryBtn>
                   <p
                     className="text-[10px] text-center"
-                    style={{ color: SLATE, fontFamily: "'Inter', sans-serif" }}
+                    style={{ color: SLATE, fontFamily: "'Poppins', sans-serif" }}
                   >
                     We&apos;ll respond within one business day. No commitment
                     required.
@@ -3082,24 +3089,24 @@ function ContactPage({ setPage }: { setPage: (p: Page) => void }) {
 
 function StartupPage({ setPage }: { setPage: (p: Page) => void }) {
   const eligibility = [
-    { label: "Funding Stage",       value: "Series A or beyond — minimum $5M raised" },
+    { label: "Funding Stage",       value: "Series A or beyond, minimum $5M raised" },
     { label: "Revenue Range",       value: "$5M – $40M annual revenue" },
     { label: "Business Model",      value: "Engineer-to-Order or complex configure-to-order manufacturer" },
-    { label: "Current Stack",       value: "Spreadsheets or lightweight point tools — no entrenched ERP quoting module" },
+    { label: "Current Stack",       value: "Spreadsheets or lightweight point tools, no entrenched ERP quoting module" },
     { label: "Growth Trajectory",   value: "Headcount or revenue expanding year-over-year" },
   ];
 
   const whatYouGet = [
     {
       title: "Full Platform Access from Day One",
-      desc: "PartBase, QuoteBase, IntelligenceBase, SaphranAI — no feature-gating. The same platform used by $500M+ manufacturers, available to you at startup pricing.",
+      desc: "PartBase, QuoteBase, IntelligenceBase, SaphranAI, no feature-gating. The same platform used by $500M+ manufacturers, available to you at startup pricing.",
     },
     {
-      title: "Startup Pricing — ~40% Off Standard Rate",
+      title: "Startup Pricing, ~40% Off Standard Rate",
       desc: "Designed to match where you are today, not where you'll be in two years. Pricing that reflects your current scale without compromising on what you can access.",
     },
     {
-      title: "Milestone-Based Scale — No Surprises",
+      title: "Milestone-Based Scale, No Surprises",
       desc: "Pricing steps up automatically as you hit revenue milestones. Transparent, pre-agreed, and aligned with your growth trajectory.",
     },
     {
@@ -3114,7 +3121,7 @@ function StartupPage({ setPage }: { setPage: (p: Page) => void }) {
       problem: "Invisible Margin Erosion",
       problemDesc: "One customer had 40 parts silently below margin for over a year before they found out. By the time you notice, the damage is done.",
       fix: "Continuous Margin Walk",
-      fixDesc: "Every cost change tracked by date, automatically. See when and why margin moved — before it becomes a crisis.",
+      fixDesc: "Every cost change tracked by date, automatically. See when and why margin moved, before it becomes a crisis.",
     },
     {
       num: "02",
@@ -3178,8 +3185,8 @@ function StartupPage({ setPage }: { setPage: (p: Page) => void }) {
                 style={{ fontFamily: "'Poppins', sans-serif", fontSize: "clamp(38px, 5vw, 64px)", letterSpacing: "-0.024em", color: INK }}>
                 Built for high-growth ETO manufacturers ready to manage margin from day one.
               </h1>
-              <p className="text-[15px] leading-relaxed mb-8 max-w-xl" style={{ color: SLATE, fontFamily: "'Inter', sans-serif" }}>
-                Purpose-built for Series A+ manufacturers between $5M and $40M in revenue — the moment when spreadsheet-era quoting stops scaling and the first bad contract can slip through undetected.
+              <p className="text-[15px] leading-relaxed mb-8 max-w-xl" style={{ color: SLATE, fontFamily: "'Poppins', sans-serif" }}>
+                Purpose-built for Series A+ manufacturers between $5M and $40M in revenue, the moment when spreadsheet-era quoting stops scaling and the first bad contract can slip through undetected.
               </p>
               <div className="flex items-center gap-3 flex-wrap">
                 <OutlineBtn onClick={() => setPage("capabilities")}>
@@ -3211,7 +3218,7 @@ function StartupPage({ setPage }: { setPage: (p: Page) => void }) {
                 "$5M–$40M revenue, growing year-over-year",
                 "Series A or beyond, institutionally funded",
                 "Engineer-to-Order or complex configure-to-order",
-                "Winning enterprise contracts — quoting & forecasting still in spreadsheets",
+                "Winning enterprise contracts, quoting & forecasting still in spreadsheets",
                 "No entrenched ERP/CPQ quoting module in place",
               ].map((item, i) => (
                 <div key={i} className="flex items-center gap-3 rounded-[5px] px-4 py-3.5 bg-white"
@@ -3220,7 +3227,7 @@ function StartupPage({ setPage }: { setPage: (p: Page) => void }) {
                     style={{ background: `${GREEN}18`, border: `1px solid ${GREEN}40` }}>
                     <Check size={9} style={{ color: GREEN }} strokeWidth={3} />
                   </div>
-                  <span className="text-sm" style={{ color: GRAPHITE, fontFamily: "'Inter', sans-serif" }}>{item}</span>
+                  <span className="text-sm" style={{ color: GRAPHITE, fontFamily: "'Poppins', sans-serif" }}>{item}</span>
                 </div>
               ))}
             </div>
@@ -3235,10 +3242,10 @@ function StartupPage({ setPage }: { setPage: (p: Page) => void }) {
             <Eyebrow>The cost of getting it wrong</Eyebrow>
             <h2 className="font-bold leading-[1.12] max-w-xl"
               style={{ fontFamily: "'Poppins', sans-serif", fontSize: "clamp(26px, 3vw, 38px)", letterSpacing: "-0.02em", color: INK }}>
-              Programs get awarded at target margins — then silently erode.
+              Programs get awarded at target margins, then silently erode.
             </h2>
-            <p className="text-sm mt-3 max-w-lg" style={{ color: SLATE, fontFamily: "'Inter', sans-serif" }}>
-              Saphran&apos;s fix for each of these is precise, not complex. Purpose-built for manufacturing — not a generic BI tool adapted to your industry.
+            <p className="text-sm mt-3 max-w-lg" style={{ color: SLATE, fontFamily: "'Poppins', sans-serif" }}>
+              Saphran&apos;s fix for each of these is precise, not complex. Purpose-built for manufacturing, not a generic BI tool adapted to your industry.
             </p>
           </div>
 
@@ -3255,10 +3262,10 @@ function StartupPage({ setPage }: { setPage: (p: Page) => void }) {
                           <path d="M1 1l4 4M5 1L1 5" stroke="#C4473A" strokeWidth="1.4" strokeLinecap="round"/>
                         </svg>
                       </div>
-                      <p className="text-xs font-bold uppercase tracking-wider" style={{ color: "#C4473A", fontFamily: "'Inter', sans-serif" }}>{c.problem}</p>
+                      <p className="text-xs font-bold uppercase tracking-wider" style={{ color: "#C4473A", fontFamily: "'Poppins', sans-serif" }}>{c.problem}</p>
                     </div>
                   </div>
-                  <p className="text-sm leading-relaxed" style={{ color: SLATE, fontFamily: "'Inter', sans-serif" }}>{c.problemDesc}</p>
+                  <p className="text-sm leading-relaxed" style={{ color: SLATE, fontFamily: "'Poppins', sans-serif" }}>{c.problemDesc}</p>
                 </div>
                 <div className="bg-white p-7 flex flex-col" style={{ borderLeft: `2px solid ${GREEN}30` }}>
                   <div className="flex items-center gap-2 mb-4">
@@ -3266,11 +3273,11 @@ function StartupPage({ setPage }: { setPage: (p: Page) => void }) {
                       style={{ background: `${GREEN}18`, border: `1px solid ${GREEN}40` }}>
                       <Check size={7} style={{ color: GREEN }} strokeWidth={3} />
                     </div>
-                    <p className="text-xs font-bold uppercase tracking-wider" style={{ color: GREEN, fontFamily: "'Inter', sans-serif" }}>
+                    <p className="text-xs font-bold uppercase tracking-wider" style={{ color: GREEN, fontFamily: "'Poppins', sans-serif" }}>
                       {c.fix}
                     </p>
                   </div>
-                  <p className="text-sm leading-relaxed" style={{ color: GRAPHITE, fontFamily: "'Inter', sans-serif" }}>{c.fixDesc}</p>
+                  <p className="text-sm leading-relaxed" style={{ color: GRAPHITE, fontFamily: "'Poppins', sans-serif" }}>{c.fixDesc}</p>
                 </div>
               </div>
             ))}
@@ -3280,12 +3287,12 @@ function StartupPage({ setPage }: { setPage: (p: Page) => void }) {
           <div className="grid grid-cols-2 gap-3 mt-6">
             {[
               { val: "10%+", label: "More accurate vs. customer forecast" },
-              { val: "$46M+", label: "Saved annually — Tier 1 supplier" },
+              { val: "$46M+", label: "Saved annually, Tier 1 supplier" },
             ].map((s, i) => (
               <div key={i} className="rounded-[5px] px-6 py-5 flex items-center gap-4"
                 style={{ background: INK }}>
-                <p className="text-[26px] font-bold leading-none" style={{ color: GREEN, fontFamily: "'JetBrains Mono', monospace" }}>{s.val}</p>
-                <p className="text-xs uppercase tracking-wider leading-snug" style={{ color: "rgba(255,255,255,0.45)", fontFamily: "'JetBrains Mono', monospace" }}>{s.label}</p>
+                <p className="text-[26px] font-bold leading-none" style={{ color: GREEN, fontFamily: "'Poppins', sans-serif" }}>{s.val}</p>
+                <p className="text-xs uppercase tracking-wider leading-snug" style={{ color: "rgba(255,255,255,0.45)", fontFamily: "'Poppins', sans-serif" }}>{s.label}</p>
               </div>
             ))}
           </div>
@@ -3302,17 +3309,17 @@ function StartupPage({ setPage }: { setPage: (p: Page) => void }) {
                 style={{ fontFamily: "'Poppins', sans-serif", fontSize: "clamp(24px, 2.8vw, 36px)", letterSpacing: "-0.02em", color: INK }}>
                 Where Saphran can deliver financial impact today.
               </h2>
-              <p className="text-sm leading-relaxed mb-6" style={{ color: SLATE, fontFamily: "'Inter', sans-serif" }}>
-                For a high-growth ETO manufacturer between $10M–$40M revenue — scaling fast, quoting in spreadsheets, facing material cost volatility, and without real-time margin visibility.
+              <p className="text-sm leading-relaxed mb-6" style={{ color: SLATE, fontFamily: "'Poppins', sans-serif" }}>
+                For a high-growth ETO manufacturer between $10M–$40M revenue, scaling fast, quoting in spreadsheets, facing material cost volatility, and without real-time margin visibility.
               </p>
               <div className="rounded-[6px] p-6" style={{ background: INK }}>
-                <p className="text-[10px] uppercase tracking-[0.13em] mb-2" style={{ color: "rgba(255,255,255,0.35)", fontFamily: "'JetBrains Mono', monospace" }}>
+                <p className="text-[10px] uppercase tracking-[0.13em] mb-2" style={{ color: "rgba(255,255,255,0.35)", fontFamily: "'Poppins', sans-serif" }}>
                   Total potential annual impact
                 </p>
-                <p className="text-[38px] font-bold leading-none" style={{ color: GREEN, fontFamily: "'JetBrains Mono', monospace" }}>
+                <p className="text-[38px] font-bold leading-none" style={{ color: GREEN, fontFamily: "'Poppins', sans-serif" }}>
                   ~$450K – $900K
                 </p>
-                <p className="text-[10px] mt-2 italic" style={{ color: "rgba(255,255,255,0.28)", fontFamily: "'Inter', sans-serif" }}>
+                <p className="text-[10px] mt-2 italic" style={{ color: "rgba(255,255,255,0.28)", fontFamily: "'Poppins', sans-serif" }}>
                   Based on industry benchmarks
                 </p>
               </div>
@@ -3323,9 +3330,9 @@ function StartupPage({ setPage }: { setPage: (p: Page) => void }) {
                   style={{ border: "1px solid rgba(33,51,67,0.09)" }}>
                   <div className="w-1 self-stretch rounded-full shrink-0" style={{ background: `${GREEN}50` }} />
                   <div className="flex-1">
-                    <p className="text-sm font-semibold mb-0.5" style={{ color: INK, fontFamily: "'Inter', sans-serif" }}>{item.area}</p>
-                    <p className="text-xs mb-2" style={{ color: SLATE, fontFamily: "'Inter', sans-serif" }}>{item.detail}</p>
-                    <p className="text-xs font-semibold" style={{ color: GREEN, fontFamily: "'JetBrains Mono', monospace" }}>→ ~{item.range}</p>
+                    <p className="text-sm font-semibold mb-0.5" style={{ color: INK, fontFamily: "'Poppins', sans-serif" }}>{item.area}</p>
+                    <p className="text-xs mb-2" style={{ color: SLATE, fontFamily: "'Poppins', sans-serif" }}>{item.detail}</p>
+                    <p className="text-xs font-semibold" style={{ color: GREEN, fontFamily: "'Poppins', sans-serif" }}>→ ~{item.range}</p>
                   </div>
                 </div>
               ))}
@@ -3334,7 +3341,7 @@ function StartupPage({ setPage }: { setPage: (p: Page) => void }) {
         </div>
       </section>
 
-      {/* The Longer You Wait — dark section */}
+      {/* The Longer You Wait, dark section */}
       <section className="py-24 relative overflow-hidden" style={{ background: INK }}>
         <div className="absolute right-0 top-0 bottom-0 pointer-events-none" style={{ opacity: 0.04 }}>
           <SwirlMark size={500} color={GREEN} className="animate-spin" style={{ animationDuration: "40s", marginRight: -100, marginTop: -50 }} dark />
@@ -3346,8 +3353,8 @@ function StartupPage({ setPage }: { setPage: (p: Page) => void }) {
               style={{ fontFamily: "'Poppins', sans-serif", fontSize: "clamp(26px, 3vw, 40px)", letterSpacing: "-0.022em" }}>
               The longer you wait, the more it costs.
             </h2>
-            <p className="text-sm mt-3 max-w-lg" style={{ color: "rgba(255,255,255,0.44)", fontFamily: "'Inter', sans-serif" }}>
-              Most manufacturers don&apos;t address commercial visibility until after a painful event. Getting in early — before the first bad contract — is the entire point of this program.
+            <p className="text-sm mt-3 max-w-lg" style={{ color: "rgba(255,255,255,0.44)", fontFamily: "'Poppins', sans-serif" }}>
+              Most manufacturers don&apos;t address commercial visibility until after a painful event. Getting in early, before the first bad contract, is the entire point of this program.
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-px" style={{ background: "rgba(255,255,255,0.07)" }}>
@@ -3361,12 +3368,12 @@ function StartupPage({ setPage }: { setPage: (p: Page) => void }) {
                   {t.phase}
                 </p>
                 <p className="font-bold text-white text-base mb-1" style={{ fontFamily: "'Poppins', sans-serif" }}>{t.label}</p>
-                <p className="text-[10px] mb-5 italic" style={{ color: "rgba(255,255,255,0.35)", fontFamily: "'Inter', sans-serif" }}>{t.sublabel}</p>
+                <p className="text-[10px] mb-5 italic" style={{ color: "rgba(255,255,255,0.35)", fontFamily: "'Poppins', sans-serif" }}>{t.sublabel}</p>
                 <ul className="space-y-2 flex-1">
                   {t.items.map((item, j) => (
                     <li key={j} className="flex items-start gap-2">
                       <div className="w-1 h-1 rounded-full shrink-0 mt-1.5" style={{ background: t.warn ? "#E8A020" : "rgba(255,255,255,0.25)" }} />
-                      <span className="text-xs leading-relaxed" style={{ color: "rgba(255,255,255,0.5)", fontFamily: "'Inter', sans-serif" }}>{item}</span>
+                      <span className="text-xs leading-relaxed" style={{ color: "rgba(255,255,255,0.5)", fontFamily: "'Poppins', sans-serif" }}>{item}</span>
                     </li>
                   ))}
                 </ul>
@@ -3390,8 +3397,8 @@ function StartupPage({ setPage }: { setPage: (p: Page) => void }) {
             {whatYouGet.map((w, i) => (
               <div key={i} className="bg-white p-8 flex flex-col" style={{ borderLeft: i % 2 !== 0 ? `2px solid ${GREEN}30` : undefined }}>
                 <div className="w-4 h-px mb-5" style={{ background: GREEN }} />
-                <p className="text-sm font-bold mb-3" style={{ color: INK, fontFamily: "'Inter', sans-serif" }}>{w.title}</p>
-                <p className="text-sm leading-relaxed" style={{ color: SLATE, fontFamily: "'Inter', sans-serif" }}>{w.desc}</p>
+                <p className="text-sm font-bold mb-3" style={{ color: INK, fontFamily: "'Poppins', sans-serif" }}>{w.title}</p>
+                <p className="text-sm leading-relaxed" style={{ color: SLATE, fontFamily: "'Poppins', sans-serif" }}>{w.desc}</p>
               </div>
             ))}
           </div>
@@ -3415,8 +3422,8 @@ function StartupPage({ setPage }: { setPage: (p: Page) => void }) {
                   style={{ border: "1px solid rgba(33,51,67,0.09)" }}>
                   <div className="w-1 self-stretch shrink-0" style={{ background: GREEN }} />
                   <div className="flex-1 px-5 py-4 md:grid md:grid-cols-[160px_1fr] gap-4">
-                    <p className="text-xs font-bold mb-1 md:mb-0" style={{ color: INK, fontFamily: "'Inter', sans-serif" }}>{e.label}</p>
-                    <p className="text-xs leading-relaxed" style={{ color: SLATE, fontFamily: "'Inter', sans-serif" }}>{e.value}</p>
+                    <p className="text-xs font-bold mb-1 md:mb-0" style={{ color: INK, fontFamily: "'Poppins', sans-serif" }}>{e.label}</p>
+                    <p className="text-xs leading-relaxed" style={{ color: SLATE, fontFamily: "'Poppins', sans-serif" }}>{e.value}</p>
                   </div>
                 </div>
               ))}
@@ -3437,10 +3444,10 @@ function StartupPage({ setPage }: { setPage: (p: Page) => void }) {
               style={{ fontFamily: "'Poppins', sans-serif", fontSize: "clamp(30px, 4vw, 48px)", letterSpacing: "-0.022em" }}>
               Let&apos;s get started.
             </h2>
-            <p className="text-[15px] leading-relaxed mb-4" style={{ color: "rgba(255,255,255,0.46)", fontFamily: "'Inter', sans-serif" }}>
+            <p className="text-[15px] leading-relaxed mb-4" style={{ color: "rgba(255,255,255,0.46)", fontFamily: "'Poppins', sans-serif" }}>
               Book a discovery call to find out if you qualify and what the program looks like for your business. No commitment, no generic demo.
             </p>
-            <p className="text-sm mb-8" style={{ color: "rgba(255,255,255,0.35)", fontFamily: "'Inter', sans-serif" }}>
+            <p className="text-sm mb-8" style={{ color: "rgba(255,255,255,0.35)", fontFamily: "'Poppins', sans-serif" }}>
               Contact:{" "}
               <a href="mailto:atrivedi@saphran.com" className="underline"
                 style={{ color: GREEN_TINT }}
@@ -3956,7 +3963,7 @@ function QuoteBasePage({ setPage }: { setPage: (p: Page) => void }) {
               </p>
               
               <p className="text-[15px] leading-relaxed mb-8"
-                style={{ color: SLATE, fontFamily: "'Inter', sans-serif" }}>
+                style={{ color: SLATE, fontFamily: "'Poppins', sans-serif" }}>
                 Say goodbye to disconnected spreadsheets. QuoteBase is Saphran's enterprise-class costing and quoting solution, specifically designed for Tier 1, Tier 2, and Tier 3 suppliers and ETO manufacturers. Speed up RFQ response, eliminate costing and pricing errors, and connect every quote directly to your business plan.
               </p>
 
@@ -3966,7 +3973,7 @@ function QuoteBasePage({ setPage }: { setPage: (p: Page) => void }) {
                   &quot;QuoteBase further leaned out our already lean cost and customer quote cycle by over 30% and integrated with PartBase to expose operational BOM forecasting that was always up to date.&quot;
                 </p>
                 <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wide">
-                  — Custom Fastener Supplier
+                 Custom Fastener Supplier
                 </span>
               </div>
               
@@ -3998,7 +4005,7 @@ function QuoteBasePage({ setPage }: { setPage: (p: Page) => void }) {
               }}>
               The Costing &amp; Quoting Dilemma
             </h2>
-            <p className="text-sm text-slate-600" style={{ fontFamily: "'Inter', sans-serif" }}>
+            <p className="text-sm text-slate-600" style={{ fontFamily: "'Poppins', sans-serif" }}>
               How a tiny quoting error compounding across ETO operations causes substantial hidden profit leakage.
             </p>
           </div>
@@ -4051,7 +4058,7 @@ function QuoteBasePage({ setPage }: { setPage: (p: Page) => void }) {
                 <p className="text-xs text-slate-400 italic">
                   &quot;Suppliers must control both their short-term profitability and their destiny through better management of their costing and quoting process.&quot;
                 </p>
-                <span className="block text-[8px] uppercase tracking-wide text-slate-500 font-bold mt-1">— Center for Automotive Research</span>
+                <span className="block text-[8px] uppercase tracking-wide text-slate-500 font-bold mt-1">Center for Automotive Research</span>
               </div>
             </div>
 
@@ -4067,7 +4074,7 @@ function QuoteBasePage({ setPage }: { setPage: (p: Page) => void }) {
                   QuoteBase™ Database-Driven Quoting
                 </h3>
                 
-                <p className="text-[13.5px] leading-relaxed text-slate-600 mb-8" style={{ fontFamily: "'Inter', sans-serif" }}>
+                <p className="text-[13.5px] leading-relaxed text-slate-600 mb-8" style={{ fontFamily: "'Poppins', sans-serif" }}>
                   QuoteBase replaces spreadsheet quoting with an automated, database-driven workflow. It accommodates your existing costing formulas while enforcing enterprise controls.
                 </p>
 
@@ -4108,7 +4115,7 @@ function QuoteBasePage({ setPage }: { setPage: (p: Page) => void }) {
                 <p className="text-xs text-slate-500 italic">
                   &quot;Market data with Saphran&apos;s real time integration for improved part-program volumes has helped us avoid any new bad business.&quot;
                 </p>
-                <span className="block text-[8px] uppercase tracking-wide text-slate-400 font-bold mt-1">— Mid-Size Manufacturer</span>
+                <span className="block text-[8px] uppercase tracking-wide text-slate-400 font-bold mt-1">Mid-Size Manufacturer</span>
               </div>
             </div>
           </div>
@@ -4128,7 +4135,7 @@ function QuoteBasePage({ setPage }: { setPage: (p: Page) => void }) {
               }}>
               Typical Quote Workflow &amp; Roles
             </h2>
-            <p className="text-sm" style={{ color: "rgba(255,255,255,0.44)", fontFamily: "'Inter', sans-serif" }}>
+            <p className="text-sm" style={{ color: "rgba(255,255,255,0.44)", fontFamily: "'Poppins', sans-serif" }}>
               QuoteBase coordinates inputs across sales, engineering, purchasing, tooling, operations, and finance. Click on the roles below to explore their specific workspace capabilities and interfaces.
             </p>
           </div>
@@ -4167,7 +4174,7 @@ function QuoteBasePage({ setPage }: { setPage: (p: Page) => void }) {
                   {currentRole.tagline}
                 </h3>
                 
-                <p className="text-[13px] leading-relaxed mb-6" style={{ color: "rgba(255,255,255,0.52)", fontFamily: "'Inter', sans-serif" }}>
+                <p className="text-[13px] leading-relaxed mb-6" style={{ color: "rgba(255,255,255,0.52)", fontFamily: "'Poppins', sans-serif" }}>
                   {currentRole.description}
                 </p>
 
@@ -4213,7 +4220,7 @@ function QuoteBasePage({ setPage }: { setPage: (p: Page) => void }) {
                   }}>
                   Why the QuoteBase Solution?
                 </h2>
-                <p className="text-sm text-slate-650" style={{ fontFamily: "'Inter', sans-serif" }}>
+                <p className="text-sm text-slate-650" style={{ fontFamily: "'Poppins', sans-serif" }}>
                   Replaces error-prone spreadsheet processes with a secure, centralized cost database.
                 </p>
               </div>
@@ -4223,7 +4230,7 @@ function QuoteBasePage({ setPage }: { setPage: (p: Page) => void }) {
                   <div className="w-8 h-8 rounded-lg bg-emerald-50 border border-emerald-200 flex items-center justify-center mb-4" style={{ color: GREEN }}>
                     <Clock size={16} />
                   </div>
-                  <h4 className="font-bold text-sm mb-2 text-slate-950" style={{ fontFamily: "'Inter', sans-serif" }}>RFQ Response in Days</h4>
+                  <h4 className="font-bold text-sm mb-2 text-slate-950" style={{ fontFamily: "'Poppins', sans-serif" }}>RFQ Response in Days</h4>
                   <p className="text-xs leading-relaxed text-slate-500">Reduce your RFQ preparation and design change cycle times by 50% to 90% through automated workflow orchestration.</p>
                 </div>
 
@@ -4231,7 +4238,7 @@ function QuoteBasePage({ setPage }: { setPage: (p: Page) => void }) {
                   <div className="w-8 h-8 rounded-lg bg-emerald-50 border border-emerald-200 flex items-center justify-center mb-4" style={{ color: GREEN }}>
                     <Database size={16} />
                   </div>
-                  <h4 className="font-bold text-sm mb-2 text-slate-950" style={{ fontFamily: "'Inter', sans-serif" }}>Comprehensive Cost Repository</h4>
+                  <h4 className="font-bold text-sm mb-2 text-slate-950" style={{ fontFamily: "'Poppins', sans-serif" }}>Comprehensive Cost Repository</h4>
                   <p className="text-xs leading-relaxed text-slate-500">Store materials, components, tooling, labor rates, plant burden, and capacity data in one unified, auditable database.</p>
                 </div>
 
@@ -4239,7 +4246,7 @@ function QuoteBasePage({ setPage }: { setPage: (p: Page) => void }) {
                   <div className="w-8 h-8 rounded-lg bg-emerald-50 border border-emerald-200 flex items-center justify-center mb-4" style={{ color: GREEN }}>
                     <Activity size={16} />
                   </div>
-                  <h4 className="font-bold text-sm mb-2 text-slate-950" style={{ fontFamily: "'Inter', sans-serif" }}>What-If Risk Simulations</h4>
+                  <h4 className="font-bold text-sm mb-2 text-slate-950" style={{ fontFamily: "'Poppins', sans-serif" }}>What-If Risk Simulations</h4>
                   <p className="text-xs leading-relaxed text-slate-500">Create multiple versions of quotes to run profit, currency, and resource capacity what-if analyses before submitting bids.</p>
                 </div>
 
@@ -4247,7 +4254,7 @@ function QuoteBasePage({ setPage }: { setPage: (p: Page) => void }) {
                   <div className="w-8 h-8 rounded-lg bg-emerald-50 border border-emerald-200 flex items-center justify-center mb-4" style={{ color: GREEN }}>
                     <RefreshCw size={16} />
                   </div>
-                  <h4 className="font-bold text-sm mb-2 text-slate-950" style={{ fontFamily: "'Inter', sans-serif" }}>Automatic ERP &amp; PLM Sync</h4>
+                  <h4 className="font-bold text-sm mb-2 text-slate-950" style={{ fontFamily: "'Poppins', sans-serif" }}>Automatic ERP &amp; PLM Sync</h4>
                   <p className="text-xs leading-relaxed text-slate-500">Directly export awarded cost models and BOMs to ERP and PLM databases, eliminating dual data entry for good.</p>
                 </div>
               </div>
@@ -4260,7 +4267,7 @@ function QuoteBasePage({ setPage }: { setPage: (p: Page) => void }) {
                 Fast Payback &amp; High ROI
               </h3>
               
-              <p className="text-[13px] leading-relaxed text-slate-600 mb-6" style={{ fontFamily: "'Inter', sans-serif" }}>
+              <p className="text-[13px] leading-relaxed text-slate-600 mb-6" style={{ fontFamily: "'Poppins', sans-serif" }}>
                 The Saphran value proposition is based on one clear fact: <strong>our solution is designed to save you money, quickly.</strong>
               </p>
 
@@ -4321,7 +4328,7 @@ function QuoteBasePage({ setPage }: { setPage: (p: Page) => void }) {
                 Real-Time Bump Reports &amp; Margin Tracking
               </h2>
               
-              <p className="text-[14px] leading-relaxed text-slate-650 mb-6" style={{ fontFamily: "'Inter', sans-serif" }}>
+              <p className="text-[14px] leading-relaxed text-slate-650 mb-6" style={{ fontFamily: "'Poppins', sans-serif" }}>
                 Eliminate manual data entry to track margins. Saphran automates tracking of changes and financial effect, compiling the detailed <strong>BUMP Report</strong>. See instant business case and margin change details for every single part or opportunity.
               </p>
 
@@ -4409,7 +4416,7 @@ function QuoteBasePage({ setPage }: { setPage: (p: Page) => void }) {
               style={{ fontFamily: "'Poppins', sans-serif", fontSize: "clamp(30px, 4vw, 48px)", letterSpacing: "-0.022em" }}>
               Bring Profit Certainty to Every Bid.
             </h2>
-            <p className="text-[15px] leading-relaxed mb-8" style={{ color: "rgba(255,255,255,0.46)", fontFamily: "'Inter', sans-serif" }}>
+            <p className="text-[15px] leading-relaxed mb-8" style={{ color: "rgba(255,255,255,0.46)", fontFamily: "'Poppins', sans-serif" }}>
               Ready to replace spreadsheets, speed up RFQ cycles by up to 90%, and manage product margins in real time? Book a discovery call today to see QuoteBase in action.
             </p>
             <div className="flex gap-3 flex-wrap">
@@ -4512,7 +4519,7 @@ function PartBasePage({ setPage }: { setPage: (p: Page) => void }) {
               </p>
               
               <p className="text-[15px] leading-relaxed mb-8 text-slate-650"
-                style={{ color: SLATE, fontFamily: "'Inter', sans-serif" }}>
+                style={{ color: SLATE, fontFamily: "'Poppins', sans-serif" }}>
                 Saphran PartBase is the industry's leading active commercial management system. Seamlessly merge external market intelligence (market forecast subscription data) and internal cost structure records into one live, dynamic rolling forecast. Optimize profitability, run instant risk simulations, and make strategic decisions based on accurate data.
               </p>
 
@@ -4522,7 +4529,7 @@ function PartBasePage({ setPage }: { setPage: (p: Page) => void }) {
                   &quot;Saphran PartBase turned our four-month business planning process into a 2-week process with more accurate results. We now make decisions in real time.&quot;
                 </p>
                 <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wide">
-                  — Mid-Size Supplier
+                 Mid-Size Supplier
                 </span>
               </div>
               
@@ -4554,7 +4561,7 @@ function PartBasePage({ setPage }: { setPage: (p: Page) => void }) {
               }}>
               The Forecasting Challenge
             </h2>
-            <p className="text-sm text-slate-600" style={{ fontFamily: "'Inter', sans-serif" }}>
+            <p className="text-sm text-slate-600" style={{ fontFamily: "'Poppins', sans-serif" }}>
               Why traditional manual reporting cycles leave automotive suppliers reacting to stale insights.
             </p>
           </div>
@@ -4567,7 +4574,7 @@ function PartBasePage({ setPage }: { setPage: (p: Page) => void }) {
                 <span className="font-bold text-xs uppercase tracking-wider">THE TRADITIONAL 9-MONTH SNAPSHOT</span>
               </div>
               
-              <p className="text-sm leading-relaxed text-slate-600 mb-6" style={{ fontFamily: "'Inter', sans-serif" }}>
+              <p className="text-sm leading-relaxed text-slate-600 mb-6" style={{ fontFamily: "'Poppins', sans-serif" }}>
                 Automotive suppliers traditionally spend three to nine months of the year manually preparing a &quot;snapshot&quot; of future opportunities.
               </p>
 
@@ -4610,7 +4617,7 @@ function PartBasePage({ setPage }: { setPage: (p: Page) => void }) {
                 <span className="font-bold text-xs uppercase tracking-wider">THE PARTBASE LIVING FORECAST</span>
               </div>
               
-              <p className="text-sm leading-relaxed text-slate-600 mb-6" style={{ fontFamily: "'Inter', sans-serif" }}>
+              <p className="text-sm leading-relaxed text-slate-600 mb-6" style={{ fontFamily: "'Poppins', sans-serif" }}>
                 PartBase integrates external market datasets and internal records into an always-current rolling forecast.
               </p>
 
@@ -4666,7 +4673,7 @@ function PartBasePage({ setPage }: { setPage: (p: Page) => void }) {
                 }}>
                 80 Hours vs. 10 Minutes
               </h2>
-              <p className="text-[14px] leading-relaxed text-slate-650 mb-6" style={{ fontFamily: "'Inter', sans-serif" }}>
+              <p className="text-[14px] leading-relaxed text-slate-650 mb-6" style={{ fontFamily: "'Poppins', sans-serif" }}>
                 Updating a supplier book of business conventionally takes about 80 hours of manual lookup, translation, and verification. PartBase leverages **Smart_ItemLink™** and Market Data Integration to download and align your whole subscription in under 10 minutes.
               </p>
 
@@ -4741,7 +4748,7 @@ function PartBasePage({ setPage }: { setPage: (p: Page) => void }) {
                 }}>
                 Automated Flags on Monthly Market Forecast Changes
               </h2>
-              <p className="text-xs leading-relaxed text-slate-650 mb-6" style={{ fontFamily: "'Inter', sans-serif" }}>
+              <p className="text-xs leading-relaxed text-slate-650 mb-6" style={{ fontFamily: "'Poppins', sans-serif" }}>
                 PartBase protects forecast integrity by highlighting monthly adjustments to the market forecast subscription database. The system automatically identifies volume changes and applies indicators.
               </p>
 
@@ -4867,7 +4874,7 @@ function PartBasePage({ setPage }: { setPage: (p: Page) => void }) {
                 }}>
                 Simulate Alternative Market Scenarios
               </h2>
-              <p className="text-[14px] leading-relaxed text-slate-650 mb-8" style={{ fontFamily: "'Inter', sans-serif" }}>
+              <p className="text-[14px] leading-relaxed text-slate-650 mb-8" style={{ fontFamily: "'Poppins', sans-serif" }}>
                 Test cost, price, and volume shifts in minutes. Click below to simulate typical market risks and view the projected impact on book-of-business profitability.
               </p>
 
@@ -4907,7 +4914,7 @@ function PartBasePage({ setPage }: { setPage: (p: Page) => void }) {
                 {currentScen.title}
               </h3>
               
-              <p className="text-[13px] leading-relaxed text-slate-350 mb-6" style={{ fontFamily: "'Inter', sans-serif" }}>
+              <p className="text-[13px] leading-relaxed text-slate-350 mb-6" style={{ fontFamily: "'Poppins', sans-serif" }}>
                 {currentScen.desc}
               </p>
 
@@ -4964,7 +4971,7 @@ function PartBasePage({ setPage }: { setPage: (p: Page) => void }) {
               <div className="w-8 h-8 rounded-lg bg-emerald-50 border border-emerald-200 flex items-center justify-center mb-4 text-emerald-600">
                 <Database size={16} />
               </div>
-              <h4 className="font-bold text-sm mb-2 text-slate-900" style={{ fontFamily: "'Inter', sans-serif" }}>Smart_ItemLink™ Technology</h4>
+              <h4 className="font-bold text-sm mb-2 text-slate-900" style={{ fontFamily: "'Poppins', sans-serif" }}>Smart_ItemLink™ Technology</h4>
               <p className="text-xs leading-relaxed text-slate-500">Align your vehicle, engine, or transmission subscriptions instantly. Synchronize SOP, EOP, and contract pricing without cut-and-paste.</p>
             </div>
 
@@ -4972,7 +4979,7 @@ function PartBasePage({ setPage }: { setPage: (p: Page) => void }) {
               <div className="w-8 h-8 rounded-lg bg-emerald-50 border border-emerald-200 flex items-center justify-center mb-4 text-emerald-600">
                 <Shield size={16} />
               </div>
-              <h4 className="font-bold text-sm mb-2 text-slate-900" style={{ fontFamily: "'Inter', sans-serif" }}>Automated Monthly Change Alerts</h4>
+              <h4 className="font-bold text-sm mb-2 text-slate-900" style={{ fontFamily: "'Poppins', sans-serif" }}>Automated Monthly Change Alerts</h4>
               <p className="text-xs leading-relaxed text-slate-500">Identify Dropped (Red Flag) or Added (Green Plus) programs on monthly market forecast updates automatically to adjust pricing.</p>
             </div>
 
@@ -4980,7 +4987,7 @@ function PartBasePage({ setPage }: { setPage: (p: Page) => void }) {
               <div className="w-8 h-8 rounded-lg bg-emerald-50 border border-emerald-200 flex items-center justify-center mb-4 text-emerald-600">
                 <BarChart2 size={16} />
               </div>
-              <h4 className="font-bold text-sm mb-2 text-slate-900" style={{ fontFamily: "'Inter', sans-serif" }}>Multi-Attribute Reporting</h4>
+              <h4 className="font-bold text-sm mb-2 text-slate-900" style={{ fontFamily: "'Poppins', sans-serif" }}>Multi-Attribute Reporting</h4>
               <p className="text-xs leading-relaxed text-slate-500">Track and report over 100 attributes. Compare current business plans against last month, last quarter, or current month.</p>
             </div>
 
@@ -4988,7 +4995,7 @@ function PartBasePage({ setPage }: { setPage: (p: Page) => void }) {
               <div className="w-8 h-8 rounded-lg bg-emerald-50 border border-emerald-200 flex items-center justify-center mb-4 text-emerald-600">
                 <Activity size={16} />
               </div>
-              <h4 className="font-bold text-sm mb-2 text-slate-900" style={{ fontFamily: "'Inter', sans-serif" }}>BOM &amp; Costing Integration</h4>
+              <h4 className="font-bold text-sm mb-2 text-slate-900" style={{ fontFamily: "'Poppins', sans-serif" }}>BOM &amp; Costing Integration</h4>
               <p className="text-xs leading-relaxed text-slate-500">Link directly with Saphran QuoteBase to push cost models to forward profit plans, avoiding dual sales entries.</p>
             </div>
 
@@ -4996,7 +5003,7 @@ function PartBasePage({ setPage }: { setPage: (p: Page) => void }) {
               <div className="w-8 h-8 rounded-lg bg-emerald-50 border border-emerald-200 flex items-center justify-center mb-4 text-emerald-600">
                 <RefreshCw size={16} />
               </div>
-              <h4 className="font-bold text-sm mb-2 text-slate-900" style={{ fontFamily: "'Inter', sans-serif" }}>ERP Ship History Integration</h4>
+              <h4 className="font-bold text-sm mb-2 text-slate-900" style={{ fontFamily: "'Poppins', sans-serif" }}>ERP Ship History Integration</h4>
               <p className="text-xs leading-relaxed text-slate-500">Connect your SAP, QAD, or other ERP systems to import actual ship history and customer EDI releases.</p>
             </div>
 
@@ -5004,7 +5011,7 @@ function PartBasePage({ setPage }: { setPage: (p: Page) => void }) {
               <div className="w-8 h-8 rounded-lg bg-emerald-50 border border-emerald-200 flex items-center justify-center mb-4 text-emerald-600">
                 <Globe2 size={16} />
               </div>
-              <h4 className="font-bold text-sm mb-2 text-slate-900" style={{ fontFamily: "'Inter', sans-serif" }}>Rolling Business Plan Alignment</h4>
+              <h4 className="font-bold text-sm mb-2 text-slate-900" style={{ fontFamily: "'Poppins', sans-serif" }}>Rolling Business Plan Alignment</h4>
               <p className="text-xs leading-relaxed text-slate-500">Keep rolling business plans aligned year-round for strategic pricing, outsourcing, and capital investments.</p>
             </div>
           </div>
@@ -5026,7 +5033,7 @@ function PartBasePage({ setPage }: { setPage: (p: Page) => void }) {
               style={{ fontFamily: "'Poppins', sans-serif", fontSize: "clamp(30px, 4vw, 48px)", letterSpacing: "-0.022em" }}>
               Make Decisions in Real Time.
             </h2>
-            <p className="text-[15px] leading-relaxed mb-8" style={{ color: "rgba(255,255,255,0.46)", fontFamily: "'Inter', sans-serif" }}>
+            <p className="text-[15px] leading-relaxed mb-8" style={{ color: "rgba(255,255,255,0.46)", fontFamily: "'Poppins', sans-serif" }}>
               Ready to replace manual snapshot forecasts, reduce update times by 99%, and simulate alternative scenarios? Book a discovery call today to see Saphran PartBase in action.
             </p>
             <div className="flex gap-3 flex-wrap">
@@ -5121,7 +5128,7 @@ function IntelligenceBasePage({ setPage }: { setPage: (p: Page) => void }) {
               </p>
               
               <p className="text-[15px] leading-relaxed mb-8 text-slate-650"
-                style={{ color: SLATE, fontFamily: "'Inter', sans-serif" }}>
+                style={{ color: SLATE, fontFamily: "'Poppins', sans-serif" }}>
                 Transition from passive Excel sheets to active business intelligence. Saphran IntelligenceBase is an analytics framework that includes a calculated data warehouse, analytics cube, and a Microsoft Excel pivot user interface. Refreshed daily from the central Saphran database, it provides instant access to calculated volume, revenue, and sales-per-vehicle metrics across your entire operations.
               </p>
 
@@ -5131,7 +5138,7 @@ function IntelligenceBasePage({ setPage }: { setPage: (p: Page) => void }) {
                   &quot;IntelligenceBase completely transformed our approach to program reporting. We can now compile month-over-month volume comparisons and sales-per-vehicle metrics across 20+ countries instantly, with workbooks that are under 250KB.&quot;
                 </p>
                 <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wide">
-                  — Global Sales Analyst, Tier 1 Supplier
+                 Global Sales Analyst, Tier 1 Supplier
                 </span>
               </div>
               
@@ -5163,7 +5170,7 @@ function IntelligenceBasePage({ setPage }: { setPage: (p: Page) => void }) {
               }}>
               The Reporting Challenge
             </h2>
-            <p className="text-sm text-slate-650" style={{ fontFamily: "'Inter', sans-serif" }}>
+            <p className="text-sm text-slate-650" style={{ fontFamily: "'Poppins', sans-serif" }}>
               Reconciling large datasets across plants and platforms traditionally results in spreadsheet bloat.
             </p>
           </div>
@@ -5256,7 +5263,7 @@ function IntelligenceBasePage({ setPage }: { setPage: (p: Page) => void }) {
               }}>
               Saphran IntelligenceBase Cube Explorer
             </h2>
-            <p className="text-sm" style={{ color: "rgba(255,255,255,0.44)", fontFamily: "'Inter', sans-serif" }}>
+            <p className="text-sm" style={{ color: "rgba(255,255,255,0.44)", fontFamily: "'Poppins', sans-serif" }}>
               Our multi-dimensional analytics cube groups and pre-calculates your ETO data. Click on the dimensions below to see the pre-compiled fields and preview the pivot table structure.
             </p>
           </div>
@@ -5295,7 +5302,7 @@ function IntelligenceBasePage({ setPage }: { setPage: (p: Page) => void }) {
                   Cube Grouping
                 </h3>
                 
-                <p className="text-[13px] leading-relaxed mb-6" style={{ color: "rgba(255,255,255,0.52)", fontFamily: "'Inter', sans-serif" }}>
+                <p className="text-[13px] leading-relaxed mb-6" style={{ color: "rgba(255,255,255,0.52)", fontFamily: "'Poppins', sans-serif" }}>
                   {currentDim.description}
                 </p>
 
@@ -5409,7 +5416,7 @@ function IntelligenceBasePage({ setPage }: { setPage: (p: Page) => void }) {
               }}>
               IntelligenceBase™ Benefits
             </h2>
-            <p className="text-sm text-slate-650" style={{ fontFamily: "'Inter', sans-serif" }}>
+            <p className="text-sm text-slate-650" style={{ fontFamily: "'Poppins', sans-serif" }}>
               Providing the power of advanced data warehouse analytics through your familiar Excel workspace.
             </p>
           </div>
@@ -5419,7 +5426,7 @@ function IntelligenceBasePage({ setPage }: { setPage: (p: Page) => void }) {
               <div className="w-8 h-8 rounded-lg bg-emerald-50 border border-emerald-200 flex items-center justify-center mb-4 text-emerald-600">
                 <Database size={16} />
               </div>
-              <h4 className="font-bold text-sm mb-2 text-slate-900" style={{ fontFamily: "'Inter', sans-serif" }}>Unified Data Warehouse</h4>
+              <h4 className="font-bold text-sm mb-2 text-slate-900" style={{ fontFamily: "'Poppins', sans-serif" }}>Unified Data Warehouse</h4>
               <p className="text-xs leading-relaxed text-slate-500">Automatically aggregates your sales inputs, internal costing structures, and market forecast databases in a pre-compiled warehouse.</p>
             </div>
 
@@ -5427,7 +5434,7 @@ function IntelligenceBasePage({ setPage }: { setPage: (p: Page) => void }) {
               <div className="w-8 h-8 rounded-lg bg-emerald-50 border border-emerald-200 flex items-center justify-center mb-4 text-emerald-600">
                 <Clock size={16} />
               </div>
-              <h4 className="font-bold text-sm mb-2 text-slate-900" style={{ fontFamily: "'Inter', sans-serif" }}>Daily Auto-Refresh</h4>
+              <h4 className="font-bold text-sm mb-2 text-slate-900" style={{ fontFamily: "'Poppins', sans-serif" }}>Daily Auto-Refresh</h4>
               <p className="text-xs leading-relaxed text-slate-500">The entire analytics cube is compiled and refreshed every single night from your central Saphran database runs.</p>
             </div>
 
@@ -5435,7 +5442,7 @@ function IntelligenceBasePage({ setPage }: { setPage: (p: Page) => void }) {
               <div className="w-8 h-8 rounded-lg bg-emerald-50 border border-emerald-200 flex items-center justify-center mb-4 text-emerald-600">
                 <Layers size={16} />
               </div>
-              <h4 className="font-bold text-sm mb-2 text-slate-900" style={{ fontFamily: "'Inter', sans-serif" }}>Micro-Weight Excel Workbooks</h4>
+              <h4 className="font-bold text-sm mb-2 text-slate-900" style={{ fontFamily: "'Poppins', sans-serif" }}>Micro-Weight Excel Workbooks</h4>
               <p className="text-xs leading-relaxed text-slate-500">Keep workbook files extremely small (often under 250KB, as low as 20KB) by querying Saphran's calculations remotely.</p>
             </div>
 
@@ -5443,7 +5450,7 @@ function IntelligenceBasePage({ setPage }: { setPage: (p: Page) => void }) {
               <div className="w-8 h-8 rounded-lg bg-emerald-50 border border-emerald-200 flex items-center justify-center mb-4 text-emerald-600">
                 <Sparkles size={16} />
               </div>
-              <h4 className="font-bold text-sm mb-2 text-slate-900" style={{ fontFamily: "'Inter', sans-serif" }}>Instantaneous Refresh Rates</h4>
+              <h4 className="font-bold text-sm mb-2 text-slate-900" style={{ fontFamily: "'Poppins', sans-serif" }}>Instantaneous Refresh Rates</h4>
               <p className="text-xs leading-relaxed text-slate-500">After the initial layout load, pivoting columns, filtering, and compiling calculations is nearly instantaneous.</p>
             </div>
 
@@ -5451,7 +5458,7 @@ function IntelligenceBasePage({ setPage }: { setPage: (p: Page) => void }) {
               <div className="w-8 h-8 rounded-lg bg-emerald-50 border border-emerald-200 flex items-center justify-center mb-4 text-emerald-600">
                 <Globe2 size={16} />
               </div>
-              <h4 className="font-bold text-sm mb-2 text-slate-900" style={{ fontFamily: "'Inter', sans-serif" }}>Direct Market Data Pulls</h4>
+              <h4 className="font-bold text-sm mb-2 text-slate-900" style={{ fontFamily: "'Poppins', sans-serif" }}>Direct Market Data Pulls</h4>
               <p className="text-xs leading-relaxed text-slate-500">Retrieve regional vehicle production volumes and powertrain data directly inside Excel tabs without logging into third-party portals.</p>
             </div>
 
@@ -5459,7 +5466,7 @@ function IntelligenceBasePage({ setPage }: { setPage: (p: Page) => void }) {
               <div className="w-8 h-8 rounded-lg bg-emerald-50 border border-emerald-200 flex items-center justify-center mb-4 text-emerald-600">
                 <Activity size={16} />
               </div>
-              <h4 className="font-bold text-sm mb-2 text-slate-900" style={{ fontFamily: "'Inter', sans-serif" }}>Pre-Calculated Cube Fields</h4>
+              <h4 className="font-bold text-sm mb-2 text-slate-900" style={{ fontFamily: "'Poppins', sans-serif" }}>Pre-Calculated Cube Fields</h4>
               <p className="text-xs leading-relaxed text-slate-500">Directly analyze complex calculated relationships like Sales per Vehicle, total revenue matrices, and program volumes.</p>
             </div>
           </div>
@@ -5481,7 +5488,7 @@ function IntelligenceBasePage({ setPage }: { setPage: (p: Page) => void }) {
               style={{ fontFamily: "'Poppins', sans-serif", fontSize: "clamp(30px, 4vw, 48px)", letterSpacing: "-0.022em" }}>
               Active Business Intelligence Awaits.
             </h2>
-            <p className="text-[15px] leading-relaxed mb-8" style={{ color: "rgba(255,255,255,0.46)", fontFamily: "'Inter', sans-serif" }}>
+            <p className="text-[15px] leading-relaxed mb-8" style={{ color: "rgba(255,255,255,0.46)", fontFamily: "'Poppins', sans-serif" }}>
               Ready to replace slow, heavy spreadsheets, automate market forecast reporting, and query a pre-calculated data warehouse in milliseconds? Book a discovery call today to see Saphran IntelligenceBase in action.
             </p>
             <div className="flex gap-3 flex-wrap">
@@ -5511,10 +5518,30 @@ function SaphranAIPage({ setPage }: { setPage: (p: Page) => void }) {
     agenticRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
-  // Calculator formulas based on the Page 3 stats scaled proportionally
-  const freightSavings = revenue * 3.0; // ~$12M for $4B revenue
-  const carryingSavings = revenue * 3.6; // ~$14.4M for $4B revenue
-  const marginSavings = revenue * 5.0; // ~$20.0M for $4B revenue
+  const baselineRevenue = 4;
+  const maxRevenue = 10;
+  const baselineFreight = 12.0;
+  const baselineCarrying = 14.4;
+  const baselineMargin = 20.0;
+  const baselineTotal = baselineFreight + baselineCarrying + baselineMargin; // $46.4M at $4B
+  const targetTotalAtMaxRevenue = 77.0;
+  const diminishingSteepness = 2.2;
+
+  const totalScale = revenue <= baselineRevenue
+    ? revenue / baselineRevenue
+    : (() => {
+        const normalized = (revenue - baselineRevenue) / (maxRevenue - baselineRevenue);
+        const diminishingCurve =
+          (1 - Math.exp(-diminishingSteepness * normalized)) /
+          (1 - Math.exp(-diminishingSteepness));
+        const adjustedTotal =
+          baselineTotal + (targetTotalAtMaxRevenue - baselineTotal) * diminishingCurve;
+        return adjustedTotal / baselineTotal;
+      })();
+
+  const freightSavings = baselineFreight * totalScale;
+  const carryingSavings = baselineCarrying * totalScale;
+  const marginSavings = baselineMargin * totalScale;
   const totalImpact = freightSavings + carryingSavings + marginSavings;
 
   return (
@@ -5548,7 +5575,7 @@ function SaphranAIPage({ setPage }: { setPage: (p: Page) => void }) {
               </p>
 
               <p className="text-[15px] leading-relaxed mb-8"
-                style={{ color: "rgba(255,255,255,0.72)", fontFamily: "'Inter', sans-serif" }}>
+                style={{ color: "rgba(255,255,255,0.72)", fontFamily: "'Poppins', sans-serif" }}>
                 SaphranAI enhances your existing forecast sources by learning from historical shipment performance and part-level data. Rather than replacing your forecast inputs, SaphranAI adds an intelligent layer that creates volume predictions that are <strong>~10%+ more accurate</strong> than standard customer forecasts.
               </p>
 
@@ -5557,7 +5584,7 @@ function SaphranAIPage({ setPage }: { setPage: (p: Page) => void }) {
                   &quot;SaphranAI solved the OEM schedule volatility problem for us. Our forecast accuracy improved by 11.5% in the first quarter, giving us the visibility needed to avoid premium freight charges and prevent margin leakage.&quot;
                 </p>
                 <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wide">
-                  — Tier 1 Automotive Supplier VP of Operations
+                 Tier 1 Automotive Supplier VP of Operations
                 </span>
               </div>
 
@@ -5591,7 +5618,7 @@ function SaphranAIPage({ setPage }: { setPage: (p: Page) => void }) {
                 }}>
                 What 10% More Accurate Forecasting Means
               </h2>
-              <p className="text-sm leading-relaxed text-slate-600 mb-6" style={{ fontFamily: "'Inter', sans-serif" }}>
+              <p className="text-sm leading-relaxed text-slate-600 mb-6" style={{ fontFamily: "'Poppins', sans-serif" }}>
                 A typical Tier 1 Automotive Supplier with <strong>$4B in annual revenue</strong> faces tight margins, complex multi-plant operations, exposure to OEM schedule volatility, and regular premium freight and inventory swings.
               </p>
 
@@ -5640,17 +5667,17 @@ function SaphranAIPage({ setPage }: { setPage: (p: Page) => void }) {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 border-t border-slate-750 pt-6">
                   <div>
                     <span className="block text-[9px] font-mono text-slate-400 uppercase">Premium Freight</span>
-                    <span className="text-lg font-bold text-white font-mono">${freightSavings.toFixed(1)}M</span>
+                    <span className="text-lg font-bold text-white" style={{ fontFamily: "'Poppins', sans-serif", fontVariantNumeric: "tabular-nums" }}>${freightSavings.toFixed(1)}M</span>
                     <span className="block text-[8px] text-slate-500">Savings opportunity</span>
                   </div>
                   <div>
                     <span className="block text-[9px] font-mono text-slate-400 uppercase">Inventory Carrying</span>
-                    <span className="text-lg font-bold text-white font-mono">${carryingSavings.toFixed(1)}M</span>
+                    <span className="text-lg font-bold text-white" style={{ fontFamily: "'Poppins', sans-serif", fontVariantNumeric: "tabular-nums" }}>${carryingSavings.toFixed(1)}M</span>
                     <span className="block text-[8px] text-slate-500">Capital unlocked</span>
                   </div>
                   <div>
                     <span className="block text-[9px] font-mono text-slate-400 uppercase">0.5% Margin Protection</span>
-                    <span className="text-lg font-bold text-white font-mono">${marginSavings.toFixed(1)}M</span>
+                    <span className="text-lg font-bold text-white" style={{ fontFamily: "'Poppins', sans-serif", fontVariantNumeric: "tabular-nums" }}>${marginSavings.toFixed(1)}M</span>
                     <span className="block text-[8px] text-slate-500">Gross margin lift</span>
                   </div>
                 </div>
@@ -5658,10 +5685,23 @@ function SaphranAIPage({ setPage }: { setPage: (p: Page) => void }) {
 
               <div className="bg-slate-900/60 p-4 rounded border border-slate-850 text-center">
                 <span className="block text-[10px] font-mono uppercase tracking-wider text-slate-400">Total Potential Annual Impact</span>
-                <span className="text-3xl font-extrabold text-emerald-400 font-mono block mt-1">
+                <span className="text-3xl font-extrabold text-emerald-400 block mt-1" style={{ fontFamily: "'Poppins', sans-serif", fontVariantNumeric: "tabular-nums" }}>
                   ${totalImpact.toFixed(1)}M Saved
                 </span>
                 <span className="text-[9px] text-slate-500 block mt-1">*Based on scaled industry benchmark statistics</span>
+              </div>
+
+              <div className="mt-4 p-4 rounded border border-emerald-500/30 bg-emerald-500/10 text-center">
+                <p className="text-xs text-slate-150 mb-3" style={{ fontFamily: "'Poppins', sans-serif" }}>
+                  Want custom projections for your operational data?
+                </p>
+                <button
+                  onClick={() => setPage("contact")}
+                  className="inline-flex items-center gap-2 text-sm font-bold text-emerald-350 hover:text-white transition-colors cursor-pointer"
+                  style={{ fontFamily: "'Poppins', sans-serif" }}
+                >
+                  See it in your own numbers <ArrowRight size={14} />
+                </button>
               </div>
             </div>
           </div>
@@ -5679,9 +5719,9 @@ function SaphranAIPage({ setPage }: { setPage: (p: Page) => void }) {
                 fontSize: "clamp(28px, 3.2vw, 42px)",
                 letterSpacing: "-0.02em"
               }}>
-              See the Prediction — and the Confidence
+              See the Prediction, and the Confidence
             </h2>
-            <p className="text-sm" style={{ color: "rgba(255,255,255,0.44)", fontFamily: "'Inter', sans-serif" }}>
+            <p className="text-sm" style={{ color: "rgba(255,255,255,0.44)", fontFamily: "'Poppins', sans-serif" }}>
               Every monthly forecast generated by SaphranAI comes with predicted volumes and upper/lower confidence bounds.Planners can immediately tell where uncertainties exist and apply human judgement.
             </p>
           </div>
@@ -5835,7 +5875,7 @@ function SaphranAIPage({ setPage }: { setPage: (p: Page) => void }) {
               }}>
               Introducing Saphran’s Agentic Solution
             </h2>
-            <p className="text-sm text-slate-650" style={{ fontFamily: "'Inter', sans-serif" }}>
+            <p className="text-sm text-slate-650" style={{ fontFamily: "'Poppins', sans-serif" }}>
               Multi-role autonomous agents working continuously to optimize and secure your commercial business cases.
             </p>
           </div>
@@ -5927,7 +5967,7 @@ function SaphranAIPage({ setPage }: { setPage: (p: Page) => void }) {
               }}>
               3 Steps to AI Bias Elimination
             </h2>
-            <p className="text-sm text-slate-650" style={{ fontFamily: "'Inter', sans-serif" }}>
+            <p className="text-sm text-slate-650" style={{ fontFamily: "'Poppins', sans-serif" }}>
               More integrated database connections trigger higher forecasting accuracy and greater financial returns.
             </p>
           </div>
@@ -5937,7 +5977,7 @@ function SaphranAIPage({ setPage }: { setPage: (p: Page) => void }) {
             <div className="bg-[#f9f9fb] p-6 rounded border border-slate-200 relative flex flex-col justify-between">
               <div>
                 <span className="font-mono text-xs font-bold text-emerald-650 bg-emerald-50 px-2 py-0.5 rounded">Step 1</span>
-                <h4 className="font-bold text-sm mb-2 mt-4 text-slate-900" style={{ fontFamily: "'Inter', sans-serif" }}>Platform Activation</h4>
+                <h4 className="font-bold text-sm mb-2 mt-4 text-slate-900" style={{ fontFamily: "'Poppins', sans-serif" }}>Platform Activation</h4>
                 <p className="text-xs leading-relaxed text-slate-500">Deploy QuoteBase &amp; PartBase to aggregate your live program BOMs, quotes, and market forecast subscription feeds.</p>
               </div>
               <div className="mt-6 pt-3 border-t border-slate-200 text-[10px] text-slate-450 uppercase font-mono font-bold">
@@ -5949,7 +5989,7 @@ function SaphranAIPage({ setPage }: { setPage: (p: Page) => void }) {
             <div className="bg-[#f9f9fb] p-6 rounded border border-slate-200 relative flex flex-col justify-between" style={{ borderLeft: `3px solid ${GREEN}` }}>
               <div>
                 <span className="font-mono text-xs font-bold text-emerald-650 bg-emerald-50 px-2 py-0.5 rounded">Step 2</span>
-                <h4 className="font-bold text-sm mb-2 mt-4 text-slate-900" style={{ fontFamily: "'Inter', sans-serif" }}>ERP &amp; EDI Integration</h4>
+                <h4 className="font-bold text-sm mb-2 mt-4 text-slate-900" style={{ fontFamily: "'Poppins', sans-serif" }}>ERP &amp; EDI Integration</h4>
                 <p className="text-xs leading-relaxed text-slate-500">Import actual ship history from your ERP to close the actuals loop, enabling AI to learn from deviations.</p>
               </div>
               <div className="mt-6 pt-3 border-t border-slate-200 text-[10px] text-slate-450 uppercase font-mono font-bold">
@@ -5961,7 +6001,7 @@ function SaphranAIPage({ setPage }: { setPage: (p: Page) => void }) {
             <div className="bg-[#f9f9fb] p-6 rounded border border-slate-200 relative flex flex-col justify-between">
               <div>
                 <span className="font-mono text-xs font-bold text-emerald-650 bg-emerald-50 px-2 py-0.5 rounded">Step 3</span>
-                <h4 className="font-bold text-sm mb-2 mt-4 text-slate-900" style={{ fontFamily: "'Inter', sans-serif" }}>Weekly EDI Streams</h4>
+                <h4 className="font-bold text-sm mb-2 mt-4 text-slate-900" style={{ fontFamily: "'Poppins', sans-serif" }}>Weekly EDI Streams</h4>
                 <p className="text-xs leading-relaxed text-slate-500">Integrate customer weekly EDI releases. Provides immediate, automated volatility response tracking on early demand swings.</p>
               </div>
               <div className="mt-6 pt-3 border-t border-slate-200 text-[10px] text-emerald-650 uppercase font-mono font-bold">
@@ -5987,7 +6027,7 @@ function SaphranAIPage({ setPage }: { setPage: (p: Page) => void }) {
               style={{ fontFamily: "'Poppins', sans-serif", fontSize: "clamp(30px, 4vw, 48px)", letterSpacing: "-0.022em" }}>
               Unlock Predictive Forecasts.
             </h2>
-            <p className="text-[15px] leading-relaxed mb-8" style={{ color: "rgba(255,255,255,0.46)", fontFamily: "'Inter', sans-serif" }}>
+            <p className="text-[15px] leading-relaxed mb-8" style={{ color: "rgba(255,255,255,0.46)", fontFamily: "'Poppins', sans-serif" }}>
               Ready to reduce deviations, identify OEM volatility risk in real time, and protect gross margin performance? Book a discovery call today to see SaphranAI in action.
             </p>
             <div className="flex gap-3 flex-wrap">
@@ -6085,7 +6125,7 @@ function ScenarioProPage({ setPage }: { setPage: (p: Page) => void }) {
               </p>
               
               <p className="text-[15px] leading-relaxed mb-8 text-slate-650"
-                style={{ color: SLATE, fontFamily: "'Inter', sans-serif" }}>
+                style={{ color: SLATE, fontFamily: "'Poppins', sans-serif" }}>
                 ScenarioPro enables manufacturers to intuitively understand and react to the impact of dynamic market and pricing changes on their business. Run exogenous (market volumes, exchange rates) and endogenous (win rates, long-term agreements) scenario analyses instantly, replacing time-consuming workbook builds with clean visual simulations.
               </p>
 
@@ -6095,7 +6135,7 @@ function ScenarioProPage({ setPage }: { setPage: (p: Page) => void }) {
                   &quot;ScenarioPro changed our forecasting paradigm. Rather than spending weeks trying to compile one single forecast that would be wrong anyway, we now model 20+ contingency scenarios in minutes, giving us a major competitive edge.&quot;
                 </p>
                 <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wide">
-                  — Executive Director of Strategy, Tier 1 Automotive Supplier
+                 Executive Director of Strategy, Tier 1 Automotive Supplier
                 </span>
               </div>
               
@@ -6127,7 +6167,7 @@ function ScenarioProPage({ setPage }: { setPage: (p: Page) => void }) {
               }}>
               ScenarioPro Contingency Planning & Simulation
             </h2>
-            <p className="text-sm text-slate-650" style={{ fontFamily: "'Inter', sans-serif" }}>
+            <p className="text-sm text-slate-650" style={{ fontFamily: "'Poppins', sans-serif" }}>
               Changing the industry paradigm: Be wrong many times to prepare contingency plans.
             </p>
           </div>
@@ -6141,7 +6181,7 @@ function ScenarioProPage({ setPage }: { setPage: (p: Page) => void }) {
                 <blockquote className="text-lg font-bold text-slate-900 leading-snug mb-5" style={{ fontFamily: "'Poppins', sans-serif" }}>
                   Spend all of your time being right once.
                 </blockquote>
-                <p className="text-[12.5px] leading-relaxed text-slate-650 font-sans" style={{ fontFamily: "'Inter', sans-serif" }}>
+                <p className="text-[12.5px] leading-relaxed text-slate-650 font-sans" style={{ fontFamily: "'Poppins', sans-serif" }}>
                   Traditional forecasting forces planning teams to spend months compiling a single consensus plan. However, because data points shift daily, this report becomes obsolete within days, leaving teams in a constant cycle of manual rebuilding.
                 </p>
               </div>
@@ -6158,7 +6198,7 @@ function ScenarioProPage({ setPage }: { setPage: (p: Page) => void }) {
                 <blockquote className="text-lg font-bold text-slate-900 leading-snug mb-5" style={{ fontFamily: "'Poppins', sans-serif" }}>
                   Be wrong many times to help prepare contingency plans.
                 </blockquote>
-                <p className="text-[12.5px] leading-relaxed text-slate-650 font-sans" style={{ fontFamily: "'Inter', sans-serif" }}>
+                <p className="text-[12.5px] leading-relaxed text-slate-650 font-sans" style={{ fontFamily: "'Poppins', sans-serif" }}>
                   ScenarioPro adds an instantaneous visual overlay. Run 20+ dynamic simulation rules to prepare pricing, sourcing, and contract contingencies ahead of market volatility or strikes.
                 </p>
               </div>
@@ -6183,7 +6223,7 @@ function ScenarioProPage({ setPage }: { setPage: (p: Page) => void }) {
               }}>
               Saphran ScenarioPro Sandbox
             </h2>
-            <p className="text-sm" style={{ color: "rgba(255,255,255,0.44)", fontFamily: "'Inter', sans-serif" }}>
+            <p className="text-sm" style={{ color: "rgba(255,255,255,0.44)", fontFamily: "'Poppins', sans-serif" }}>
               Test linked factors to map out their impact on product revenue. Select a simulation type and adjust the sliders below to run calculations.
             </p>
           </div>
@@ -6337,7 +6377,7 @@ function ScenarioProPage({ setPage }: { setPage: (p: Page) => void }) {
               }}>
               Scenario Pro Model Scope
             </h2>
-            <p className="text-sm text-slate-600" style={{ fontFamily: "'Inter', sans-serif" }}>
+            <p className="text-sm text-slate-600" style={{ fontFamily: "'Poppins', sans-serif" }}>
               Covering both external market shifts and internal commercial success metrics.
             </p>
           </div>
@@ -6429,7 +6469,7 @@ function ScenarioProPage({ setPage }: { setPage: (p: Page) => void }) {
               style={{ fontFamily: "'Poppins', sans-serif", fontSize: "clamp(30px, 4vw, 48px)", letterSpacing: "-0.022em" }}>
               Be Wrong Many Times. Model Contingencies.
             </h2>
-            <p className="text-[15px] leading-relaxed mb-8" style={{ color: "rgba(255,255,255,0.46)", fontFamily: "'Inter', sans-serif" }}>
+            <p className="text-[15px] leading-relaxed mb-8" style={{ color: "rgba(255,255,255,0.46)", fontFamily: "'Poppins', sans-serif" }}>
               Ready to replace heavy single-point forecasts with rapid visual simulation? Book a discovery call today to see Saphran ScenarioPro in action.
             </p>
             <div className="flex gap-3 flex-wrap">
@@ -6625,24 +6665,28 @@ function AboutPage({ setPage }: { setPage: (p: Page) => void }) {
       role: "Chief Executive Officer",
       linkedin: "https://www.linkedin.com/in/seanlefever/",
       img: teamSeanSrc,
+      imageClass: "scale-100 origin-top",
     },
     {
       name: "Kenneth Bassey",
       role: "Founder & President of Customer Success",
       linkedin: "https://www.linkedin.com/in/kenneth-bassey-130393/",
       img: teamKennethSrc,
+      imageClass: "scale-[0.84] origin-top",
     },
     {
       name: "Ami Trivedi",
       role: "Director of Sales",
       linkedin: "https://www.linkedin.com/in/amitrivedi1997/",
       img: teamAmiSrc,
+      imageClass: "scale-100 origin-top",
     },
     {
       name: "Megan Mills",
       role: "Senior Director Customer Success",
       linkedin: "https://www.linkedin.com/in/megan-m-108270b0/",
       img: teamMeganSrc,
+      imageClass: "scale-[1.28] origin-[50%_35%]",
     },
   ];
 
@@ -6669,10 +6713,10 @@ function AboutPage({ setPage }: { setPage: (p: Page) => void }) {
           <h1 className="font-extrabold text-slate-900 mb-6 leading-[1.08]" style={{ fontFamily: "'Poppins', sans-serif", fontSize: "clamp(32px, 4vw, 56px)", letterSpacing: "-0.025em" }}>
             About Saphran
           </h1>
-          <p className="text-lg leading-relaxed text-slate-650 font-sans" style={{ fontFamily: "'Inter', sans-serif" }}>
+          <p className="text-lg leading-relaxed text-slate-650 font-sans" style={{ fontFamily: "'Poppins', sans-serif" }}>
             Founded in 2004, Saphran is recognized as a leader in forecasting and cost estimating cloud software, built on years of experience and a commitment to delivering dependable solutions for modern manufacturers. Everything we do is focused on helping our customers plan with accuracy, control costs, and stay competitive.
           </p>
-          <p className="text-base leading-relaxed text-slate-500 mt-4 font-sans" style={{ fontFamily: "'Inter', sans-serif" }}>
+          <p className="text-base leading-relaxed text-slate-500 mt-4 font-sans" style={{ fontFamily: "'Poppins', sans-serif" }}>
             As markets continue to change, we continue to adapt, ensuring our platform and approach evolve alongside our customers&apos; needs.
           </p>
         </div>
@@ -6683,7 +6727,7 @@ function AboutPage({ setPage }: { setPage: (p: Page) => void }) {
             <h2 className="font-bold text-slate-900 mb-4" style={{ fontFamily: "'Poppins', sans-serif", fontSize: "clamp(32px, 4vw, 48px)", letterSpacing: "-0.025em" }}>
               Our Leadership
             </h2>
-            <p className="text-[15px] leading-relaxed text-slate-600 font-sans" style={{ fontFamily: "'Inter', sans-serif" }}>
+            <p className="text-[15px] leading-relaxed text-slate-600 font-sans" style={{ fontFamily: "'Poppins', sans-serif" }}>
               Saphran’s leadership team brings together experience across engineering, manufacturing, and commercial strategy. With a deep understanding of the pressures manufacturers face, the team focuses on building practical solutions that reduce uncertainty, improve costing accuracy, and support more confident decision-making at every stage of the business.
             </p>
           </div>
@@ -6699,14 +6743,14 @@ function AboutPage({ setPage }: { setPage: (p: Page) => void }) {
                     <img 
                       src={member.img} 
                       alt={member.name}
-                      className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500" 
+                      className={`w-full h-full object-cover object-top transition-transform duration-500 ${member.imageClass}`}
                     />
                   </div>
                   <div className="p-5">
                     <h3 className="font-bold text-lg text-slate-900 mb-1" style={{ fontFamily: "'Poppins', sans-serif" }}>
                       {member.name}
                     </h3>
-                    <p className="text-xs text-slate-600 leading-snug font-sans mb-4" style={{ fontFamily: "'Inter', sans-serif" }}>
+                    <p className="text-xs text-slate-600 leading-snug font-sans mb-4" style={{ fontFamily: "'Poppins', sans-serif" }}>
                       {member.role}
                     </p>
                   </div>
@@ -6764,7 +6808,7 @@ function CaseStudiesPage({ setPage }: { setPage: (p: Page) => void }) {
 
             <p
               className="text-lg leading-relaxed mb-8 text-slate-650 max-w-2xl"
-              style={{ color: SLATE, fontFamily: "'Inter', sans-serif" }}
+              style={{ color: SLATE, fontFamily: "'Poppins', sans-serif" }}
             >
               Saphran has earned the trust of manufacturers across 20+ countries, supporting cost structures and rolling forecasts tied to over $400B in annual revenue. Discover how leading Tier 1, Tier 2, and Tier 3 suppliers drive margin certainty with Saphran.
             </p>
@@ -6800,7 +6844,7 @@ function CaseStudiesPage({ setPage }: { setPage: (p: Page) => void }) {
             >
               Operational &amp; Margin Improvements Across Deployments
             </h2>
-            <p className="text-sm text-slate-650" style={{ fontFamily: "'Inter', sans-serif" }}>
+            <p className="text-sm text-slate-650" style={{ fontFamily: "'Poppins', sans-serif" }}>
               Documented financial return enabled through Saphran active commercial forecasting and scenario management.
             </p>
           </div>
@@ -6945,7 +6989,7 @@ function CaseStudiesPage({ setPage }: { setPage: (p: Page) => void }) {
                   Unified Active Decision Layer
                 </h3>
                 <p className="text-xs text-slate-600 leading-relaxed mb-6">
-                  Deployed Saphran's full platform — PartBase, QuoteBase, IntelligenceBase, and SaphranAI — unifying SAP ERP, Oracle, and live market forecast databases into one single source of truth without data migration.
+                  Deployed Saphran's full platform, PartBase, QuoteBase, IntelligenceBase, and SaphranAI, unifying SAP ERP, Oracle, and live market forecast databases into one single source of truth without data migration.
                 </p>
                 <ul className="space-y-2.5 text-xs text-slate-700 font-sans">
                   <li className="flex items-start gap-2">
@@ -7010,7 +7054,7 @@ function CaseStudiesPage({ setPage }: { setPage: (p: Page) => void }) {
             >
               Trusted by Executive Leaders
             </h2>
-            <p className="text-sm text-slate-650" style={{ fontFamily: "'Inter', sans-serif" }}>
+            <p className="text-sm text-slate-650" style={{ fontFamily: "'Poppins', sans-serif" }}>
               Here is what program directors and sales analysts say about partnering with Saphran.
             </p>
           </div>
@@ -7059,7 +7103,7 @@ function CaseStudiesPage({ setPage }: { setPage: (p: Page) => void }) {
           >
             Ready to Transform Your Commercial Forecasting?
           </h2>
-          <p className="text-[15px] leading-relaxed mb-8" style={{ color: "rgba(255,255,255,0.46)", fontFamily: "'Inter', sans-serif" }}>
+          <p className="text-[15px] leading-relaxed mb-8" style={{ color: "rgba(255,255,255,0.46)", fontFamily: "'Poppins', sans-serif" }}>
             Book a 30-minute discovery call to evaluate your specific use case. We'll show how Saphran connects to your existing ERP or PLM systems and calculate the projected ROI for your operation.
           </p>
           <div className="flex gap-4 justify-center flex-wrap">
@@ -7120,7 +7164,7 @@ export default function App() {
       className="min-h-screen"
       style={{
         background: "#fff",
-        fontFamily: "'Inter', sans-serif",
+        fontFamily: "'Poppins', sans-serif",
         color: GRAPHITE,
       }}
     >
