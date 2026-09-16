@@ -1413,7 +1413,7 @@ function HomePage({ setPage }: { setPage: (p: Page) => void }) {
   const homeTraps = [
     {
       problem: "The Volatility Trap",
-      problemDesc: "Costs that shift faster than your forecasts, steel, components, freight, leaving bids priced on last quarter's reality.",
+      problemDesc: "Costs that shift faster than your forecasts, such as steel, components, and freight, leave bids priced on last quarter's reality.",
       solution: "Forecast Cost Shifts in Real Time",
       solutionDesc: "Saphran connects live market feeds and ERP data so cost models update before a bid goes out, not after margin is already lost.",
     },
@@ -1427,7 +1427,7 @@ function HomePage({ setPage }: { setPage: (p: Page) => void }) {
       problem: "The Disconnected Systems Trap",
       problemDesc: "Cost data lives in separate spreadsheets, ERP exports, and email threads. One stale number cascades across an entire program.",
       solution: "One Source of Truth Across Every System",
-      solutionDesc: "Saphran integrates with any ERP, CRM, or PLM system, including SAP, Oracle, Salesforce, Aras, and custom internal databases, into a single live decision layer with no migration required.",
+      solutionDesc: "Saphran integrates with any ERP, CRM, or PLM system, including SAP, Oracle, Salesforce, Aras, and custom internal databases. This creates a single live decision layer with no migration required.",
     },
     {
       problem: "The Visibility Gap",
@@ -2869,8 +2869,8 @@ function ContactPage({ setPage }: { setPage: (p: Page) => void }) {
                   >
                     Works with your existing stack.
                   </span>{" "}
-                  SAP, Oracle ERP, Salesforce CRM, Aras PLM, or any legacy ERP, CRM, or PLM, Saphran connects
-                  without replacing any of them.
+                  Saphran connects to SAP, Oracle ERP, Salesforce CRM, Aras PLM, and any legacy ERP, CRM, or PLM
+                  system without replacing any of them.
                 </p>
               </div>
             </div>
@@ -3186,7 +3186,8 @@ function StartupPage({ setPage }: { setPage: (p: Page) => void }) {
                 Built for high-growth ETO manufacturers ready to manage margin from day one.
               </h1>
               <p className="text-[15px] leading-relaxed mb-8 max-w-xl" style={{ color: SLATE, fontFamily: "'Poppins', sans-serif" }}>
-                Purpose-built for Series A+ manufacturers between $5M and $40M in revenue, the moment when spreadsheet-era quoting stops scaling and the first bad contract can slip through undetected.
+                Purpose-built for Series A+ manufacturers between $5M and $40M in revenue: the stage where
+                spreadsheet-era quoting stops scaling and the first bad contract can slip through undetected.
               </p>
               <div className="flex items-center gap-3 flex-wrap">
                 <OutlineBtn onClick={() => setPage("capabilities")}>
@@ -6989,7 +6990,9 @@ function CaseStudiesPage({ setPage }: { setPage: (p: Page) => void }) {
                   Unified Active Decision Layer
                 </h3>
                 <p className="text-xs text-slate-600 leading-relaxed mb-6">
-                  Deployed Saphran's full platform, PartBase, QuoteBase, IntelligenceBase, and SaphranAI, unifying SAP ERP, Oracle, and live market forecast databases into one single source of truth without data migration.
+                  Deployed Saphran's full platform (PartBase, QuoteBase, IntelligenceBase, and SaphranAI), unifying
+                  SAP ERP, Oracle, and live market forecast databases into one single source of truth without data
+                  migration.
                 </p>
                 <ul className="space-y-2.5 text-xs text-slate-700 font-sans">
                   <li className="flex items-start gap-2">
