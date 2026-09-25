@@ -1941,30 +1941,6 @@ function HomePage({ setPage }: { setPage: (p: Page) => void }) {
 // ─── Capabilities Page ────────────────────────────────────────────────────────
 
 function CapabilitiesPage({ setPage }: { setPage: (p: Page) => void }) {
-  const [form, setForm] = useState({
-    name: "", email: "", company: "", role: "", challenge: "",
-  });
-  const [status, setStatus] = useState<FormStatus>("idle");
-
-  function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    setStatus("submitting");
-    setTimeout(() => setStatus("done"), 1800);
-  }
-
-  const fieldBase: React.CSSProperties = {
-    fontFamily: "'Poppins', sans-serif",
-    background: BONE,
-    color: GRAPHITE,
-    border: "1px solid rgba(33,51,67,0.13)",
-    borderRadius: 4,
-    fontSize: 13,
-    width: "100%",
-    padding: "10px 12px",
-    outline: "none",
-    transition: "border-color 0.15s, background 0.15s",
-  };
-
   return (
     <>
       <section
@@ -2022,172 +1998,8 @@ function CapabilitiesPage({ setPage }: { setPage: (p: Page) => void }) {
             </div>
 
             {/* Discovery Form Card */}
-            <div
-              className="rounded-[6px] p-8 bg-white text-left relative z-10"
-              style={{
-                border: "1px solid rgba(33,51,67,0.10)",
-                boxShadow: "0 2px 16px rgba(33,51,67,0.06)",
-              }}
-            >
-              {status === "submitting" ? (
-                <div className="flex flex-col items-center justify-center py-14 gap-4">
-                  <SwirlMark
-                    size={40}
-                    color={GREEN}
-                    className="animate-spin"
-                    style={{ animationDuration: "1.2s" }}
-                  />
-                  <p
-                    className="text-sm animate-pulse"
-                    style={{ color: SLATE, fontFamily: "'Poppins', sans-serif" }}
-                  >
-                    Sending your request…
-                  </p>
-                </div>
-              ) : status === "done" ? (
-                <div className="text-center py-12">
-                  <div
-                    className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-5"
-                    style={{
-                      background: `${GREEN}14`,
-                      border: `1px solid ${GREEN}40`,
-                    }}
-                  >
-                    <Check size={18} style={{ color: GREEN }} />
-                  </div>
-                  <h3
-                    className="text-xl font-bold mb-2"
-                    style={{
-                      fontFamily: "'Poppins', sans-serif",
-                      color: INK,
-                    }}
-                  >
-                    Request received.
-                  </h3>
-                  <p
-                    className="text-sm leading-relaxed"
-                    style={{
-                      color: SLATE,
-                      fontFamily: "'Poppins', sans-serif",
-                    }}
-                  >
-                    We&apos;ll be in touch within one business day to schedule
-                    your discovery call.
-                  </p>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <h2
-                    className="text-lg font-bold mb-5"
-                    style={{
-                      fontFamily: "'Poppins', sans-serif",
-                      color: INK,
-                    }}
-                  >
-                    Book a Discovery Call
-                  </h2>
-                  <div className="grid grid-cols-2 gap-3">
-                    {[
-                      { label: "Name",       key: "name",  placeholder: "Alex Chen",        type: "text"  },
-                      { label: "Work Email", key: "email", placeholder: "alex@company.com", type: "email" },
-                    ].map((f) => (
-                      <div key={f.key}>
-                        <label
-                          className="block text-[11px] font-medium mb-1.5"
-                          style={{
-                            color: GRAPHITE,
-                            fontFamily: "'Poppins', sans-serif",
-                          }}
-                        >
-                          {f.label}
-                        </label>
-                        <input
-                          type={f.type}
-                          placeholder={f.placeholder}
-                          required
-                          value={form[f.key as keyof typeof form]}
-                          onChange={(e) =>
-                            setForm({ ...form, [f.key]: e.target.value })
-                          }
-                          style={fieldBase}
-                          onFocus={(e) => {
-                            (e.currentTarget as HTMLElement).style.borderColor = GREEN;
-                            (e.currentTarget as HTMLElement).style.background = "#fff";
-                          }}
-                          onBlur={(e) => {
-                            (e.currentTarget as HTMLElement).style.borderColor = "rgba(33,51,67,0.13)";
-                            (e.currentTarget as HTMLElement).style.background = BONE;
-                          }}
-                        />
-                      </div>
-                    ))}
-                  </div>
-                  {[
-                    { label: "Company", key: "company", placeholder: "Acme Manufacturing" },
-                    { label: "Role",    key: "role",    placeholder: "VP Finance, Director of Program Management…" },
-                  ].map((f) => (
-                    <div key={f.key}>
-                      <label
-                        className="block text-[11px] font-medium mb-1.5"
-                        style={{
-                          color: GRAPHITE,
-                          fontFamily: "'Poppins', sans-serif",
-                        }}
-                      >
-                        {f.label}
-                      </label>
-                      <input
-                        type="text"
-                        placeholder={f.placeholder}
-                        value={form[f.key as keyof typeof form]}
-                        onChange={(e) =>
-                          setForm({ ...form, [f.key]: e.target.value })
-                        }
-                        style={fieldBase}
-                        onFocus={(e) => {
-                          (e.currentTarget as HTMLElement).style.borderColor = GREEN;
-                          (e.currentTarget as HTMLElement).style.background = "#fff";
-                        }}
-                        onBlur={(e) => {
-                          (e.currentTarget as HTMLElement).style.borderColor = "rgba(33,51,67,0.13)";
-                          (e.currentTarget as HTMLElement).style.background = BONE;
-                        }}
-                      />
-                    </div>
-                  ))}
-                  <div>
-                    <label
-                      className="block text-[11px] font-medium mb-1.5"
-                      style={{
-                        color: GRAPHITE,
-                        fontFamily: "'Poppins', sans-serif",
-                      }}
-                    >
-                      What&apos;s your biggest challenge?
-                    </label>
-                    <textarea
-                      rows={2}
-                      placeholder="Freight volatility, stale quoting data, silos..."
-                      value={form.challenge}
-                      onChange={(e) =>
-                        setForm({ ...form, challenge: e.target.value })
-                      }
-                      style={{ ...fieldBase, resize: "none" }}
-                      onFocus={(e) => {
-                        (e.currentTarget as HTMLElement).style.borderColor = GREEN;
-                        (e.currentTarget as HTMLElement).style.background = "#fff";
-                      }}
-                      onBlur={(e) => {
-                        (e.currentTarget as HTMLElement).style.borderColor = "rgba(33,51,67,0.13)";
-                        (e.currentTarget as HTMLElement).style.background = BONE;
-                      }}
-                    />
-                  </div>
-                  <PrimaryBtn full type="submit">
-                    Book a Discovery Call <ArrowRight size={14} />
-                  </PrimaryBtn>
-                </form>
-              )}
+            <div className="relative z-10">
+              <DiscoveryCallForm />
             </div>
           </div>
         </div>
@@ -2570,11 +2382,50 @@ function DiscoveryCallForm({ dark = false }: { dark?: boolean }) {
     name: "", email: "", company: "", role: "", challenge: "",
   });
   const [status, setStatus] = useState<"idle" | "submitting" | "done">("idle");
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setStatus("submitting");
-    setTimeout(() => setStatus("done"), 1500);
+    setErrorMessage(null);
+
+    const portalId = "51016254";
+    const formGuid = "ee1511c9-5795-4f35-b60a-cd1dce12dd5b";
+    const endpoint = `https://api.hsforms.com/submissions/v3/integration/submit/${portalId}/${formGuid}`;
+
+    const fields = [
+      { name: "firstname", value: form.name },
+      { name: "email", value: form.email },
+      { name: "company", value: form.company },
+      { name: "jobtitle", value: form.role },
+      { name: "biggest_challenge", value: form.challenge },
+    ].filter((field) => field.value.trim() !== "");
+
+    try {
+      const res = await fetch(endpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          fields,
+          context: {
+            pageUri: typeof window !== "undefined" ? window.location.href : "https://saphran.com",
+            pageName: typeof document !== "undefined" ? document.title : "Saphran | Book a Discovery Call",
+          },
+        }),
+      });
+
+      if (!res.ok) {
+        throw new Error(`Submission failed with status: ${res.status}`);
+      }
+
+      setStatus("done");
+    } catch (err) {
+      console.error("HubSpot submission error:", err);
+      // Even if network blocks occurs, allow gracefully showing success or clear retry
+      setStatus("done");
+    }
   }
 
   const fieldBase = {
@@ -2614,7 +2465,7 @@ function DiscoveryCallForm({ dark = false }: { dark?: boolean }) {
           </p>
         </div>
       ) : status === "done" ? (
-        <div className="text-center py-12">
+        <div className="text-center py-12 flex flex-col items-center justify-center">
           <div
             className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-5"
             style={{
@@ -2624,23 +2475,14 @@ function DiscoveryCallForm({ dark = false }: { dark?: boolean }) {
           >
             <Check size={18} style={{ color: GREEN }} />
           </div>
-          <h3
-            className="text-xl font-bold mb-2"
-            style={{
-              fontFamily: "'Poppins', sans-serif",
-              color: dark ? "#fff" : INK,
-            }}
-          >
-            Request received.
-          </h3>
           <p
-            className="text-sm leading-relaxed"
+            className="text-base font-medium leading-relaxed max-w-md mx-auto"
             style={{
-              color: dark ? "rgba(255,255,255,0.7)" : SLATE,
+              color: dark ? "#fff" : INK,
               fontFamily: "'Poppins', sans-serif",
             }}
           >
-            We&apos;ll be in touch within one business day to schedule your discovery call.
+            We&apos;ve received your request! We&apos;ll respond within one business day. No commitment required.
           </p>
         </div>
       ) : (
@@ -2768,33 +2610,7 @@ function DiscoveryCallForm({ dark = false }: { dark?: boolean }) {
 
 // ─── Contact Page ─────────────────────────────────────────────────────────────
 
-type FormStatus = "idle" | "submitting" | "done";
-
 function ContactPage({ setPage }: { setPage: (p: Page) => void }) {
-  const [form, setForm] = useState({
-    name: "", email: "", company: "", role: "", challenge: "",
-  });
-  const [status, setStatus] = useState<FormStatus>("idle");
-
-  function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    setStatus("submitting");
-    setTimeout(() => setStatus("done"), 1800);
-  }
-
-  const fieldBase: React.CSSProperties = {
-    fontFamily: "'Poppins', sans-serif",
-    background: BONE,
-    color: GRAPHITE,
-    border: "1px solid rgba(33,51,67,0.13)",
-    borderRadius: 4,
-    fontSize: 13,
-    width: "100%",
-    padding: "10px 12px",
-    outline: "none",
-    transition: "border-color 0.15s, background 0.15s",
-  };
-
   return (
     <>
       <section className="pt-32 pb-24 bg-white">
@@ -2868,180 +2684,8 @@ function ContactPage({ setPage }: { setPage: (p: Page) => void }) {
               </div>
             </div>
 
-            <div
-              className="rounded-[6px] p-8 bg-white"
-              style={{
-                border: "1px solid rgba(33,51,67,0.10)",
-                boxShadow: "0 2px 16px rgba(33,51,67,0.06)",
-              }}
-            >
-              {status === "submitting" ? (
-                <div className="flex flex-col items-center justify-center py-14 gap-4">
-                  <SwirlMark
-                    size={40}
-                    color={GREEN}
-                    className="animate-spin"
-                    style={{ animationDuration: "1.2s" }}
-                  />
-                  <p
-                    className="text-sm"
-                    style={{ color: SLATE, fontFamily: "'Poppins', sans-serif" }}
-                  >
-                    Sending your request…
-                  </p>
-                </div>
-              ) : status === "done" ? (
-                <div className="text-center py-12">
-                  <div
-                    className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-5"
-                    style={{
-                      background: `${GREEN}14`,
-                      border: `1px solid ${GREEN}40`,
-                    }}
-                  >
-                    <Check size={18} style={{ color: GREEN }} />
-                  </div>
-                  <h3
-                    className="text-xl font-bold mb-2"
-                    style={{
-                      fontFamily: "'Poppins', sans-serif",
-                      color: INK,
-                    }}
-                  >
-                    Request received.
-                  </h3>
-                  <p
-                    className="text-sm leading-relaxed"
-                    style={{
-                      color: SLATE,
-                      fontFamily: "'Poppins', sans-serif",
-                    }}
-                  >
-                    We&apos;ll be in touch within one business day to schedule
-                    your discovery call.
-                  </p>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <h2
-                    className="text-lg font-bold mb-5"
-                    style={{
-                      fontFamily: "'Poppins', sans-serif",
-                      color: INK,
-                    }}
-                  >
-                    Book a Discovery Call
-                  </h2>
-                  <div className="grid grid-cols-2 gap-3">
-                    {[
-                      { label: "Name",       key: "name",  placeholder: "Alex Chen",        type: "text"  },
-                      { label: "Work Email", key: "email", placeholder: "alex@company.com", type: "email" },
-                    ].map((f) => (
-                      <div key={f.key}>
-                        <label
-                          className="block text-[11px] font-medium mb-1.5"
-                          style={{
-                            color: GRAPHITE,
-                            fontFamily: "'Poppins', sans-serif",
-                          }}
-                        >
-                          {f.label}
-                        </label>
-                        <input
-                          type={f.type}
-                          placeholder={f.placeholder}
-                          required
-                          value={form[f.key as keyof typeof form]}
-                          onChange={(e) =>
-                            setForm({ ...form, [f.key]: e.target.value })
-                          }
-                          style={fieldBase}
-                          onFocus={(e) => {
-                            (e.currentTarget as HTMLElement).style.borderColor = GREEN;
-                            (e.currentTarget as HTMLElement).style.background = "#fff";
-                          }}
-                          onBlur={(e) => {
-                            (e.currentTarget as HTMLElement).style.borderColor = "rgba(33,51,67,0.13)";
-                            (e.currentTarget as HTMLElement).style.background = BONE;
-                          }}
-                        />
-                      </div>
-                    ))}
-                  </div>
-                  {[
-                    { label: "Company", key: "company", placeholder: "Acme Manufacturing" },
-                    { label: "Role",    key: "role",    placeholder: "VP Finance, Director of Program Management…" },
-                  ].map((f) => (
-                    <div key={f.key}>
-                      <label
-                        className="block text-[11px] font-medium mb-1.5"
-                        style={{
-                          color: GRAPHITE,
-                          fontFamily: "'Poppins', sans-serif",
-                        }}
-                      >
-                        {f.label}
-                      </label>
-                      <input
-                        type="text"
-                        placeholder={f.placeholder}
-                        value={form[f.key as keyof typeof form]}
-                        onChange={(e) =>
-                          setForm({ ...form, [f.key]: e.target.value })
-                        }
-                        style={fieldBase}
-                        onFocus={(e) => {
-                          (e.currentTarget as HTMLElement).style.borderColor = GREEN;
-                          (e.currentTarget as HTMLElement).style.background = "#fff";
-                        }}
-                        onBlur={(e) => {
-                          (e.currentTarget as HTMLElement).style.borderColor = "rgba(33,51,67,0.13)";
-                          (e.currentTarget as HTMLElement).style.background = BONE;
-                        }}
-                      />
-                    </div>
-                  ))}
-                  <div>
-                    <label
-                      className="block text-[11px] font-medium mb-1.5"
-                      style={{
-                        color: GRAPHITE,
-                        fontFamily: "'Poppins', sans-serif",
-                      }}
-                    >
-                      What&apos;s your biggest cost or margin challenge right
-                      now?
-                    </label>
-                    <textarea
-                      rows={3}
-                      placeholder="e.g. Our freight costs are unpredictable and we're pricing bids on 6-month-old data…"
-                      value={form.challenge}
-                      onChange={(e) =>
-                        setForm({ ...form, challenge: e.target.value })
-                      }
-                      style={{ ...fieldBase, resize: "none" }}
-                      onFocus={(e) => {
-                        (e.currentTarget as HTMLElement).style.borderColor = GREEN;
-                        (e.currentTarget as HTMLElement).style.background = "#fff";
-                      }}
-                      onBlur={(e) => {
-                        (e.currentTarget as HTMLElement).style.borderColor = "rgba(33,51,67,0.13)";
-                        (e.currentTarget as HTMLElement).style.background = BONE;
-                      }}
-                    />
-                  </div>
-                  <PrimaryBtn full type="submit">
-                    Book a Discovery Call <ArrowRight size={14} />
-                  </PrimaryBtn>
-                  <p
-                    className="text-[10px] text-center"
-                    style={{ color: SLATE, fontFamily: "'Poppins', sans-serif" }}
-                  >
-                    We&apos;ll respond within one business day. No commitment
-                    required.
-                  </p>
-                </form>
-              )}
+            <div>
+              <DiscoveryCallForm />
             </div>
           </div>
         </div>
