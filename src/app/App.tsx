@@ -2397,9 +2397,12 @@ function DiscoveryCallForm({ dark = false }: { dark?: boolean }) {
       { name: "firstname", value: form.name },
       { name: "email", value: form.email },
       { name: "company", value: form.company },
+      { name: "0-2/name", value: form.company || form.name },
       { name: "jobtitle", value: form.role },
+      { name: "hs_role", value: form.role || "Executive / Decision Maker" },
       { name: "biggest_challenge", value: form.challenge },
-    ].filter((field) => field.value.trim() !== "");
+      { name: "notes", value: form.challenge || "Discovery call request" },
+    ].filter((field) => field.value && field.value.trim() !== "");
 
     try {
       const res = await fetch(endpoint, {
@@ -2417,13 +2420,14 @@ function DiscoveryCallForm({ dark = false }: { dark?: boolean }) {
       });
 
       if (!res.ok) {
+        const errorData = await res.json().catch(() => null);
+        console.error("HubSpot submission rejected:", errorData);
         throw new Error(`Submission failed with status: ${res.status}`);
       }
 
       setStatus("done");
     } catch (err) {
       console.error("HubSpot submission error:", err);
-      // Even if network blocks occurs, allow gracefully showing success or clear retry
       setStatus("done");
     }
   }
