@@ -1345,7 +1345,7 @@ function CtaBand({ setPage }: { setPage: (p: Page) => void }) {
       <div className="max-w-[1280px] mx-auto px-6 lg:px-8 text-center relative">
         <Eyebrow dark>Get started</Eyebrow>
         <h2
-          className="font-extrabold text-white mb-5 leading-[1.06]"
+          className="font-semibold text-white mb-5 leading-[1.15]"
           style={{
             fontFamily: "'Poppins', sans-serif",
             fontSize: "clamp(36px, 4.5vw, 54px)",
@@ -1459,11 +1459,11 @@ function HomePage({ setPage }: { setPage: (p: Page) => void }) {
           <div className="grid md:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-16 items-center">
             <div>
               <h1
-                className="font-extrabold leading-[1.03] mb-6"
+                className="font-semibold leading-[1.1] mb-6"
                 style={{
                   fontFamily: "'Poppins', sans-serif",
                   fontSize: "clamp(34px, 4.5vw, 60px)",
-                  letterSpacing: "-0.024em",
+                  letterSpacing: "-0.015em",
                   color: INK,
                 }}
               >
@@ -1587,11 +1587,11 @@ function HomePage({ setPage }: { setPage: (p: Page) => void }) {
           <div className="mb-12 max-w-lg">
             <Eyebrow>The challenge</Eyebrow>
             <h2
-              className="font-bold leading-[1.12]"
+              className="font-medium leading-[1.22]"
               style={{
                 fontFamily: "'Poppins', sans-serif",
                 fontSize: "clamp(28px, 3.2vw, 40px)",
-                letterSpacing: "-0.02em",
+                letterSpacing: "-0.012em",
                 color: INK,
               }}
             >
@@ -1678,11 +1678,11 @@ function HomePage({ setPage }: { setPage: (p: Page) => void }) {
           <div className="mb-10 max-w-lg">
             <Eyebrow>Who Saphran is built for</Eyebrow>
             <h2
-              className="font-bold leading-[1.12]"
+              className="font-medium leading-[1.22]"
               style={{
                 fontFamily: "'Poppins', sans-serif",
                 fontSize: "clamp(24px, 2.8vw, 36px)",
-                letterSpacing: "-0.02em",
+                letterSpacing: "-0.012em",
                 color: INK,
               }}
             >
@@ -1763,7 +1763,7 @@ function HomePage({ setPage }: { setPage: (p: Page) => void }) {
               style={{
                 fontFamily: "'Poppins', sans-serif",
                 fontSize: "clamp(24px, 2.8vw, 36px)",
-                letterSpacing: "-0.02em",
+                letterSpacing: "-0.012em",
               }}
             >
               How teams Utilize Saphran across the program lifecycle.
@@ -1812,11 +1812,11 @@ function HomePage({ setPage }: { setPage: (p: Page) => void }) {
               <div>
                 <Eyebrow>{row.eyebrow}</Eyebrow>
                 <h2
-                  className="font-bold leading-[1.12] mb-5"
+                  className="font-medium leading-[1.22] mb-5"
                   style={{
                     fontFamily: "'Poppins', sans-serif",
                     fontSize: "clamp(22px, 2.6vw, 34px)",
-                    letterSpacing: "-0.02em",
+                    letterSpacing: "-0.012em",
                     color: INK,
                   }}
                 >
@@ -1844,7 +1844,7 @@ function HomePage({ setPage }: { setPage: (p: Page) => void }) {
           <Eyebrow>Impact</Eyebrow>
           <div className="grid md:grid-cols-[1fr_1.6fr] gap-12 lg:gap-20 items-start">
             <h2
-              className="font-extrabold leading-[1.04]"
+              className="font-semibold leading-[1.12]"
               style={{
                 fontFamily: "'Poppins', sans-serif",
                 fontSize: "clamp(34px, 4.2vw, 56px)",
@@ -1913,7 +1913,7 @@ function HomePage({ setPage }: { setPage: (p: Page) => void }) {
             <div>
               <Eyebrow>Common questions</Eyebrow>
               <h2
-                className="font-bold leading-[1.18]"
+                className="font-medium leading-[1.25]"
                 style={{
                   fontFamily: "'Poppins', sans-serif",
                   fontSize: "clamp(20px, 2.2vw, 28px)",
@@ -1968,11 +1968,11 @@ function CapabilitiesPage({ setPage }: { setPage: (p: Page) => void }) {
             <div>
               <Eyebrow>Platform</Eyebrow>
               <h1
-                className="font-extrabold leading-[1.03] mb-6"
+                className="font-semibold leading-[1.1] mb-6"
                 style={{
                   fontFamily: "'Poppins', sans-serif",
                   fontSize: "clamp(34px, 4.2vw, 56px)",
-                  letterSpacing: "-0.024em",
+                  letterSpacing: "-0.015em",
                   color: INK,
                 }}
               >
@@ -2057,11 +2057,11 @@ function CapabilitiesPage({ setPage }: { setPage: (p: Page) => void }) {
           <div className="mb-12">
             <Eyebrow>Saphran Cloud Platform</Eyebrow>
             <h2
-              className="font-bold leading-[1.12]"
+              className="font-medium leading-[1.22]"
               style={{
                 fontFamily: "'Poppins', sans-serif",
                 fontSize: "clamp(26px, 3vw, 38px)",
-                letterSpacing: "-0.02em",
+                letterSpacing: "-0.012em",
                 color: INK,
               }}
             >
@@ -2119,11 +2119,11 @@ function CapabilitiesPage({ setPage }: { setPage: (p: Page) => void }) {
             <div>
               <Eyebrow>Decision Outputs</Eyebrow>
               <h2
-                className="font-bold leading-[1.12]"
+                className="font-medium leading-[1.22]"
                 style={{
                   fontFamily: "'Poppins', sans-serif",
                   fontSize: "clamp(24px, 2.6vw, 34px)",
-                  letterSpacing: "-0.02em",
+                  letterSpacing: "-0.012em",
                   color: INK,
                 }}
               >
@@ -2180,7 +2180,7 @@ function CapabilitiesPage({ setPage }: { setPage: (p: Page) => void }) {
                 style={{
                   fontFamily: "'Poppins', sans-serif",
                   fontSize: "clamp(24px, 2.6vw, 34px)",
-                  letterSpacing: "-0.02em",
+                  letterSpacing: "-0.012em",
                 }}
               >
                 How SaphranAI reduces forecasting bias in ETO manufacturing.
@@ -2264,7 +2264,7 @@ function CapabilitiesPage({ setPage }: { setPage: (p: Page) => void }) {
           <div className="grid md:grid-cols-[1fr_1.6fr] gap-12 lg:gap-20 items-start">
             <div>
               <h2
-                className="font-extrabold leading-[1.04] mb-3"
+                className="font-semibold leading-[1.12] mb-3"
                 style={{
                   fontFamily: "'Poppins', sans-serif",
                   fontSize: "clamp(32px, 4vw, 52px)",
@@ -2350,7 +2350,7 @@ function CapabilitiesPage({ setPage }: { setPage: (p: Page) => void }) {
             <div>
               <Eyebrow>Platform FAQ</Eyebrow>
               <h2
-                className="font-bold leading-[1.18]"
+                className="font-medium leading-[1.25]"
                 style={{
                   fontFamily: "'Poppins', sans-serif",
                   fontSize: "clamp(20px, 2.2vw, 26px)",
@@ -2623,11 +2623,11 @@ function ContactPage({ setPage }: { setPage: (p: Page) => void }) {
             <div className="pt-4">
               <Eyebrow>Talk to Saphran</Eyebrow>
               <h1
-                className="font-bold leading-[1.1] mb-5"
+                className="font-semibold leading-[1.15] mb-5"
                 style={{
                   fontFamily: "'Poppins', sans-serif",
                   fontSize: "clamp(30px, 3.8vw, 50px)",
-                  letterSpacing: "-0.02em",
+                  letterSpacing: "-0.012em",
                   color: INK,
                 }}
               >
@@ -2701,7 +2701,7 @@ function ContactPage({ setPage }: { setPage: (p: Page) => void }) {
             <div>
               <Eyebrow>Before the call</Eyebrow>
               <h2
-                className="font-bold leading-[1.18]"
+                className="font-medium leading-[1.25]"
                 style={{
                   fontFamily: "'Poppins', sans-serif",
                   fontSize: "clamp(20px, 2.2vw, 26px)",
@@ -2822,8 +2822,8 @@ function StartupPage({ setPage }: { setPage: (p: Page) => void }) {
         <div className="max-w-[1280px] mx-auto px-6 lg:px-8 relative">
           <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-16 items-center">
             <div>
-              <h1 className="font-extrabold leading-[1.03] mb-6"
-                style={{ fontFamily: "'Poppins', sans-serif", fontSize: "clamp(38px, 5vw, 64px)", letterSpacing: "-0.024em", color: INK }}>
+              <h1 className="font-semibold leading-[1.1] mb-6"
+                style={{ fontFamily: "'Poppins', sans-serif", fontSize: "clamp(38px, 5vw, 64px)", letterSpacing: "-0.015em", color: INK }}>
                 Built for high-growth ETO manufacturers ready to manage margin from day one.
               </h1>
               <p className="text-[15px] leading-relaxed mb-8 max-w-xl" style={{ color: SLATE, fontFamily: "'Poppins', sans-serif" }}>
@@ -2849,8 +2849,8 @@ function StartupPage({ setPage }: { setPage: (p: Page) => void }) {
           <div className="grid md:grid-cols-[280px_1fr] gap-12 items-start">
             <div>
               <Eyebrow>Is this you?</Eyebrow>
-              <h2 className="font-bold leading-[1.12]"
-                style={{ fontFamily: "'Poppins', sans-serif", fontSize: "clamp(22px, 2.5vw, 30px)", letterSpacing: "-0.02em", color: INK }}>
+              <h2 className="font-medium leading-[1.22]"
+                style={{ fontFamily: "'Poppins', sans-serif", fontSize: "clamp(22px, 2.5vw, 30px)", letterSpacing: "-0.012em", color: INK }}>
                 You&apos;re winning customers and scaling fast. The infrastructure needs to keep up.
               </h2>
             </div>
@@ -2881,8 +2881,8 @@ function StartupPage({ setPage }: { setPage: (p: Page) => void }) {
         <div className="max-w-[1280px] mx-auto px-6 lg:px-8">
           <div className="mb-12">
             <Eyebrow>The cost of getting it wrong</Eyebrow>
-            <h2 className="font-bold leading-[1.12] max-w-xl"
-              style={{ fontFamily: "'Poppins', sans-serif", fontSize: "clamp(26px, 3vw, 38px)", letterSpacing: "-0.02em", color: INK }}>
+            <h2 className="font-medium leading-[1.22] max-w-xl"
+              style={{ fontFamily: "'Poppins', sans-serif", fontSize: "clamp(26px, 3vw, 38px)", letterSpacing: "-0.012em", color: INK }}>
               Programs get awarded at target margins, then silently erode.
             </h2>
             <p className="text-sm mt-3 max-w-lg" style={{ color: SLATE, fontFamily: "'Poppins', sans-serif" }}>
@@ -2946,8 +2946,8 @@ function StartupPage({ setPage }: { setPage: (p: Page) => void }) {
           <div className="grid md:grid-cols-[1fr_1.6fr] gap-12 lg:gap-16 items-start">
             <div>
               <Eyebrow>Financial impact</Eyebrow>
-              <h2 className="font-bold leading-[1.12] mb-4"
-                style={{ fontFamily: "'Poppins', sans-serif", fontSize: "clamp(24px, 2.8vw, 36px)", letterSpacing: "-0.02em", color: INK }}>
+              <h2 className="font-medium leading-[1.22] mb-4"
+                style={{ fontFamily: "'Poppins', sans-serif", fontSize: "clamp(24px, 2.8vw, 36px)", letterSpacing: "-0.012em", color: INK }}>
                 Where Saphran can deliver financial impact today.
               </h2>
               <p className="text-sm leading-relaxed mb-6" style={{ color: SLATE, fontFamily: "'Poppins', sans-serif" }}>
@@ -3029,8 +3029,8 @@ function StartupPage({ setPage }: { setPage: (p: Page) => void }) {
         <div className="max-w-[1280px] mx-auto px-6 lg:px-8">
           <div className="mb-12">
             <Eyebrow>What you get</Eyebrow>
-            <h2 className="font-bold leading-[1.12]"
-              style={{ fontFamily: "'Poppins', sans-serif", fontSize: "clamp(26px, 3vw, 38px)", letterSpacing: "-0.02em", color: INK }}>
+            <h2 className="font-medium leading-[1.22]"
+              style={{ fontFamily: "'Poppins', sans-serif", fontSize: "clamp(26px, 3vw, 38px)", letterSpacing: "-0.012em", color: INK }}>
               Everything you need to manage margin from day one.
             </h2>
           </div>
@@ -3052,8 +3052,8 @@ function StartupPage({ setPage }: { setPage: (p: Page) => void }) {
           <div className="grid md:grid-cols-[280px_1fr] gap-12 items-start">
             <div>
               <Eyebrow>Eligibility criteria</Eyebrow>
-              <h2 className="font-bold leading-[1.18]"
-                style={{ fontFamily: "'Poppins', sans-serif", fontSize: "clamp(22px, 2.5vw, 30px)", letterSpacing: "-0.02em", color: INK }}>
+              <h2 className="font-medium leading-[1.25]"
+                style={{ fontFamily: "'Poppins', sans-serif", fontSize: "clamp(22px, 2.5vw, 30px)", letterSpacing: "-0.012em", color: INK }}>
                 We keep this focused so it delivers real value to the right partners.
               </h2>
             </div>
@@ -3081,7 +3081,7 @@ function StartupPage({ setPage }: { setPage: (p: Page) => void }) {
         <div className="max-w-[1280px] mx-auto px-6 lg:px-8 relative">
           <div className="max-w-xl">
             <Eyebrow dark>Ready to apply?</Eyebrow>
-            <h2 className="font-extrabold text-white mb-5 leading-[1.06]"
+            <h2 className="font-semibold text-white mb-5 leading-[1.15]"
               style={{ fontFamily: "'Poppins', sans-serif", fontSize: "clamp(30px, 4vw, 48px)", letterSpacing: "-0.022em" }}>
               Let&apos;s get started.
             </h2>
@@ -3588,11 +3588,11 @@ function QuoteBasePage({ setPage }: { setPage: (p: Page) => void }) {
           <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-16 items-center">
             <div>
 
-              <h1 className="font-extrabold leading-[1.03] mb-6"
+              <h1 className="font-semibold leading-[1.1] mb-6"
                 style={{
                   fontFamily: "'Poppins', sans-serif",
                   fontSize: "clamp(42px, 5.5vw, 72px)",
-                  letterSpacing: "-0.024em",
+                  letterSpacing: "-0.015em",
                   color: INK,
                 }}>
                 QuoteBase™
@@ -3637,11 +3637,11 @@ function QuoteBasePage({ setPage }: { setPage: (p: Page) => void }) {
         <div className="max-w-[1280px] mx-auto px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <Eyebrow>The Bottom Line Impact</Eyebrow>
-            <h2 className="font-bold leading-[1.12] mb-4 text-slate-900"
+            <h2 className="font-medium leading-[1.22] mb-4 text-slate-900"
               style={{
                 fontFamily: "'Poppins', sans-serif",
                 fontSize: "clamp(28px, 3.2vw, 42px)",
-                letterSpacing: "-0.02em",
+                letterSpacing: "-0.012em",
                 color: INK
               }}>
               The Costing &amp; Quoting Dilemma
@@ -3768,11 +3768,11 @@ function QuoteBasePage({ setPage }: { setPage: (p: Page) => void }) {
         <div className="max-w-[1280px] mx-auto px-6 lg:px-8">
           <div className="max-w-3xl mb-16">
             <Eyebrow dark>Collaborative Workspace</Eyebrow>
-            <h2 className="font-bold leading-[1.12] mb-4"
+            <h2 className="font-medium leading-[1.22] mb-4"
               style={{
                 fontFamily: "'Poppins', sans-serif",
                 fontSize: "clamp(28px, 3.2vw, 42px)",
-                letterSpacing: "-0.02em"
+                letterSpacing: "-0.012em"
               }}>
               Typical Quote Workflow &amp; Roles
             </h2>
@@ -3852,11 +3852,11 @@ function QuoteBasePage({ setPage }: { setPage: (p: Page) => void }) {
             <div className="lg:col-span-7 space-y-12">
               <div>
                 <Eyebrow>Key Advantages</Eyebrow>
-                <h2 className="font-bold leading-[1.12] mb-6 text-slate-900"
+                <h2 className="font-medium leading-[1.22] mb-6 text-slate-900"
                   style={{
                     fontFamily: "'Poppins', sans-serif",
                     fontSize: "clamp(26px, 2.8vw, 36px)",
-                    letterSpacing: "-0.02em",
+                    letterSpacing: "-0.012em",
                     color: INK
                   }}>
                   Why the QuoteBase Solution?
@@ -3959,11 +3959,11 @@ function QuoteBasePage({ setPage }: { setPage: (p: Page) => void }) {
             
             <div>
               <Eyebrow>Decision Outputs</Eyebrow>
-              <h2 className="font-bold leading-[1.12] mb-6 text-slate-900"
+              <h2 className="font-medium leading-[1.22] mb-6 text-slate-900"
                 style={{
                   fontFamily: "'Poppins', sans-serif",
                   fontSize: "clamp(26px, 2.8vw, 36px)",
-                  letterSpacing: "-0.02em",
+                  letterSpacing: "-0.012em",
                   color: INK
                 }}>
                 Real-Time Bump Reports &amp; Margin Tracking
@@ -4053,7 +4053,7 @@ function QuoteBasePage({ setPage }: { setPage: (p: Page) => void }) {
         <div className="max-w-[1280px] mx-auto px-6 lg:px-8 relative">
           <div className="max-w-xl">
             <Eyebrow dark>Costing &amp; Quoting Control</Eyebrow>
-            <h2 className="font-extrabold text-white mb-5 leading-[1.06] "
+            <h2 className="font-semibold text-white mb-5 leading-[1.15] "
               style={{ fontFamily: "'Poppins', sans-serif", fontSize: "clamp(30px, 4vw, 48px)", letterSpacing: "-0.022em" }}>
               Bring Profit Certainty to Every Bid.
             </h2>
@@ -4144,11 +4144,11 @@ function PartBasePage({ setPage }: { setPage: (p: Page) => void }) {
           <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-16 items-center">
             <div>
 
-              <h1 className="font-extrabold leading-[1.03] mb-6"
+              <h1 className="font-semibold leading-[1.1] mb-6"
                 style={{
                   fontFamily: "'Poppins', sans-serif",
                   fontSize: "clamp(42px, 5.5vw, 72px)",
-                  letterSpacing: "-0.024em",
+                  letterSpacing: "-0.015em",
                   color: INK,
                 }}>
                 PartBase™
@@ -4193,11 +4193,11 @@ function PartBasePage({ setPage }: { setPage: (p: Page) => void }) {
         <div className="max-w-[1280px] mx-auto px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <Eyebrow>The Challenge &amp; Solution</Eyebrow>
-            <h2 className="font-bold leading-[1.12] mb-4 text-slate-900"
+            <h2 className="font-medium leading-[1.22] mb-4 text-slate-900"
               style={{
                 fontFamily: "'Poppins', sans-serif",
                 fontSize: "clamp(28px, 3.2vw, 42px)",
-                letterSpacing: "-0.02em",
+                letterSpacing: "-0.012em",
                 color: INK
               }}>
               The Forecasting Challenge
@@ -4305,11 +4305,11 @@ function PartBasePage({ setPage }: { setPage: (p: Page) => void }) {
             {/* Left text description */}
             <div>
               <Eyebrow>Productivity Comparison</Eyebrow>
-              <h2 className="font-bold leading-[1.12] mb-6 text-slate-900"
+              <h2 className="font-medium leading-[1.22] mb-6 text-slate-900"
                 style={{
                   fontFamily: "'Poppins', sans-serif",
                   fontSize: "clamp(26px, 2.8vw, 36px)",
-                  letterSpacing: "-0.02em",
+                  letterSpacing: "-0.012em",
                   color: INK
                 }}>
                 80 Hours vs. 10 Minutes
@@ -4381,11 +4381,11 @@ function PartBasePage({ setPage }: { setPage: (p: Page) => void }) {
             {/* Description of change flags */}
             <div>
               <Eyebrow dark>Data Accuracy &amp; Flags</Eyebrow>
-              <h2 className="font-bold leading-[1.12] mb-6"
+              <h2 className="font-medium leading-[1.22] mb-6"
                 style={{
                   fontFamily: "'Poppins', sans-serif",
                   fontSize: "clamp(26px, 2.8vw, 36px)",
-                  letterSpacing: "-0.02em"
+                  letterSpacing: "-0.012em"
                 }}>
                 Automated Flags on Monthly Market Forecast Changes
               </h2>
@@ -4506,11 +4506,11 @@ function PartBasePage({ setPage }: { setPage: (p: Page) => void }) {
             {/* Selector panel */}
             <div>
               <Eyebrow>What-If Analysis</Eyebrow>
-              <h2 className="font-bold leading-[1.12] mb-6 text-slate-900"
+              <h2 className="font-medium leading-[1.22] mb-6 text-slate-900"
                 style={{
                   fontFamily: "'Poppins', sans-serif",
                   fontSize: "clamp(26px, 2.8vw, 36px)",
-                  letterSpacing: "-0.02em",
+                  letterSpacing: "-0.012em",
                   color: INK
                 }}>
                 Simulate Alternative Market Scenarios
@@ -4596,11 +4596,11 @@ function PartBasePage({ setPage }: { setPage: (p: Page) => void }) {
         <div className="max-w-[1280px] mx-auto px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <Eyebrow>Core Platform Features</Eyebrow>
-            <h2 className="font-bold leading-[1.12] mb-4 text-slate-900"
+            <h2 className="font-medium leading-[1.22] mb-4 text-slate-900"
               style={{
                 fontFamily: "'Poppins', sans-serif",
                 fontSize: "clamp(28px, 3.2vw, 42px)",
-                letterSpacing: "-0.02em",
+                letterSpacing: "-0.012em",
                 color: INK
               }}>
               PartBase™ Key Features
@@ -4670,7 +4670,7 @@ function PartBasePage({ setPage }: { setPage: (p: Page) => void }) {
         <div className="max-w-[1280px] mx-auto px-6 lg:px-8 relative">
           <div className="max-w-xl">
             <Eyebrow dark>Forecast Optimization</Eyebrow>
-            <h2 className="font-extrabold text-white mb-5 leading-[1.06]"
+            <h2 className="font-semibold text-white mb-5 leading-[1.15]"
               style={{ fontFamily: "'Poppins', sans-serif", fontSize: "clamp(30px, 4vw, 48px)", letterSpacing: "-0.022em" }}>
               Make Decisions in Real Time.
             </h2>
@@ -4753,11 +4753,11 @@ function IntelligenceBasePage({ setPage }: { setPage: (p: Page) => void }) {
           <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-16 items-center">
             <div>
 
-              <h1 className="font-extrabold leading-[1.03] mb-6"
+              <h1 className="font-semibold leading-[1.1] mb-6"
                 style={{
                   fontFamily: "'Poppins', sans-serif",
                   fontSize: "clamp(42px, 5.5vw, 72px)",
-                  letterSpacing: "-0.024em",
+                  letterSpacing: "-0.015em",
                   color: INK,
                 }}>
                 IntelligenceBase™
@@ -4802,11 +4802,11 @@ function IntelligenceBasePage({ setPage }: { setPage: (p: Page) => void }) {
         <div className="max-w-[1280px] mx-auto px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <Eyebrow>Active Intelligence</Eyebrow>
-            <h2 className="font-bold leading-[1.12] mb-4 text-slate-900"
+            <h2 className="font-medium leading-[1.22] mb-4 text-slate-900"
               style={{
                 fontFamily: "'Poppins', sans-serif",
                 fontSize: "clamp(28px, 3.2vw, 42px)",
-                letterSpacing: "-0.02em",
+                letterSpacing: "-0.012em",
                 color: INK
               }}>
               The Reporting Challenge
@@ -4896,11 +4896,11 @@ function IntelligenceBasePage({ setPage }: { setPage: (p: Page) => void }) {
         <div className="max-w-[1280px] mx-auto px-6 lg:px-8">
           <div className="max-w-3xl mb-16">
             <Eyebrow dark>Calculated Data Cube</Eyebrow>
-            <h2 className="font-bold leading-[1.12] mb-4"
+            <h2 className="font-medium leading-[1.22] mb-4"
               style={{
                 fontFamily: "'Poppins', sans-serif",
                 fontSize: "clamp(28px, 3.2vw, 42px)",
-                letterSpacing: "-0.02em"
+                letterSpacing: "-0.012em"
               }}>
               Saphran IntelligenceBase Cube Explorer
             </h2>
@@ -5048,11 +5048,11 @@ function IntelligenceBasePage({ setPage }: { setPage: (p: Page) => void }) {
         <div className="max-w-[1280px] mx-auto px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <Eyebrow>Key Advantages</Eyebrow>
-            <h2 className="font-bold leading-[1.12] mb-4 text-slate-900"
+            <h2 className="font-medium leading-[1.22] mb-4 text-slate-900"
               style={{
                 fontFamily: "'Poppins', sans-serif",
                 fontSize: "clamp(28px, 3.2vw, 42px)",
-                letterSpacing: "-0.02em",
+                letterSpacing: "-0.012em",
                 color: INK
               }}>
               IntelligenceBase™ Benefits
@@ -5125,7 +5125,7 @@ function IntelligenceBasePage({ setPage }: { setPage: (p: Page) => void }) {
         <div className="max-w-[1280px] mx-auto px-6 lg:px-8 relative">
           <div className="max-w-xl">
             <Eyebrow dark>Active Analytics Framework</Eyebrow>
-            <h2 className="font-extrabold text-white mb-5 leading-[1.06]"
+            <h2 className="font-semibold text-white mb-5 leading-[1.15]"
               style={{ fontFamily: "'Poppins', sans-serif", fontSize: "clamp(30px, 4vw, 48px)", letterSpacing: "-0.022em" }}>
               Active Business Intelligence Awaits.
             </h2>
@@ -5189,11 +5189,11 @@ function SaphranAIPage({ setPage }: { setPage: (p: Page) => void }) {
             <div>
 
 
-              <h1 className="font-extrabold leading-[1.03] mb-6"
+              <h1 className="font-semibold leading-[1.1] mb-6"
                 style={{
                   fontFamily: "'Poppins', sans-serif",
                   fontSize: "clamp(42px, 5.5vw, 72px)",
-                  letterSpacing: "-0.024em",
+                  letterSpacing: "-0.015em",
                   color: "#fff",
                 }}>
                 SaphranAI™
@@ -5239,11 +5239,11 @@ function SaphranAIPage({ setPage }: { setPage: (p: Page) => void }) {
             {/* Case Study Details */}
             <div className="lg:col-span-5">
               <Eyebrow>Case Study ROI</Eyebrow>
-              <h2 className="font-bold leading-[1.12] mb-6 text-slate-900"
+              <h2 className="font-medium leading-[1.22] mb-6 text-slate-900"
                 style={{
                   fontFamily: "'Poppins', sans-serif",
                   fontSize: "clamp(28px, 3.2vw, 42px)",
-                  letterSpacing: "-0.02em",
+                  letterSpacing: "-0.012em",
                   color: INK
                 }}>
                 What 10% More Accurate Forecasting Means
@@ -5346,11 +5346,11 @@ function SaphranAIPage({ setPage }: { setPage: (p: Page) => void }) {
         <div className="max-w-[1280px] mx-auto px-6 lg:px-8">
           <div className="max-w-3xl mb-16">
             <Eyebrow dark>Confidence &amp; Transparency</Eyebrow>
-            <h2 className="font-bold leading-[1.12] mb-4"
+            <h2 className="font-medium leading-[1.22] mb-4"
               style={{
                 fontFamily: "'Poppins', sans-serif",
                 fontSize: "clamp(28px, 3.2vw, 42px)",
-                letterSpacing: "-0.02em"
+                letterSpacing: "-0.012em"
               }}>
               See the Prediction and the Confidence
             </h2>
@@ -5499,11 +5499,11 @@ function SaphranAIPage({ setPage }: { setPage: (p: Page) => void }) {
         <div className="max-w-[1280px] mx-auto px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <Eyebrow>Autonomous Intelligence</Eyebrow>
-            <h2 className="font-bold leading-[1.12] mb-4 text-slate-900"
+            <h2 className="font-medium leading-[1.22] mb-4 text-slate-900"
               style={{
                 fontFamily: "'Poppins', sans-serif",
                 fontSize: "clamp(28px, 3.2vw, 42px)",
-                letterSpacing: "-0.02em",
+                letterSpacing: "-0.012em",
                 color: INK
               }}>
               Introducing Saphran’s Agentic Solution
@@ -5591,11 +5591,11 @@ function SaphranAIPage({ setPage }: { setPage: (p: Page) => void }) {
         <div className="max-w-[1280px] mx-auto px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <Eyebrow>Implementation Readiness</Eyebrow>
-            <h2 className="font-bold leading-[1.12] mb-4 text-slate-900"
+            <h2 className="font-medium leading-[1.22] mb-4 text-slate-900"
               style={{
                 fontFamily: "'Poppins', sans-serif",
                 fontSize: "clamp(28px, 3.2vw, 42px)",
-                letterSpacing: "-0.02em",
+                letterSpacing: "-0.012em",
                 color: INK
               }}>
               3 Steps to AI Bias Elimination
@@ -5656,7 +5656,7 @@ function SaphranAIPage({ setPage }: { setPage: (p: Page) => void }) {
         <div className="max-w-[1280px] mx-auto px-6 lg:px-8 relative">
           <div className="max-w-xl">
             <Eyebrow dark>Forecast Certainty</Eyebrow>
-            <h2 className="font-extrabold text-white mb-5 leading-[1.06]"
+            <h2 className="font-semibold text-white mb-5 leading-[1.15]"
               style={{ fontFamily: "'Poppins', sans-serif", fontSize: "clamp(30px, 4vw, 48px)", letterSpacing: "-0.022em" }}>
               Unlock Predictive Forecasts.
             </h2>
@@ -5742,11 +5742,11 @@ function ScenarioProPage({ setPage }: { setPage: (p: Page) => void }) {
             <div>
 
               
-              <h1 className="font-extrabold leading-[1.03] mb-6"
+              <h1 className="font-semibold leading-[1.1] mb-6"
                 style={{
                   fontFamily: "'Poppins', sans-serif",
                   fontSize: "clamp(42px, 5.5vw, 72px)",
-                  letterSpacing: "-0.024em",
+                  letterSpacing: "-0.015em",
                   color: INK,
                 }}>
                 ScenarioPro™
@@ -5791,11 +5791,11 @@ function ScenarioProPage({ setPage }: { setPage: (p: Page) => void }) {
         <div className="max-w-[1280px] mx-auto px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <Eyebrow>The Forecasting Evolution</Eyebrow>
-            <h2 className="font-bold leading-[1.12] mb-4 text-slate-900"
+            <h2 className="font-medium leading-[1.22] mb-4 text-slate-900"
               style={{
                 fontFamily: "'Poppins', sans-serif",
                 fontSize: "clamp(28px, 3.2vw, 42px)",
-                letterSpacing: "-0.02em",
+                letterSpacing: "-0.012em",
                 color: INK
               }}>
               ScenarioPro Contingency Planning & Simulation
@@ -5848,11 +5848,11 @@ function ScenarioProPage({ setPage }: { setPage: (p: Page) => void }) {
         <div className="max-w-[1280px] mx-auto px-6 lg:px-8">
           <div className="max-w-3xl mb-16">
             <Eyebrow dark>Scenario Simulator</Eyebrow>
-            <h2 className="font-bold leading-[1.12] mb-4"
+            <h2 className="font-medium leading-[1.22] mb-4"
               style={{
                 fontFamily: "'Poppins', sans-serif",
                 fontSize: "clamp(28px, 3.2vw, 42px)",
-                letterSpacing: "-0.02em"
+                letterSpacing: "-0.012em"
               }}>
               Saphran ScenarioPro Sandbox
             </h2>
@@ -6001,11 +6001,11 @@ function ScenarioProPage({ setPage }: { setPage: (p: Page) => void }) {
         <div className="max-w-[1280px] mx-auto px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <Eyebrow>Versatility by Design</Eyebrow>
-            <h2 className="font-bold leading-[1.12] mb-4 text-slate-900"
+            <h2 className="font-medium leading-[1.22] mb-4 text-slate-900"
               style={{
                 fontFamily: "'Poppins', sans-serif",
                 fontSize: "clamp(28px, 3.2vw, 42px)",
-                letterSpacing: "-0.02em",
+                letterSpacing: "-0.012em",
                 color: INK
               }}>
               Scenario Pro Model Scope
@@ -6098,7 +6098,7 @@ function ScenarioProPage({ setPage }: { setPage: (p: Page) => void }) {
         <div className="max-w-[1280px] mx-auto px-6 lg:px-8 relative">
           <div className="max-w-xl">
             <Eyebrow dark>Contingency Strategy</Eyebrow>
-            <h2 className="font-extrabold text-white mb-5 leading-[1.06]"
+            <h2 className="font-semibold text-white mb-5 leading-[1.15]"
               style={{ fontFamily: "'Poppins', sans-serif", fontSize: "clamp(30px, 4vw, 48px)", letterSpacing: "-0.022em" }}>
               Be Wrong Many Times. Model Contingencies.
             </h2>
@@ -6345,7 +6345,7 @@ function AboutPage({ setPage }: { setPage: (p: Page) => void }) {
 
         <div className="max-w-3xl mb-16">
           <Eyebrow>OUR STORY</Eyebrow>
-          <h1 className="font-extrabold text-slate-900 mb-6 leading-[1.08]" style={{ fontFamily: "'Poppins', sans-serif", fontSize: "clamp(32px, 4vw, 56px)", letterSpacing: "-0.025em" }}>
+          <h1 className="font-semibold text-slate-900 mb-6 leading-[1.1]" style={{ fontFamily: "'Poppins', sans-serif", fontSize: "clamp(32px, 4vw, 56px)", letterSpacing: "-0.015em" }}>
             About Saphran
           </h1>
           <p className="text-lg leading-relaxed text-slate-650 font-sans" style={{ fontFamily: "'Poppins', sans-serif" }}>
@@ -6431,11 +6431,11 @@ function CaseStudiesPage({ setPage }: { setPage: (p: Page) => void }) {
           <div className="max-w-3xl">
             <Eyebrow>Customer Success &amp; Proven ROI</Eyebrow>
             <h1
-              className="font-extrabold leading-[1.03] mb-6"
+              className="font-semibold leading-[1.1] mb-6"
               style={{
                 fontFamily: "'Poppins', sans-serif",
                 fontSize: "clamp(40px, 5.2vw, 68px)",
-                letterSpacing: "-0.024em",
+                letterSpacing: "-0.015em",
                 color: INK,
               }}
             >
@@ -6470,11 +6470,11 @@ function CaseStudiesPage({ setPage }: { setPage: (p: Page) => void }) {
           <div className="text-center max-w-3xl mx-auto mb-16">
             <Eyebrow>Quantifiable Impact</Eyebrow>
             <h2
-              className="font-bold leading-[1.12] mb-4 text-slate-900"
+              className="font-medium leading-[1.22] mb-4 text-slate-900"
               style={{
                 fontFamily: "'Poppins', sans-serif",
                 fontSize: "clamp(28px, 3.2vw, 42px)",
-                letterSpacing: "-0.02em",
+                letterSpacing: "-0.012em",
                 color: INK,
               }}
             >
@@ -6568,7 +6568,7 @@ function CaseStudiesPage({ setPage }: { setPage: (p: Page) => void }) {
               <span>Featured Enterprise Case Study</span>
             </div>
             <h2
-              className="font-bold leading-[1.12] text-slate-900 max-w-3xl"
+              className="font-medium leading-[1.22] text-slate-900 max-w-3xl"
               style={{
                 fontFamily: "'Poppins', sans-serif",
                 fontSize: "clamp(30px, 3.8vw, 48px)",
@@ -6680,11 +6680,11 @@ function CaseStudiesPage({ setPage }: { setPage: (p: Page) => void }) {
           <div className="text-center max-w-2xl mx-auto mb-16">
             <Eyebrow>Voice of Customer</Eyebrow>
             <h2
-              className="font-bold leading-[1.12] mb-4 text-slate-900"
+              className="font-medium leading-[1.22] mb-4 text-slate-900"
               style={{
                 fontFamily: "'Poppins', sans-serif",
                 fontSize: "clamp(28px, 3.2vw, 42px)",
-                letterSpacing: "-0.02em",
+                letterSpacing: "-0.012em",
                 color: INK,
               }}
             >
@@ -6734,8 +6734,8 @@ function CaseStudiesPage({ setPage }: { setPage: (p: Page) => void }) {
         <div className="max-w-[1280px] mx-auto px-6 lg:px-8 text-center max-w-3xl">
           <Eyebrow dark>Get Started</Eyebrow>
           <h2
-            className="font-extrabold mb-5 leading-[1.06]"
-            style={{ fontFamily: "'Poppins', sans-serif", fontSize: "clamp(32px, 4.5vw, 56px)", letterSpacing: "-0.022em" }}
+            className="font-semibold mb-5 leading-[1.15]"
+            style={{ fontFamily: "'Poppins', sans-serif", fontSize: "clamp(32px, 4.5vw, 56px)", letterSpacing: "-0.015em" }}
           >
             Ready to Transform Your Commercial Forecasting?
           </h2>
