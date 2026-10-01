@@ -6781,7 +6781,13 @@ function CaseStudiesPage({ setPage }: { setPage: (p: Page) => void }) {
 // ─── App root ─────────────────────────────────────────────────────────────────
 
 export default function App() {
-  const [blogSlug, setBlogSlug] = useState<string>("navigating-cost-volatility-eto-manufacturers");
+  const [blogSlug, setBlogSlug] = useState<string>(() => {
+    const rawHash = window.location.hash.replace("#", "");
+    if (rawHash.startsWith("blog/")) {
+      return rawHash.replace("blog/", "");
+    }
+    return "why-your-eto-margin-is-always-wrong-by-sop";
+  });
 
   const [page, setPageInternal] = useState<Page>(() => {
     const rawHash = window.location.hash.replace("#", "");
