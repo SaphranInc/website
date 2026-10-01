@@ -1,0 +1,189 @@
+/* ==========================================================================
+   WordPress Gutenberg Content Renderer Styles
+   Tailored to Saphran's Design System:
+   #213343 (INK), #58A972 (GREEN), #F6F4EF (BONE), #5A5F63 (SLATE)
+   ========================================================================== */
+
+.wp-content-prose {
+  color: #1A1A1A;
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.8;
+  font-size: 1.0625rem;
+}
+
+/* Headings */
+.wp-content-prose h1,
+.wp-content-prose h2,
+.wp-content-prose h3,
+.wp-content-prose h4 {
+  color: #213343;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  margin-top: 2rem;
+  margin-bottom: 0.85rem;
+  line-height: 1.35;
+}
+
+.wp-content-prose h1 {
+  font-size: 2.125rem;
+}
+
+.wp-content-prose h2 {
+  font-size: 1.625rem;
+  border-bottom: 1px solid rgba(33, 51, 67, 0.08);
+  padding-bottom: 0.5rem;
+}
+
+.wp-content-prose h3 {
+  font-size: 1.35rem;
+}
+
+.wp-content-prose h4 {
+  font-size: 1.15rem;
+}
+
+/* Paragraphs & Lead text */
+.wp-content-prose p {
+  margin-bottom: 1.4rem;
+  color: #33393F;
+}
+
+.wp-content-prose p.lead,
+.wp-content-prose .has-large-font-size {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: #213343;
+  font-weight: 400;
+}
+
+/* Links */
+.wp-content-prose a {
+  color: #58A972;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: 500;
+  transition: color 0.15s ease;
+}
+
+.wp-content-prose a:hover {
+  color: #43875a;
+}
+
+/* Blockquotes */
+.wp-content-prose blockquote {
+  border-left: 4px solid #58A972;
+  background-color: #F6F4EF;
+  padding: 1.25rem 1.75rem;
+  margin: 1.75rem 0;
+  border-radius: 0 8px 8px 0;
+  font-style: italic;
+  color: #213343;
+  font-weight: 500;
+}
+
+.wp-content-prose blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+/* Lists */
+.wp-content-prose ul {
+  list-style-type: disc;
+  padding-left: 1.75rem;
+  margin-bottom: 1.4rem;
+}
+
+.wp-content-prose ol {
+  list-style-type: decimal;
+  padding-left: 1.75rem;
+  margin-bottom: 1.4rem;
+}
+
+.wp-content-prose li {
+  margin-bottom: 0.5rem;
+  color: #33393F;
+}
+
+.wp-content-prose li::marker {
+  color: #58A972;
+}
+
+/* Images & Figures */
+.wp-content-prose figure {
+  margin: 2rem 0;
+}
+
+.wp-content-prose img {
+  border-radius: 8px;
+  max-width: 100%;
+  height: auto;
+  box-shadow: 0 8px 24px rgba(33, 51, 67, 0.08);
+}
+
+.wp-content-prose figcaption {
+  font-size: 0.85rem;
+  color: #5A5F63;
+  text-align: center;
+  margin-top: 0.5rem;
+  font-style: italic;
+}
+
+/* Code & Preformatted */
+.wp-content-prose pre {
+  background-color: #213343;
+  color: #F6F4EF;
+  padding: 1.25rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.9rem;
+  margin: 1.5rem 0;
+}
+
+.wp-content-prose code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.9em;
+  background-color: #F6F4EF;
+  color: #213343;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  border: 1px solid rgba(33, 51, 67, 0.1);
+}
+
+.wp-content-prose pre code {
+  background: transparent;
+  color: inherit;
+  padding: 0;
+  border: none;
+}
+
+/* Tables */
+.wp-content-prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.75rem 0;
+  font-size: 0.95rem;
+}
+
+.wp-content-prose th,
+.wp-content-prose td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(33, 51, 67, 0.1);
+}
+
+.wp-content-prose th {
+  background-color: #F6F4EF;
+  color: #213343;
+  font-weight: 600;
+}
+
+.wp-content-prose tr:hover td {
+  background-color: rgba(246, 244, 239, 0.5);
+}
+
+/* Horizontal Rule */
+.wp-content-prose hr {
+  border: 0;
+  border-top: 1px solid rgba(33, 51, 67, 0.12);
+  margin: 2.5rem 0;
+}

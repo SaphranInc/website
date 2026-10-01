@@ -8,9 +8,10 @@ import teamSeanSrc from "../imports/team_sean.png";
 import teamKennethSrc from "../imports/team_kenneth.png";
 import teamAmiSrc from "../imports/team_ami.png";
 import teamMeganSrc from "../imports/team_megan.png";
+import { BlogList } from "./components/blog/BlogList";
+import { BlogPostTemplate } from "./components/blog/BlogPostTemplate";
 
-
-type Page = "home" | "capabilities" | "contact" | "startup" | "quotebase" | "partbase" | "intelligencebase" | "saphranai" | "scenariopro" | "privacypolicy" | "termsofuse" | "about" | "casestudies";
+type Page = "home" | "capabilities" | "contact" | "startup" | "quotebase" | "partbase" | "intelligencebase" | "saphranai" | "scenariopro" | "privacypolicy" | "termsofuse" | "about" | "casestudies" | "blog" | "blog-post";
 
 const INK = "#213343";
 const GREEN = "#58A972";
@@ -1101,6 +1102,17 @@ function Header({
             Case Studies
           </button>
           <button
+            onClick={() => setPage("blog")}
+            className="text-sm transition-colors cursor-pointer"
+            style={{
+              color: page === "blog" || page === "blog-post" ? INK : SLATE,
+              fontWeight: page === "blog" || page === "blog-post" ? 600 : 400,
+              fontFamily: "'Poppins', sans-serif",
+            }}
+          >
+            Blog
+          </button>
+          <button
             onClick={() => setPage("contact")}
             className="text-sm transition-colors cursor-pointer"
             style={{
@@ -1125,7 +1137,7 @@ function Header({
 function Footer({ setPage }: { setPage: (p: Page) => void }) {
   const cols = [
     { h: "Platform",  links: ["PartBase", "QuoteBase", "IntelligenceBase", "SaphranAI", "ScenarioPro"] },
-    { h: "Company",   links: ["About", "Case Studies"] },
+    { h: "Company",   links: ["About", "Case Studies", "Blog"] },
     { h: "Programs",  links: ["Startup Partner Program"] },
     { h: "Legal",     links: ["Privacy Policy", "Terms of Use"] },
   ];
@@ -1264,6 +1276,16 @@ function Footer({ setPage }: { setPage: (p: Page) => void }) {
                     ) : l === "Case Studies" ? (
                       <button
                         onClick={() => setPage("casestudies")}
+                        className="text-xs transition-colors text-left"
+                        style={{ color: "rgba(255,255,255,0.40)", fontFamily: "'Poppins', sans-serif" }}
+                        onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.72)"; }}
+                        onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.40)"; }}
+                      >
+                        {l}
+                      </button>
+                    ) : l === "Blog" ? (
+                      <button
+                        onClick={() => setPage("blog")}
                         className="text-xs transition-colors text-left"
                         style={{ color: "rgba(255,255,255,0.40)", fontFamily: "'Poppins', sans-serif" }}
                         onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.72)"; }}
@@ -6759,33 +6781,53 @@ function CaseStudiesPage({ setPage }: { setPage: (p: Page) => void }) {
 // ─── App root ─────────────────────────────────────────────────────────────────
 
 export default function App() {
+  const [blogSlug, setBlogSlug] = useState<string>("navigating-cost-volatility-eto-manufacturers");
+
   const [page, setPageInternal] = useState<Page>(() => {
-    const hash = window.location.hash.replace("#", "") as Page;
+    const rawHash = window.location.hash.replace("#", "");
+    if (rawHash.startsWith("blog/")) {
+      return "blog-post";
+    }
     const validPages: Page[] = [
       "home", "capabilities", "contact", "startup", 
       "quotebase", "partbase", 
       "intelligencebase", "saphranai", "scenariopro",
-      "privacypolicy", "termsofuse", "about", "casestudies"
+      "privacypolicy", "termsofuse", "about", "casestudies",
+      "blog", "blog-post"
     ];
-    return validPages.includes(hash) ? hash : "home";
+    return validPages.includes(rawHash as Page) ? (rawHash as Page) : "home";
   });
 
-  const setPage = (newPage: Page) => {
+  const setPage = (newPage: Page, slug?: string) => {
+    if (newPage === "blog-post" && slug) {
+      setBlogSlug(slug);
+      window.location.hash = `blog/${slug}`;
+    } else {
+      window.location.hash = newPage;
+    }
     setPageInternal(newPage);
-    window.location.hash = newPage;
   };
 
   useEffect(() => {
     const handleHashChange = () => {
-      const hash = window.location.hash.replace("#", "") as Page;
+      const rawHash = window.location.hash.replace("#", "");
+      if (rawHash.startsWith("blog/")) {
+        const slug = rawHash.replace("blog/", "");
+        if (slug) {
+          setBlogSlug(slug);
+          setPageInternal("blog-post");
+          return;
+        }
+      }
       const validPages: Page[] = [
         "home", "capabilities", "contact", "startup", 
         "quotebase", "partbase", 
         "intelligencebase", "saphranai", "scenariopro",
-        "privacypolicy", "termsofuse", "about", "casestudies"
+        "privacypolicy", "termsofuse", "about", "casestudies",
+        "blog", "blog-post"
       ];
-      if (validPages.includes(hash)) {
-        setPageInternal(hash);
+      if (validPages.includes(rawHash as Page)) {
+        setPageInternal(rawHash as Page);
       } else {
         setPageInternal("home");
       }
@@ -6818,6 +6860,17 @@ export default function App() {
       {page === "termsofuse"    && <TermsOfUsePage setPage={setPage} />}
       {page === "about"         && <AboutPage setPage={setPage} />}
       {page === "casestudies"   && <CaseStudiesPage setPage={setPage} />}
+      {page === "blog"          && (
+        <BlogList
+          onSelectPost={(slug) => setPage("blog-post", slug)}
+        />
+      )}
+      {page === "blog-post"     && (
+        <BlogPostTemplate
+          slug={blogSlug}
+          onBack={() => setPage("blog")}
+        />
+      )}
       {page !== "contact" && page !== "startup" && <Footer setPage={setPage} />}
     </div>
   );
