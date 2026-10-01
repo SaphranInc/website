@@ -145,7 +145,7 @@ export const BlogPostTemplate: React.FC<BlogPostTemplateProps> = ({
         )}
 
         <h1
-          className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#213343] tracking-tight leading-[1.2] mb-6"
+          className="text-3xl sm:text-4xl lg:text-[42px] font-semibold text-[#213343] tracking-tight leading-[1.22] mb-6"
           dangerouslySetInnerHTML={{ __html: post.title }}
         />
 

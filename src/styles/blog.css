@@ -25,21 +25,25 @@
 }
 
 .wp-content-prose h1 {
-  font-size: 2.125rem;
+  font-size: 2rem;
+  font-weight: 600;
 }
 
 .wp-content-prose h2 {
-  font-size: 1.625rem;
+  font-size: 1.5rem;
+  font-weight: 600;
   border-bottom: 1px solid rgba(33, 51, 67, 0.08);
   padding-bottom: 0.5rem;
 }
 
 .wp-content-prose h3 {
-  font-size: 1.35rem;
+  font-size: 1.25rem;
+  font-weight: 600;
 }
 
 .wp-content-prose h4 {
-  font-size: 1.15rem;
+  font-size: 1.1rem;
+  font-weight: 600;
 }
 
 /* Paragraphs & Lead text */
