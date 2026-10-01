@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Search, RefreshCw } from "lucide-react";
 import { WPPost } from "../../../lib/wp-types";
-import { getPosts, isWPConfigured, MOCK_BLOG_POSTS } from "../../../lib/wp";
+import { getPosts, getPostBySlug, isWPConfigured, MOCK_BLOG_POSTS } from "../../../lib/wp";
+
+// ─── Pinned Featured Post ────────────────────────────────────────────────────
+// This slug is always loaded as the hero feature regardless of tags or date.
+const PINNED_FEATURED_SLUG = "saphran-appoints-sean-lefever-as-ceo";
 import { BlogCard } from "./BlogCard";
 import { FeaturedHeroPost } from "./FeaturedHeroPost";
 
@@ -33,9 +37,9 @@ export const BlogList: React.FC<BlogListProps> = ({ onSelectPost }) => {
     }
 
     try {
-      // 1. Fetch featured post (tagged 'featured') and standard post list in parallel
-      const [featuredResult, generalResult] = await Promise.all([
-        getPosts({ first: 1, tag: "featured" }).catch(() => null),
+      // 1. Always load the pinned featured post by slug, alongside the general grid
+      const [pinnedPost, generalResult] = await Promise.all([
+        getPostBySlug(PINNED_FEATURED_SLUG).catch(() => null),
         getPosts({
           first: 16,
           search: searchQuery || undefined,
@@ -45,23 +49,11 @@ export const BlogList: React.FC<BlogListProps> = ({ onSelectPost }) => {
 
       const allFetchedNodes = generalResult?.nodes || [];
 
-      // Determine featured post
-      let designatedFeatured: WPPost | null = null;
-      if (featuredResult?.nodes && featuredResult.nodes.length > 0) {
-        designatedFeatured = featuredResult.nodes[0];
-      } else if (allFetchedNodes.length > 0 && selectedCategory === "All" && !searchQuery) {
-        // If no post has tag 'featured', default to most recent post as hero
-        designatedFeatured = allFetchedNodes[0];
-      }
+      setFeaturedPost(pinnedPost ?? (allFetchedNodes[0] || null));
 
-      setFeaturedPost(designatedFeatured);
-
-      // Exclude featured post from the grid below so it never appears twice
-      const remainingPosts = designatedFeatured
-        ? allFetchedNodes.filter((p) => p.slug !== designatedFeatured?.slug)
-        : allFetchedNodes;
-
-      setGridPosts(remainingPosts);
+      // Exclude the pinned featured post from the grid so it never appears twice
+      const pinnedSlug = pinnedPost?.slug ?? PINNED_FEATURED_SLUG;
+      setGridPosts(allFetchedNodes.filter((p) => p.slug !== pinnedSlug));
     } catch (err: any) {
       console.warn("WPGraphQL fetch failed, using fallback data:", err);
       const featured = MOCK_BLOG_POSTS[0];
