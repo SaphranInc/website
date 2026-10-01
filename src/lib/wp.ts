@@ -53,12 +53,13 @@ export async function fetchWPGraphQL<T = any>(
 // ─── GraphQL Queries ─────────────────────────────────────────────────────────
 
 export const GET_POSTS_QUERY = `
-  query GetPosts($first: Int = 10, $after: String, $categoryName: String, $search: String) {
+  query GetPosts($first: Int = 10, $after: String, $categoryName: String, $tag: String, $search: String) {
     posts(
       first: $first
       after: $after
       where: {
         categoryName: $categoryName
+        tag: $tag
         search: $search
         orderby: { field: DATE, order: DESC }
         status: PUBLISH
@@ -158,12 +159,14 @@ export async function getPosts(options: {
   first?: number;
   after?: string | null;
   categoryName?: string;
+  tag?: string;
   search?: string;
 } = {}): Promise<WPPostsResponse["posts"]> {
   const data = await fetchWPGraphQL<WPPostsResponse>(GET_POSTS_QUERY, {
     first: options.first ?? 9,
     after: options.after || null,
     categoryName: options.categoryName || undefined,
+    tag: options.tag || undefined,
     search: options.search || undefined,
   });
 
