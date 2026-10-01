@@ -40,17 +40,6 @@ export const BlogCard: React.FC<BlogCardProps> = ({ post, onSelect }) => {
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
             loading="lazy"
           />
-          {primaryCategory && (
-            <span
-              className="absolute top-3 left-3 text-[11px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-[4px] shadow-sm backdrop-blur-md"
-              style={{
-                backgroundColor: "rgba(33, 51, 67, 0.88)",
-                color: "#ffffff",
-              }}
-            >
-              {primaryCategory}
-            </span>
-          )}
         </div>
       ) : (
         <div
@@ -60,11 +49,6 @@ export const BlogCard: React.FC<BlogCardProps> = ({ post, onSelect }) => {
           }}
         >
           <div className="text-center">
-            {primaryCategory && (
-              <span className="inline-block text-[11px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded bg-[#58A972]/20 text-[#58A972] border border-[#58A972]/30 mb-2">
-                {primaryCategory}
-              </span>
-            )}
             <p className="text-white/40 text-xs font-mono">Saphran Perspective</p>
           </div>
         </div>
