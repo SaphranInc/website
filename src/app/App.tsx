@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { ArrowRight, ArrowLeft, ChevronDown, ChevronUp, Check, BarChart2, Layers, Globe2, Cpu, Shield, TrendingUp, Clock, Database, DollarSign, Activity, FileText, AlertCircle, RefreshCw, Sparkles, HelpCircle, ArrowUpRight, TrendingDown, Target, Zap, Award } from "lucide-react";
+import { ArrowRight, ArrowLeft, ChevronDown, ChevronUp, Check, BarChart2, Layers, Globe2, Cpu, Shield, TrendingUp, Clock, Database, DollarSign, Activity, FileText, AlertCircle, RefreshCw, Sparkles, HelpCircle, ArrowUpRight, TrendingDown, Target, Zap, Award, Menu, X } from "lucide-react";
 import logoSrc from "../imports/image.png";
 import logoDarkSrc from "../imports/saphran_logo_dark.png";
 import watermarkLightSrc from "../imports/watermark_light.png";
@@ -985,6 +985,8 @@ function Header({
 }) {
   const [scrolled, setScrolled] = useState(false);
   const [capDropdownOpen, setCapDropdownOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mobileCapOpen, setMobileCapOpen] = useState(false);
   const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
@@ -997,7 +999,15 @@ function Header({
     window.scrollTo({ top: 0 });
     setScrolled(false);
     setCapDropdownOpen(false);
+    setMobileMenuOpen(false);
+    setMobileCapOpen(false);
   }, [page]);
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    document.body.style.overflow = mobileMenuOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [mobileMenuOpen]);
 
   const handleMouseEnter = () => {
     if (dropdownTimeoutRef.current) clearTimeout(dropdownTimeoutRef.current);
@@ -1019,116 +1029,146 @@ function Header({
     { name: "ScenarioPro™", tag: "What-If Simulations", page: "scenariopro" },
   ];
 
-  return (
-    <header
-      className="fixed top-0 left-0 right-0 z-50 transition-all duration-200"
-      style={
-        scrolled
-          ? {
-              background: "rgba(246,244,239,0.95)",
-              backdropFilter: "blur(12px)",
-              borderBottom: "1px solid rgba(33,51,67,0.09)",
-            }
-          : { background: "rgba(246,244,239,0.90)", backdropFilter: "blur(8px)" }
-      }
-    >
-      <div className="max-w-[1280px] mx-auto px-6 lg:px-8 flex items-center h-[62px] gap-8">
-        <button
-          onClick={() => setPage("home")}
-          className="flex items-center gap-2.5 mr-auto cursor-pointer"
-        >
-          <img src={logoSrc} alt="Saphran" style={{ height: 30, width: "auto" }} />
-        </button>
-        <nav className="hidden md:flex items-center gap-7">
-          {/* Capabilities Dropdown Trigger */}
-          <div
-            className="relative py-2"
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-          >
-            <button
-              onClick={() => {
-                setPage("capabilities");
-                setCapDropdownOpen(false);
-              }}
-              className="inline-flex items-center gap-1 text-sm transition-colors cursor-pointer py-1"
-              style={{
-                color: page === "capabilities" || capItems.some(i => i.page === page) ? INK : SLATE,
-                fontWeight: page === "capabilities" || capItems.some(i => i.page === page) ? 600 : 400,
-                fontFamily: "'Poppins', sans-serif",
-              }}
-            >
-              Capabilities <ChevronDown size={14} className={`transition-transform duration-200 ${capDropdownOpen ? "rotate-180" : ""}`} />
-            </button>
+  const navLinkStyle = (active: boolean) => ({
+    color: active ? INK : SLATE,
+    fontWeight: active ? 600 : 400,
+    fontFamily: "'Poppins', sans-serif",
+  });
 
-            {/* Dropdown Menu */}
-            {capDropdownOpen && (
-              <div
-                className="absolute top-full left-0 w-72 bg-white rounded-lg shadow-xl border border-slate-200/80 py-2 mt-1 z-50 animate-in fade-in duration-150"
-                style={{ boxShadow: "0 12px 36px rgba(33,51,67,0.14)" }}
+  return (
+    <>
+      <header
+        className="fixed top-0 left-0 right-0 z-50 transition-all duration-200"
+        style={
+          scrolled || mobileMenuOpen
+            ? {
+                background: "rgba(246,244,239,0.98)",
+                backdropFilter: "blur(12px)",
+                borderBottom: "1px solid rgba(33,51,67,0.09)",
+              }
+            : { background: "rgba(246,244,239,0.90)", backdropFilter: "blur(8px)" }
+        }
+      >
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 flex items-center h-[62px] gap-4">
+          {/* Logo */}
+          <button
+            onClick={() => setPage("home")}
+            className="flex items-center gap-2.5 mr-auto cursor-pointer"
+          >
+            <img src={logoSrc} alt="Saphran" style={{ height: 28, width: "auto" }} />
+          </button>
+
+          {/* Desktop nav */}
+          <nav className="hidden md:flex items-center gap-7">
+            <div
+              className="relative py-2"
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+            >
+              <button
+                onClick={() => { setPage("capabilities"); setCapDropdownOpen(false); }}
+                className="inline-flex items-center gap-1 text-sm transition-colors cursor-pointer py-1"
+                style={navLinkStyle(page === "capabilities" || capItems.some(i => i.page === page))}
               >
-                {capItems.map((item) => (
-                  <button
-                    key={item.page}
-                    onClick={() => {
-                      setPage(item.page);
-                      setCapDropdownOpen(false);
-                    }}
-                    className={`w-full text-left px-4 py-2.5 transition-colors flex flex-col hover:bg-[#F6F4EF] cursor-pointer ${
-                      page === item.page ? "bg-[#58A972]/10 border-l-2 border-[#58A972]" : ""
-                    }`}
-                  >
-                    <span className="text-xs font-bold text-slate-900 font-sans">
-                      {item.name}
-                    </span>
-                    <span className="text-[10px] text-slate-500 font-mono mt-0.5">
-                      {item.tag}
-                    </span>
-                  </button>
-                ))}
-              </div>
-            )}
+                Capabilities <ChevronDown size={14} className={`transition-transform duration-200 ${capDropdownOpen ? "rotate-180" : ""}`} />
+              </button>
+              {capDropdownOpen && (
+                <div
+                  className="absolute top-full left-0 w-72 bg-white rounded-lg shadow-xl border border-slate-200/80 py-2 mt-1 z-50"
+                  style={{ boxShadow: "0 12px 36px rgba(33,51,67,0.14)" }}
+                >
+                  {capItems.map((item) => (
+                    <button
+                      key={item.page}
+                      onClick={() => { setPage(item.page); setCapDropdownOpen(false); }}
+                      className={`w-full text-left px-4 py-2.5 transition-colors flex flex-col hover:bg-[#F6F4EF] cursor-pointer ${
+                        page === item.page ? "bg-[#58A972]/10 border-l-2 border-[#58A972]" : ""
+                      }`}
+                    >
+                      <span className="text-xs font-bold text-slate-900 font-sans">{item.name}</span>
+                      <span className="text-[10px] text-slate-500 font-mono mt-0.5">{item.tag}</span>
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+            <button onClick={() => setPage("casestudies")} className="text-sm transition-colors cursor-pointer" style={navLinkStyle(page === "casestudies")}>Case Studies</button>
+            <button onClick={() => setPage("blog")} className="text-sm transition-colors cursor-pointer" style={navLinkStyle(page === "blog" || page === "blog-post")}>Blog</button>
+            <button onClick={() => setPage("contact")} className="text-sm transition-colors cursor-pointer" style={navLinkStyle(page === "contact")}>Contact</button>
+          </nav>
+
+          {/* Desktop CTA */}
+          <div className="hidden sm:block">
+            <PrimaryBtn onClick={() => setPage("contact")}>Book a Discovery Call</PrimaryBtn>
           </div>
 
+          {/* Mobile hamburger */}
           <button
-            onClick={() => setPage("casestudies")}
-            className="text-sm transition-colors cursor-pointer"
-            style={{
-              color: page === "casestudies" ? INK : SLATE,
-              fontWeight: page === "casestudies" ? 600 : 400,
-              fontFamily: "'Poppins', sans-serif",
-            }}
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="md:hidden flex items-center justify-center w-9 h-9 rounded-md transition-colors cursor-pointer"
+            style={{ color: INK }}
+            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
           >
-            Case Studies
+            {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
-          <button
-            onClick={() => setPage("blog")}
-            className="text-sm transition-colors cursor-pointer"
-            style={{
-              color: page === "blog" || page === "blog-post" ? INK : SLATE,
-              fontWeight: page === "blog" || page === "blog-post" ? 600 : 400,
-              fontFamily: "'Poppins', sans-serif",
-            }}
+        </div>
+
+        {/* Mobile slide-down menu */}
+        {mobileMenuOpen && (
+          <div
+            className="md:hidden border-t"
+            style={{ borderColor: "rgba(33,51,67,0.09)", background: "rgba(246,244,239,0.99)" }}
           >
-            Blog
-          </button>
-          <button
-            onClick={() => setPage("contact")}
-            className="text-sm transition-colors cursor-pointer"
-            style={{
-              color: page === "contact" ? INK : SLATE,
-              fontWeight: page === "contact" ? 600 : 400,
-              fontFamily: "'Poppins', sans-serif",
-            }}
-          >
-            Contact
-          </button>
-        </nav>
-        <PrimaryBtn onClick={() => setPage("contact")}>
-          Book a Discovery Call
-        </PrimaryBtn>
-      </div>
-    </header>
+            <nav className="max-w-[1280px] mx-auto px-4 py-4 flex flex-col gap-1">
+              {/* Capabilities accordion */}
+              <div>
+                <button
+                  onClick={() => setMobileCapOpen(!mobileCapOpen)}
+                  className="w-full flex items-center justify-between px-3 py-3 rounded-lg text-sm font-medium text-left cursor-pointer"
+                  style={{ color: page === "capabilities" || capItems.some(i => i.page === page) ? INK : SLATE, fontFamily: "'Poppins', sans-serif" }}
+                >
+                  Capabilities
+                  <ChevronDown size={14} className={`transition-transform duration-200 ${mobileCapOpen ? "rotate-180" : ""}`} />
+                </button>
+                {mobileCapOpen && (
+                  <div className="ml-3 mt-1 mb-2 border-l-2 border-[#58A972]/30 pl-3 flex flex-col gap-0.5">
+                    {capItems.map((item) => (
+                      <button
+                        key={item.page}
+                        onClick={() => setPage(item.page)}
+                        className={`text-left py-2 px-2 rounded text-sm cursor-pointer transition-colors ${
+                          page === item.page ? "text-[#58A972] font-semibold" : "text-slate-600 hover:text-[#213343]"
+                        }`}
+                        style={{ fontFamily: "'Poppins', sans-serif" }}
+                      >
+                        {item.name}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+              {[
+                { label: "Case Studies", p: "casestudies" as Page },
+                { label: "Blog", p: "blog" as Page },
+                { label: "Contact", p: "contact" as Page },
+              ].map(({ label, p }) => (
+                <button
+                  key={p}
+                  onClick={() => setPage(p)}
+                  className="px-3 py-3 rounded-lg text-sm text-left cursor-pointer transition-colors"
+                  style={navLinkStyle(page === p || (p === "blog" && page === "blog-post"))}
+                >
+                  {label}
+                </button>
+              ))}
+              <div className="pt-3 pb-1">
+                <PrimaryBtn onClick={() => setPage("contact")} full>Book a Discovery Call</PrimaryBtn>
+              </div>
+            </nav>
+          </div>
+        )}
+      </header>
+    </>
   );
 }
 
@@ -1478,13 +1518,13 @@ function HomePage({ setPage }: { setPage: (p: Page) => void }) {
         </div>
 
         <div className="max-w-[1280px] mx-auto px-6 lg:px-8 relative">
-          <div className="grid md:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-16 items-center">
+          <div className="grid md:grid-cols-[1.1fr_0.9fr] gap-10 lg:gap-16 items-center">
             <div>
               <h1
                 className="font-semibold leading-[1.1] mb-6"
                 style={{
                   fontFamily: "'Poppins', sans-serif",
-                  fontSize: "clamp(34px, 4.5vw, 60px)",
+                  fontSize: "clamp(30px, 4.5vw, 60px)",
                   letterSpacing: "-0.015em",
                   color: INK,
                 }}
@@ -1509,7 +1549,8 @@ function HomePage({ setPage }: { setPage: (p: Page) => void }) {
                 </OutlineBtn>
               </div>
             </div>
-            <div>
+            {/* Hero mockup — hidden on small screens to avoid horizontal overflow */}
+            <div className="hidden md:block">
               <HeroMockup setPage={setPage} />
             </div>
           </div>
@@ -1526,7 +1567,7 @@ function HomePage({ setPage }: { setPage: (p: Page) => void }) {
         className="py-14"
       >
         <div className="max-w-[1280px] mx-auto px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-slate-200/60">
             {[
               { to: 10,  pre: "+", suf: "%",  label: "Improvement in forecasting accuracy" },
               { to: 8.2, pre: "$", suf: "M+", label: "In documented freight savings" },
@@ -1535,16 +1576,10 @@ function HomePage({ setPage }: { setPage: (p: Page) => void }) {
             ].map((s, i) => (
               <div
                 key={i}
-                className="px-8 py-4"
-                style={{
-                  borderLeft:
-                    i > 0
-                      ? "1px solid rgba(33,51,67,0.10)"
-                      : undefined,
-                }}
+                className="px-5 sm:px-8 py-6 md:py-4"
               >
                 <p
-                  className="text-[40px] font-bold leading-none mb-2"
+                  className="text-[36px] sm:text-[40px] font-bold leading-none mb-2"
                   style={{ color: INK }}
                 >
                   <CountUp to={s.to} prefix={s.pre} suffix={s.suf} />
@@ -1711,7 +1746,7 @@ function HomePage({ setPage }: { setPage: (p: Page) => void }) {
               Is this for you?
             </h2>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
             {[
               {
                 sector: "Tier 1, Tier 2, and Tier 3 Automotive Suppliers",
@@ -1886,7 +1921,7 @@ function HomePage({ setPage }: { setPage: (p: Page) => void }) {
                 forecasting, RFQ response, and margin management in a single
                 decision layer across multiple plants and 20+ countries.
               </p>
-              <div className="grid grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
                 {[
                   { to: 8.2, pre: "$", suf: "M",  label: "Freight cost savings" },
                   { to: 10,  pre: "+", suf: "%",  label: "Forecast accuracy improvement" },
